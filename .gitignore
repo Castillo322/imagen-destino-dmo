@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+.venv/
+salidas/.cache_idioma.parquet
+.DS_Store
+# el reporte de los ejemplos va comprimido (reporte.html.gz)
+salidas/*/reporte.html
