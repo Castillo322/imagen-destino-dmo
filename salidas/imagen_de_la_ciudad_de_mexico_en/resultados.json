@@ -1,0 +1,5989 @@
+{
+ "parametros": {
+  "csv": "datos/cdmx_unificado.csv.gz",
+  "columna_texto": "texto",
+  "columna_fuente": "fuente",
+  "etiqueta_dmo": "sectur",
+  "idioma": "en",
+  "titulo": "Imagen de la Ciudad de México",
+  "paleta": "okabe_ito",
+  "umbral_topicos": 30,
+  "contaminacion": 0.03,
+  "umbral_polaridad": 0.0,
+  "concepto": "price value cost",
+  "semilla": 42,
+  "excluir": [
+   "mexico",
+   "city",
+   "cdmx",
+   "mexican"
+  ],
+  "k_topicos": null
+ },
+ "conteos": {
+  "instagram": {
+   "total": 423,
+   "en_idioma": 29,
+   "outliers": 0,
+   "analizados": 29
+  },
+  "reddit": {
+   "total": 5442,
+   "en_idioma": 5227,
+   "outliers": 156,
+   "analizados": 5020
+  },
+  "sectur": {
+   "total": 487,
+   "en_idioma": 29,
+   "outliers": 1,
+   "analizados": 28
+  },
+  "tripadvisor": {
+   "total": 22124,
+   "en_idioma": 10,
+   "outliers": 0,
+   "analizados": 10
+  }
+ },
+ "idiomas_detectados": {
+  "instagram": {
+   "es": 375,
+   "en": 29,
+   "pt": 5,
+   "ca": 4
+  },
+  "reddit": {
+   "en": 5227,
+   "es": 110,
+   "nl": 15,
+   "it": 14
+  },
+  "sectur": {
+   "es": 445,
+   "en": 29,
+   "ca": 4,
+   "it": 3
+  },
+  "tripadvisor": {
+   "es": 21730,
+   "it": 215,
+   "pt": 148,
+   "ca": 17
+  }
+ },
+ "calidad": {
+  "vacios": {},
+  "duplicados": {
+   "reddit": 8,
+   "tripadvisor": 4,
+   "instagram": 1
+  }
+ },
+ "outliers": {
+  "instagram": {
+   "n": 0,
+   "n_fuente": 29
+  },
+  "reddit": {
+   "n": 156,
+   "n_fuente": 5176,
+   "pct": 3.01,
+   "palabras_mediana_atipicos": 5.0,
+   "palabras_mediana_normales": 10.0,
+   "unigramas": [
+    [
+     "country",
+     28
+    ],
+    [
+     "day",
+     27
+    ],
+    [
+     "cool",
+     22
+    ],
+    [
+     "people",
+     21
+    ],
+    [
+     "cheap",
+     18
+    ],
+    [
+     "yeah",
+     17
+    ],
+    [
+     "time",
+     17
+    ],
+    [
+     "week",
+     17
+    ],
+    [
+     "live",
+     16
+    ],
+    [
+     "roma",
+     14
+    ]
+   ],
+   "bigramas": [
+    [
+     "roma norte",
+     8
+    ],
+    [
+     "digital nomad",
+     5
+    ],
+    [
+     "rent car",
+     4
+    ],
+    [
+     "map san",
+     4
+    ],
+    [
+     "chichen itza",
+     4
+    ],
+    [
+     "crist bal",
+     4
+    ],
+    [
+     "bal casas",
+     4
+    ],
+    [
+     "san crist",
+     4
+    ],
+    [
+     "merida day",
+     3
+    ],
+    [
+     "day trip",
+     3
+    ]
+   ],
+   "trigramas": [
+    [
+     "san crist bal",
+     4
+    ],
+    [
+     "crist bal casas",
+     4
+    ],
+    [
+     "map san pedro",
+     2
+    ],
+    [
+     "stay roma norte",
+     2
+    ],
+    [
+     "san pedro pochutla",
+     2
+    ],
+    [
+     "map san crist",
+     2
+    ],
+    [
+     "pochutla san crist",
+     2
+    ],
+    [
+     "pedro pochutla san",
+     2
+    ],
+    [
+     "merida day merida",
+     2
+    ],
+    [
+     "rent car drive",
+     2
+    ]
+   ],
+   "distintivas": [
+    [
+     "crist",
+     2.22
+    ],
+    [
+     "bal",
+     2.22
+    ],
+    [
+     "pochutla",
+     1.92
+    ],
+    [
+     "cool",
+     1.63
+    ],
+    [
+     "marrakech",
+     1.55
+    ],
+    [
+     "roma",
+     1.42
+    ],
+    [
+     "yeah",
+     1.4
+    ],
+    [
+     "norte",
+     1.33
+    ],
+    [
+     "cheap",
+     1.2
+    ],
+    [
+     "country",
+     1.12
+    ],
+    [
+     "digital",
+     1.06
+    ],
+    [
+     "economy",
+     1.01
+    ]
+   ],
+   "ejemplos": [
+    {
+     "texto": "Hi I was wondering if you had done this and what the results were Have a flight in in about a week",
+     "puntaje": 0.489
+    },
+    {
+     "texto": "Argentina insanely cheap",
+     "puntaje": 0.487
+    },
+    {
+     "texto": "it might be cool too",
+     "puntaje": 0.482
+    },
+    {
+     "texto": "I ve been there twice and also recommend Roma Note and Condesa",
+     "puntaje": 0.482
+    },
+    {
+     "texto": "Going next week and this was helpful Thanks",
+     "puntaje": 0.48
+    },
+    {
+     "texto": "It s actually a pretty cool place you should try visiting sometime",
+     "puntaje": 0.48
+    }
+   ]
+  },
+  "sectur": {
+   "n": 1,
+   "n_fuente": 29,
+   "pct": 3.45,
+   "palabras_mediana_atipicos": 178.0,
+   "palabras_mediana_normales": 172.5,
+   "unigramas": [
+    [
+     "tortas",
+     5
+    ],
+    [
+     "street",
+     4
+    ],
+    [
+     "torta",
+     3
+    ],
+    [
+     "trade",
+     3
+    ],
+    [
+     "comida",
+     3
+    ],
+    [
+     "food",
+     3
+    ],
+    [
+     "merengue",
+     3
+    ],
+    [
+     "coffee",
+     2
+    ],
+    [
+     "tricycle",
+     2
+    ],
+    [
+     "time",
+     2
+    ]
+   ],
+   "bigramas": [
+    [
+     "street food",
+     3
+    ],
+    [
+     "weekend flea",
+     1
+    ],
+    [
+     "whistle cart",
+     1
+    ],
+    [
+     "walk proclaim",
+     1
+    ],
+    [
+     "wake sweet",
+     1
+    ],
+    [
+     "vida dedican",
+     1
+    ],
+    [
+     "warm banana",
+     1
+    ],
+    [
+     "veneradas comida",
+     1
+    ],
+    [
+     "tricycle pedal",
+     1
+    ],
+    [
+     "tricycle baker",
+     1
+    ]
+   ],
+   "trigramas": [
+    [
+     "whistle cart melancholic",
+     1
+    ],
+    [
+     "weekend flea market",
+     1
+    ],
+    [
+     "warm banana cream",
+     1
+    ],
+    [
+     "walk proclaim merengue",
+     1
+    ],
+    [
+     "wake sweet bread",
+     1
+    ],
+    [
+     "vida dedican vida",
+     1
+    ],
+    [
+     "vida comida ambulante",
+     1
+    ],
+    [
+     "veneradas comida faena",
+     1
+    ],
+    [
+     "tricycle pedal bake",
+     1
+    ],
+    [
+     "tricycle baker indispensable",
+     1
+    ]
+   ],
+   "distintivas": [
+    [
+     "tortas",
+     2.41
+    ],
+    [
+     "merengue",
+     1.87
+    ],
+    [
+     "trade",
+     1.87
+    ],
+    [
+     "torta",
+     1.64
+    ],
+    [
+     "merenguero",
+     1.52
+    ],
+    [
+     "admirable",
+     1.52
+    ],
+    [
+     "barbacollero",
+     1.52
+    ],
+    [
+     "camotero",
+     1.52
+    ],
+    [
+     "nostalgia",
+     1.52
+    ],
+    [
+     "practice",
+     1.52
+    ],
+    [
+     "bread",
+     1.52
+    ],
+    [
+     "tricycle",
+     1.52
+    ]
+   ],
+   "ejemplos": [
+    {
+     "texto": "necesita cafe despertar pan dulce buenas merenguero mas discreto admirable oficio riesgo destreza prepara gazntes delicados artesania equilibra charola cabeza camina pregona imerengues merengues tambien barbacollero aparece fines semana dias tianguis camotero brilla profunda nostalgia evoca silbido carrito pregen pregdn sonido melancedlico di buja mexico antiguo habia mas disfrutar platanos calien",
+     "puntaje": 0.465
+    }
+   ]
+  },
+  "tripadvisor": {
+   "n": 0,
+   "n_fuente": 10
+  }
+ },
+ "outliers_global": {
+  "n": 157,
+  "n_total": 5244,
+  "pct": 2.99,
+  "n_normales": 5087,
+  "por_fuente": {
+   "reddit": 156,
+   "sectur": 1
+  },
+  "si_corte_unico": {
+   "instagram": 0,
+   "reddit": 157,
+   "sectur": 1,
+   "tripadvisor": 0
+  },
+  "palabras_mediana_atipicos": 5.0,
+  "palabras_mediana_normales": 10.0,
+  "unigramas": [
+   [
+    "country",
+    28
+   ],
+   [
+    "day",
+    28
+   ],
+   [
+    "cool",
+    22
+   ],
+   [
+    "people",
+    21
+   ],
+   [
+    "time",
+    19
+   ],
+   [
+    "live",
+    18
+   ],
+   [
+    "cheap",
+    18
+   ],
+   [
+    "yeah",
+    17
+   ],
+   [
+    "week",
+    17
+   ],
+   [
+    "walk",
+    15
+   ],
+   [
+    "food",
+    15
+   ],
+   [
+    "beautiful",
+    14
+   ],
+   [
+    "roma",
+    14
+   ],
+   [
+    "lot",
+    13
+   ],
+   [
+    "stay",
+    13
+   ]
+  ],
+  "bigramas": [
+   [
+    "roma norte",
+    8
+   ],
+   [
+    "digital nomad",
+    5
+   ],
+   [
+    "bal casas",
+    4
+   ],
+   [
+    "chichen itza",
+    4
+   ],
+   [
+    "san crist",
+    4
+   ],
+   [
+    "rent car",
+    4
+   ],
+   [
+    "street food",
+    4
+   ],
+   [
+    "map san",
+    4
+   ],
+   [
+    "crist bal",
+    4
+   ],
+   [
+    "pochutla san",
+    3
+   ],
+   [
+    "spend week",
+    3
+   ],
+   [
+    "merida day",
+    3
+   ],
+   [
+    "local economy",
+    3
+   ],
+   [
+    "spend month",
+    3
+   ],
+   [
+    "day trip",
+    3
+   ]
+  ],
+  "trigramas": [
+   [
+    "crist bal casas",
+    4
+   ],
+   [
+    "san crist bal",
+    4
+   ],
+   [
+    "san pedro pochutla",
+    2
+   ],
+   [
+    "stay roma norte",
+    2
+   ],
+   [
+    "pedro pochutla san",
+    2
+   ],
+   [
+    "map san pedro",
+    2
+   ],
+   [
+    "pochutla san crist",
+    2
+   ],
+   [
+    "rent car drive",
+    2
+   ],
+   [
+    "map san crist",
+    2
+   ],
+   [
+    "merida day merida",
+    2
+   ],
+   [
+    "bal casas palenque",
+    2
+   ],
+   [
+    "bal casas bus",
+    2
+   ],
+   [
+    "favorite casual restaurant",
+    1
+   ],
+   [
+    "favorite beach sydney",
+    1
+   ],
+   [
+    "favorire bar rio",
+    1
+   ]
+  ],
+  "distintivas": [
+   [
+    "crist",
+    2.22
+   ],
+   [
+    "bal",
+    2.22
+   ],
+   [
+    "merengue",
+    1.92
+   ],
+   [
+    "pochutla",
+    1.92
+   ],
+   [
+    "tortas",
+    1.82
+   ],
+   [
+    "cool",
+    1.62
+   ],
+   [
+    "torta",
+    1.54
+   ],
+   [
+    "marrakech",
+    1.54
+   ],
+   [
+    "comida",
+    1.41
+   ],
+   [
+    "yeah",
+    1.39
+   ],
+   [
+    "roma",
+    1.33
+   ],
+   [
+    "trade",
+    1.3
+   ],
+   [
+    "norte",
+    1.23
+   ],
+   [
+    "cheap",
+    1.18
+   ],
+   [
+    "country",
+    1.08
+   ]
+  ],
+  "ejemplos": [
+   {
+    "texto": "Hi I was wondering if you had done this and what the results were Have a flight in in about a week",
+    "fuente": "reddit",
+    "puntaje": 0.489
+   },
+   {
+    "texto": "Argentina insanely cheap",
+    "fuente": "reddit",
+    "puntaje": 0.487
+   },
+   {
+    "texto": "it might be cool too",
+    "fuente": "reddit",
+    "puntaje": 0.482
+   },
+   {
+    "texto": "I ve been there twice and also recommend Roma Note and Condesa",
+    "fuente": "reddit",
+    "puntaje": 0.482
+   },
+   {
+    "texto": "Going next week and this was helpful Thanks",
+    "fuente": "reddit",
+    "puntaje": 0.48
+   },
+   {
+    "texto": "It s actually a pretty cool place you should try visiting sometime",
+    "fuente": "reddit",
+    "puntaje": 0.48
+   },
+   {
+    "texto": "Exactly Roma Condesa and Polanco have always been interesting and nice neighborhoods",
+    "fuente": "reddit",
+    "puntaje": 0.479
+   },
+   {
+    "texto": "Is Soriani cheaper than Walmart",
+    "fuente": "reddit",
+    "puntaje": 0.479
+   }
+  ]
+ },
+ "topicos": {
+  "conjunto": {
+   "tipo": "topicos",
+   "n": 5087,
+   "k": 5,
+   "npmi": 0.1493,
+   "evaluacion_k": [
+    {
+     "k": 5,
+     "npmi": 0.1493,
+     "npmi_ponderada": 0.1712,
+     "diversidad": 0.933,
+     "puntaje": 0.1599,
+     "puntaje_de": 0.0174
+    },
+    {
+     "k": 6,
+     "npmi": 0.1421,
+     "npmi_ponderada": 0.1716,
+     "diversidad": 0.922,
+     "puntaje": 0.158,
+     "puntaje_de": 0.0268
+    },
+    {
+     "k": 7,
+     "npmi": 0.1536,
+     "npmi_ponderada": 0.1734,
+     "diversidad": 0.914,
+     "puntaje": 0.1586,
+     "puntaje_de": 0.0337
+    },
+    {
+     "k": 8,
+     "npmi": 0.152,
+     "npmi_ponderada": 0.1726,
+     "diversidad": 0.892,
+     "puntaje": 0.1541,
+     "puntaje_de": 0.0222
+    },
+    {
+     "k": 9,
+     "npmi": 0.1361,
+     "npmi_ponderada": 0.1638,
+     "diversidad": 0.889,
+     "puntaje": 0.1454,
+     "puntaje_de": 0.0187
+    },
+    {
+     "k": 10,
+     "npmi": 0.1142,
+     "npmi_ponderada": 0.157,
+     "diversidad": 0.9,
+     "puntaje": 0.1412,
+     "puntaje_de": 0.0197
+    },
+    {
+     "k": 11,
+     "npmi": 0.1243,
+     "npmi_ponderada": 0.1587,
+     "diversidad": 0.891,
+     "puntaje": 0.1413,
+     "puntaje_de": 0.0097
+    },
+    {
+     "k": 12,
+     "npmi": 0.1213,
+     "npmi_ponderada": 0.1494,
+     "diversidad": 0.872,
+     "puntaje": 0.13,
+     "puntaje_de": 0.0127
+    },
+    {
+     "k": 13,
+     "npmi": 0.1247,
+     "npmi_ponderada": 0.1522,
+     "diversidad": 0.874,
+     "puntaje": 0.1327,
+     "puntaje_de": 0.0254
+    },
+    {
+     "k": 14,
+     "npmi": 0.1205,
+     "npmi_ponderada": 0.1483,
+     "diversidad": 0.869,
+     "puntaje": 0.1285,
+     "puntaje_de": 0.0202
+    },
+    {
+     "k": 15,
+     "npmi": 0.1138,
+     "npmi_ponderada": 0.1491,
+     "diversidad": 0.853,
+     "puntaje": 0.1269,
+     "puntaje_de": 0.0241
+    }
+   ],
+   "topicos": [
+    {
+     "id": 0,
+     "etiqueta": "time · travel · safe",
+     "palabras": [
+      "time",
+      "travel",
+      "safe",
+      "visit",
+      "stay",
+      "lot",
+      "people",
+      "tourist",
+      "station",
+      "bad"
+     ],
+     "n": 1994,
+     "npmi": 0.145,
+     "mezcla_fuentes": {
+      "sectur": 12,
+      "reddit": 1970,
+      "instagram": 7,
+      "tripadvisor": 5
+     },
+     "representativo": {
+      "texto": "My opinion experience may be a bit biased since I am Colombian born raised in the US and fluent in Spanish At the time I was traveling with someone who is American and did not speak any Spanish I was in Medellin and the surrounding areas for about 9ish days in 2023 I stayed in both Poblado and Laureles Poblado has alot hot spots in terms of food drinks bars highrises and Laureles has alot of hot spots too but does feel alot more residential neighborhood compared to Laureles From my memory both h",
+      "fuente": "reddit",
+      "similitud_centroide": 0.396
+     },
+     "representativo_por_fuente": {
+      "instagram": "🌊Freehand done !🌊\nThx for traveling from Australia !\nDM TO BOOK\n\n#mexicocity #cdmxtattoo #tradtattoos #japanesetattoo #ornementaltattoo #mexicocitytattoo #romanorte #condesa #cdmx #cdmxtraditionaltattoo #cdmxjapanesetattoos #romanortetattoo #condesatattoo #mexicocityart #mexicocityartist",
+      "reddit": "My opinion experience may be a bit biased since I am Colombian born raised in the US and fluent in Spanish At the time I was traveling with someone who is American and did not speak any Spanish I was in Medellin and the surrounding areas for about 9ish days in 2023 I stayed in both Poblado and Laure",
+      "sectur": "pueblo barrio magico small town magical neighborhood pueblo chico filmacien grande asi demostr exitosa serie mexicana casa flores small town vibes big filming opportunities cautive audiencia nacional extranjeraconel demonstrated success mexican series casa drama familia llevado vida flores captivate",
+      "tripadvisor": "hotel punto referencia landmark city hotel admirar arquitectura remanso visitar centro ciudadit hotel much admire architecture visiting city center"
+     }
+    },
+    {
+     "id": 1,
+     "etiqueta": "japan · country · people",
+     "palabras": [
+      "japan",
+      "country",
+      "people",
+      "live",
+      "visit",
+      "speak",
+      "japanese",
+      "lol",
+      "experience",
+      "visit japan"
+     ],
+     "n": 828,
+     "npmi": 0.21,
+     "mezcla_fuentes": {
+      "sectur": 2,
+      "reddit": 824,
+      "instagram": 2
+     },
+     "representativo": {
+      "texto": "I agree that Japan does get romanticized and there are lots of things in Japans society that are not great But there is a big difference between people moving to Japan or people just visiting Japan for a trip Cause as a tourist you see friendly people clean cities vibrant culture and a great country to visit overall The racism the social pressure strict hierarchy and many other factors are something you mostly only see when you ve been to the country for a while So I d say Japan is a great count",
+      "fuente": "reddit",
+      "similitud_centroide": 0.575
+     },
+     "representativo_por_fuente": {
+      "instagram": "❌❌ OJOS (REMIX) ❌❌ Navegando las calles de Downtown LA . Mañana my people‼️ #cynicism #eptosuno #djmuggs #downtownla  #cdmx #picounion ps. Always wear your seatbelt.",
+      "reddit": "I agree that Japan does get romanticized and there are lots of things in Japans society that are not great But there is a big difference between people moving to Japan or people just visiting Japan for a trip Cause as a tourist you see friendly people clean cities vibrant culture and a great country",
+      "sectur": "conic films history spanish oo speaking cinematography several languages passed facilities inaugurated september th hectares country club neighborhood situated southern area mexico city complex created in image likeness hollywood studios according official website the project idea radio businessman "
+     }
+    },
+    {
+     "id": 2,
+     "etiqueta": "food · street · eat",
+     "palabras": [
+      "food",
+      "street",
+      "street food",
+      "eat",
+      "taco",
+      "eat street",
+      "water",
+      "street taco",
+      "restaurant",
+      "bad"
+     ],
+     "n": 548,
+     "npmi": 0.262,
+     "mezcla_fuentes": {
+      "sectur": 6,
+      "reddit": 538,
+      "instagram": 3,
+      "tripadvisor": 1
+     },
+     "representativo": {
+      "texto": "Have you ever gotten sick from the street food there I love the restaurant food but I ve been a little nervous about street food",
+      "fuente": "reddit",
+      "similitud_centroide": 0.61
+     },
+     "representativo_por_fuente": {
+      "instagram": "Finde Patrio AF \n\n#sabescomo #holdmybeer #mexico #memer #1 #2025 #memes #canelo #oasis #cdmx #bet #nfl #apple #drink",
+      "reddit": "Have you ever gotten sick from the street food there I love the restaurant food but I ve been a little nervous about street food",
+      "sectur": "mexico city s magnificence reflected history culture heri tage and course cuisine declared intangible cultural heri tage humanity unesco mexico city considered one gastronomic capitals world offers unparalleled culinary experience tradition creativity found every dish better way get know authentic f",
+      "tripadvisor": "torres campanas tour torres campanas historia toma catedral cuesta pesos ademas vista zocalo excelentethe best tour see towers bellss also know history taken catedral cost pesos view zocalo awesome"
+     }
+    },
+    {
+     "id": 3,
+     "etiqueta": "day · oaxaca · trip",
+     "palabras": [
+      "day",
+      "oaxaca",
+      "trip",
+      "plan",
+      "night",
+      "fly",
+      "spend",
+      "bus",
+      "puerto",
+      "recommend"
+     ],
+     "n": 1081,
+     "npmi": 0.294,
+     "mezcla_fuentes": {
+      "sectur": 1,
+      "reddit": 1076,
+      "instagram": 2,
+      "tripadvisor": 2
+     },
+     "representativo": {
+      "texto": "Three weeks in Mexico. Hello everyone  I am planning a three week trip to Mexico this July  and I am starting to despair at the size of this country and all the amazing places there are to see and experience   So far  I have planned the following  Fly into CDMX  stay for five days  I have been before  but my girlfriend has not  and the city is so huge and vibrant that I think spending a week there is definitely not too much   From CDMX  going to Oaxaca by bus  takes about 7 hours as I ve been ab",
+      "fuente": "reddit",
+      "similitud_centroide": 0.505
+     },
+     "representativo_por_fuente": {
+      "instagram": "Happy Game Day from Mexico City🇲🇽🐬\n•\n#vamosdolphins #godolphins #miamidolphins #nflkickoff #cdmx #dolphinscheer #miamidolphinscheerleaders #phinsup #gofins #nflmexico #mexicocity #miami #procheer #prodance #nflcheerleaders #explore #dolphins #cheerleaders #nflgameday",
+      "reddit": "Three weeks in Mexico. Hello everyone  I am planning a three week trip to Mexico this July  and I am starting to despair at the size of this country and all the amazing places there are to see and experience   So far  I have planned the following  Fly into CDMX  stay for five days  I have been befor",
+      "sectur": "speaking films found shooting studio stages hollywood big names arnold schwarzenegger leonardo dicaprio claire danes salma hayek jamie lee curtis drew barrymore among others passed hallways sound stages too bven marilyn monroe visited bl angel exterminador s set pay visit bufiuet cinematographer gab",
+      "tripadvisor": "hermoso monumento hermoso disfrutamos vista fotos estabamos hop on hop off bus tomar fotografias"
+     }
+    },
+    {
+     "id": 4,
+     "etiqueta": "love · reel · feel",
+     "palabras": [
+      "love",
+      "reel",
+      "feel",
+      "wow",
+      "beautiful",
+      "people",
+      "magical",
+      "visit",
+      "medellin",
+      "summer"
+     ],
+     "n": 556,
+     "npmi": -0.129,
+     "mezcla_fuentes": {
+      "sectur": 4,
+      "reddit": 537,
+      "instagram": 13,
+      "tripadvisor": 2
+     },
+     "representativo": {
+      "texto": "Jordaan in Amsterdam Absolutely loved it there would love to go back Just loved the cobblestones the canals the food",
+      "fuente": "reddit",
+      "similitud_centroide": 0.776
+     },
+     "representativo_por_fuente": {
+      "instagram": "@flvckka #reels #cdmx #grungeaesthetic #love #flvckka #trapméxico #trapmexa #romantizeyourlife #emjay",
+      "reddit": "Jordaan in Amsterdam Absolutely loved it there would love to go back Just loved the cobblestones the canals the food",
+      "sectur": "role chased metro station none chabacano even see coffee bars characteristic no smoking signage extremely bloody sequence nothing love shared ana claudia talancen jordan belfi american curious film american inherits restaurant gradually falls love head chef here san cosme station line plays role con",
+      "tripadvisor": "interesante noche monton bares gay friendly"
+     }
+    }
+   ],
+   "por_fuente": {
+    "instagram": {
+     "n": 29,
+     "pct": {
+      "0": 24.14,
+      "1": 6.9,
+      "2": 10.34,
+      "3": 6.9,
+      "4": 44.83
+     },
+     "prop": {
+      "0": 23.96,
+      "1": 7.1,
+      "2": 12.54,
+      "3": 7.31,
+      "4": 49.08
+     },
+     "sin_topico_pct": 6.9
+    },
+    "reddit": {
+     "n": 5020,
+     "pct": {
+      "0": 39.24,
+      "1": 16.41,
+      "2": 10.72,
+      "3": 21.43,
+      "4": 10.7
+     },
+     "prop": {
+      "0": 36.0,
+      "1": 16.13,
+      "2": 13.18,
+      "3": 22.11,
+      "4": 12.58
+     },
+     "sin_topico_pct": 1.49
+    },
+    "sectur": {
+     "n": 28,
+     "pct": {
+      "0": 42.86,
+      "1": 7.14,
+      "2": 21.43,
+      "3": 3.57,
+      "4": 14.29
+     },
+     "prop": {
+      "0": 39.11,
+      "1": 10.79,
+      "2": 21.39,
+      "3": 12.45,
+      "4": 16.26
+     },
+     "sin_topico_pct": 10.71
+    },
+    "tripadvisor": {
+     "n": 10,
+     "pct": {
+      "0": 50.0,
+      "1": 0.0,
+      "2": 10.0,
+      "3": 20.0,
+      "4": 20.0
+     },
+     "prop": {
+      "0": 40.99,
+      "1": 8.79,
+      "2": 9.77,
+      "3": 22.54,
+      "4": 17.91
+     },
+     "sin_topico_pct": 0.0
+    }
+   }
+  },
+  "positivo": {
+   "tipo": "topicos",
+   "n": 4237,
+   "k": 8,
+   "npmi": 0.1632,
+   "evaluacion_k": [
+    {
+     "k": 5,
+     "npmi": 0.1627,
+     "npmi_ponderada": 0.1801,
+     "diversidad": 0.92,
+     "puntaje": 0.1657,
+     "puntaje_de": 0.0198
+    },
+    {
+     "k": 6,
+     "npmi": 0.1787,
+     "npmi_ponderada": 0.1933,
+     "diversidad": 0.917,
+     "puntaje": 0.1774,
+     "puntaje_de": 0.0245
+    },
+    {
+     "k": 7,
+     "npmi": 0.1645,
+     "npmi_ponderada": 0.1826,
+     "diversidad": 0.924,
+     "puntaje": 0.1688,
+     "puntaje_de": 0.0139
+    },
+    {
+     "k": 8,
+     "npmi": 0.1632,
+     "npmi_ponderada": 0.1847,
+     "diversidad": 0.925,
+     "puntaje": 0.1708,
+     "puntaje_de": 0.0153
+    },
+    {
+     "k": 9,
+     "npmi": 0.1383,
+     "npmi_ponderada": 0.1571,
+     "diversidad": 0.915,
+     "puntaje": 0.1437,
+     "puntaje_de": 0.0274
+    },
+    {
+     "k": 10,
+     "npmi": 0.1286,
+     "npmi_ponderada": 0.1482,
+     "diversidad": 0.903,
+     "puntaje": 0.1333,
+     "puntaje_de": 0.0295
+    },
+    {
+     "k": 11,
+     "npmi": 0.124,
+     "npmi_ponderada": 0.1461,
+     "diversidad": 0.888,
+     "puntaje": 0.1294,
+     "puntaje_de": 0.0278
+    },
+    {
+     "k": 12,
+     "npmi": 0.1139,
+     "npmi_ponderada": 0.1403,
+     "diversidad": 0.883,
+     "puntaje": 0.1236,
+     "puntaje_de": 0.026
+    },
+    {
+     "k": 13,
+     "npmi": 0.1121,
+     "npmi_ponderada": 0.137,
+     "diversidad": 0.897,
+     "puntaje": 0.1225,
+     "puntaje_de": 0.0246
+    },
+    {
+     "k": 14,
+     "npmi": 0.1198,
+     "npmi_ponderada": 0.145,
+     "diversidad": 0.876,
+     "puntaje": 0.1267,
+     "puntaje_de": 0.0282
+    },
+    {
+     "k": 15,
+     "npmi": 0.0967,
+     "npmi_ponderada": 0.1302,
+     "diversidad": 0.869,
+     "puntaje": 0.1119,
+     "puntaje_de": 0.0381
+    }
+   ],
+   "topicos": [
+    {
+     "id": 0,
+     "etiqueta": "day · oaxaca · spend",
+     "palabras": [
+      "day",
+      "oaxaca",
+      "spend",
+      "stay",
+      "puebla",
+      "spend day",
+      "visit",
+      "bus",
+      "fly",
+      "beach"
+     ],
+     "n": 564,
+     "npmi": 0.284,
+     "mezcla_fuentes": {
+      "reddit": 560,
+      "instagram": 2,
+      "tripadvisor": 2
+     },
+     "representativo": {
+      "texto": "Three weeks in Mexico. Hello everyone  I am planning a three week trip to Mexico this July  and I am starting to despair at the size of this country and all the amazing places there are to see and experience   So far  I have planned the following  Fly into CDMX  stay for five days  I have been before  but my girlfriend has not  and the city is so huge and vibrant that I think spending a week there is definitely not too much   From CDMX  going to Oaxaca by bus  takes about 7 hours as I ve been ab",
+      "fuente": "reddit",
+      "similitud_centroide": 0.517
+     },
+     "representativo_por_fuente": {
+      "instagram": "Happy Game Day from Mexico City🇲🇽🐬\n•\n#vamosdolphins #godolphins #miamidolphins #nflkickoff #cdmx #dolphinscheer #miamidolphinscheerleaders #phinsup #gofins #nflmexico #mexicocity #miami #procheer #prodance #nflcheerleaders #explore #dolphins #cheerleaders #nflgameday",
+      "reddit": "Three weeks in Mexico. Hello everyone  I am planning a three week trip to Mexico this July  and I am starting to despair at the size of this country and all the amazing places there are to see and experience   So far  I have planned the following  Fly into CDMX  stay for five days  I have been befor",
+      "tripadvisor": "hermoso monumento hermoso disfrutamos vista fotos estabamos hop on hop off bus tomar fotografias"
+     },
+     "palabras_por_fuente": {
+      "reddit": [
+       "day",
+       "oaxaca",
+       "spend",
+       "visit",
+       "stay",
+       "beach"
+      ],
+      "instagram": [
+       "day",
+       "explore",
+       "beach",
+       "travel",
+       "week",
+       "zocalo"
+      ],
+      "tripadvisor": [
+       "visit",
+       "bus",
+       "hotel",
+       "centro",
+       "recommend",
+       "zocalo"
+      ]
+     }
+    },
+    {
+     "id": 1,
+     "etiqueta": "japan · country · visit",
+     "palabras": [
+      "japan",
+      "country",
+      "visit",
+      "australia",
+      "live",
+      "kyoto",
+      "usa",
+      "lot",
+      "visit japan",
+      "tokyo"
+     ],
+     "n": 268,
+     "npmi": 0.214,
+     "mezcla_fuentes": {
+      "reddit": 267,
+      "tripadvisor": 1
+     },
+     "representativo": {
+      "texto": "La Marina Monastir Tunisia Arashiyama Japan Tomonooura Japan it s not a neighbourhood but a very small village Ginza Tokyo Japan",
+      "fuente": "reddit",
+      "similitud_centroide": 0.743
+     },
+     "representativo_por_fuente": {
+      "reddit": "La Marina Monastir Tunisia Arashiyama Japan Tomonooura Japan it s not a neighbourhood but a very small village Ginza Tokyo Japan",
+      "tripadvisor": "zocalo cathedral must see took turibus visited museo cera zocalo torre latinoamericana palacio bellas artes cathedral mexico antes"
+     },
+     "palabras_por_fuente": {
+      "reddit": [
+       "japan",
+       "visit",
+       "country",
+       "lot",
+       "live",
+       "tokyo"
+      ],
+      "tripadvisor": [
+       "visit",
+       "view",
+       "friendly",
+       "queen",
+       "building",
+       "tower"
+      ]
+     }
+    },
+    {
+     "id": 2,
+     "etiqueta": "love · rio · absolutely",
+     "palabras": [
+      "love",
+      "rio",
+      "absolutely",
+      "absolutely love",
+      "downtown",
+      "reel",
+      "love oaxaca",
+      "choice",
+      "beautiful",
+      "paulo"
+     ],
+     "n": 284,
+     "npmi": -0.197,
+     "mezcla_fuentes": {
+      "sectur": 3,
+      "reddit": 274,
+      "instagram": 7
+     },
+     "representativo": {
+      "texto": "Jordaan in Amsterdam Absolutely loved it there would love to go back Just loved the cobblestones the canals the food",
+      "fuente": "reddit",
+      "similitud_centroide": 0.852
+     },
+     "representativo_por_fuente": {
+      "instagram": "@flvckka #reels #cdmx #grungeaesthetic #love #flvckka #trapméxico #trapmexa #romantizeyourlife #emjay",
+      "reddit": "Jordaan in Amsterdam Absolutely loved it there would love to go back Just loved the cobblestones the canals the food",
+      "sectur": "role chased metro station none chabacano even see coffee bars characteristic no smoking signage extremely bloody sequence nothing love shared ana claudia talancen jordan belfi american curious film american inherits restaurant gradually falls love head chef here san cosme station line plays role con"
+     },
+     "palabras_por_fuente": {
+      "sectur": [
+       "love",
+       "visit",
+       "beautiful",
+       "list",
+       "eat",
+       "station"
+      ],
+      "reddit": [
+       "love",
+       "visit",
+       "absolutely",
+       "amazing",
+       "rio",
+       "beautiful"
+      ],
+      "instagram": [
+       "love",
+       "reel",
+       "amor",
+       "outfit",
+       "center",
+       "weekend"
+      ]
+     }
+    },
+    {
+     "id": 3,
+     "etiqueta": "people · travel · country",
+     "palabras": [
+      "people",
+      "travel",
+      "country",
+      "safe",
+      "speak",
+      "pretty",
+      "america",
+      "lot",
+      "experience",
+      "spanish"
+     ],
+     "n": 1175,
+     "npmi": 0.194,
+     "mezcla_fuentes": {
+      "sectur": 4,
+      "reddit": 1163,
+      "instagram": 7,
+      "tripadvisor": 1
+     },
+     "representativo": {
+      "texto": "My opinion experience may be a bit biased since I am Colombian born raised in the US and fluent in Spanish At the time I was traveling with someone who is American and did not speak any Spanish I was in Medellin and the surrounding areas for about 9ish days in 2023 I stayed in both Poblado and Laureles Poblado has alot hot spots in terms of food drinks bars highrises and Laureles has alot of hot spots too but does feel alot more residential neighborhood compared to Laureles From my memory both h",
+      "fuente": "reddit",
+      "similitud_centroide": 0.44
+     },
+     "representativo_por_fuente": {
+      "instagram": "Unbelievable experience to perform for almost 200k people at Zócalo in CDMX — so much energy from the crowd — so many emotions. \n\nTo hear the Palestinian children speak was such an emotional moment. They manage to escape this horror … The support for a dignified life for Palestinians was a core mess",
+      "reddit": "My opinion experience may be a bit biased since I am Colombian born raised in the US and fluent in Spanish At the time I was traveling with someone who is American and did not speak any Spanish I was in Medellin and the surrounding areas for about 9ish days in 2023 I stayed in both Poblado and Laure",
+      "sectur": "mexico filmaron mil proyectos representa crecimiento ciento registraron mil estudios casas productoras incremento anual ciento producciones representan mil millones pesos inversion extranjera directa ied industria filmica video aumento ciento generacien empleos relacionados industria audiovisual jun",
+      "tripadvisor": "interesante noche monton bares gay friendly"
+     },
+     "palabras_por_fuente": {
+      "sectur": [
+       "people",
+       "cop",
+       "film",
+       "experience",
+       "american",
+       "america"
+      ],
+      "reddit": [
+       "people",
+       "travel",
+       "country",
+       "safe",
+       "lot",
+       "pretty"
+      ],
+      "instagram": [
+       "people",
+       "travel",
+       "latin",
+       "mexicocity",
+       "happy",
+       "friend"
+      ],
+      "tripadvisor": [
+       "friendly",
+       "view",
+       "hotel",
+       "peso",
+       "zocalo",
+       "center"
+      ]
+     }
+    },
+    {
+     "id": 4,
+     "etiqueta": "time · week · spend time",
+     "palabras": [
+      "time",
+      "week",
+      "time week",
+      "spend time",
+      "water",
+      "brazil",
+      "sick",
+      "panama",
+      "belize",
+      "worth"
+     ],
+     "n": 379,
+     "npmi": -0.059,
+     "mezcla_fuentes": {
+      "sectur": 1,
+      "reddit": 377,
+      "instagram": 1
+     },
+     "representativo": {
+      "texto": "I stayed in Recoleta the two times I visited BA but would love to stay in Palermo next time",
+      "fuente": "reddit",
+      "similitud_centroide": 0.828
+     },
+     "representativo_por_fuente": {
+      "instagram": "Sooo I need at least a week next time in CDMX 🌮🦐🥐🍸 \n\nThe deets:\n- blue corn quesadillas (specifically the flor de calabaza and chorizo y papas) from Quesadillas Elenita (corner of Colima and Merida in Roma Norte)\n- allll the mariscos and passi marg from @micompachava - truly best skramps of my life!",
+      "reddit": "I stayed in Recoleta the two times I visited BA but would love to stay in Palermo next time",
+      "sectur": "aha aaeeel claqueta cquieres filmar cdmx clapboard so want film mexico city jesta guia necesitas lograrlo here s ultimate guide make happen patricia soto historia mas cautivadora elenco ideal al teoria probablemente convencido mas persona invertir proyecto audiovisual ahora sucedan necesitas planear"
+     },
+     "palabras_por_fuente": {
+      "sectur": [
+       "time",
+       "happen",
+       "visit",
+       "house",
+       "cop",
+       "time happen"
+      ],
+      "reddit": [
+       "time",
+       "week",
+       "spend",
+       "visit",
+       "stay",
+       "lot"
+      ],
+      "instagram": [
+       "time",
+       "week",
+       "week time",
+       "fit",
+       "hand",
+       "family"
+      ]
+     }
+    },
+    {
+     "id": 5,
+     "etiqueta": "food · street · taco",
+     "palabras": [
+      "food",
+      "street",
+      "taco",
+      "restaurant",
+      "street food",
+      "eat",
+      "amazing",
+      "tour",
+      "beautiful",
+      "history"
+     ],
+     "n": 519,
+     "npmi": 0.252,
+     "mezcla_fuentes": {
+      "sectur": 6,
+      "reddit": 507,
+      "instagram": 2,
+      "tripadvisor": 4
+     },
+     "representativo": {
+      "texto": "Try the street food next time We ate tons of street tortas when we visited CDMX and they were clean cheap and absolutely delicious Maybe some of the best food I had on that trip",
+      "fuente": "reddit",
+      "similitud_centroide": 0.539
+     },
+     "representativo_por_fuente": {
+      "instagram": "Finde Patrio AF \n\n#sabescomo #holdmybeer #mexico #memer #1 #2025 #memes #canelo #oasis #cdmx #bet #nfl #apple #drink",
+      "reddit": "Try the street food next time We ate tons of street tortas when we visited CDMX and they were clean cheap and absolutely delicious Maybe some of the best food I had on that trip",
+      "sectur": "mexico city s magnificence reflected history culture heri tage and course cuisine declared intangible cultural heri tage humanity unesco mexico city considered one gastronomic capitals world offers unparalleled culinary experience tradition creativity found every dish better way get know authentic f",
+      "tripadvisor": "amazing view incleible hearthquarter survivor building impresionante vista centro historico mexico edificio sobrevivido terremotos increible bonitos museos historia mexico pisos recomendados vas ciudad mexico amaizing building increible view mexico city must visit city also museum oficina mexico ple"
+     },
+     "palabras_por_fuente": {
+      "sectur": [
+       "food",
+       "street",
+       "taco",
+       "eat",
+       "history",
+       "film"
+      ],
+      "reddit": [
+       "food",
+       "street",
+       "amazing",
+       "restaurant",
+       "eat",
+       "taco"
+      ],
+      "instagram": [
+       "food",
+       "reel",
+       "taco",
+       "drink",
+       "explore",
+       "zocalo"
+      ],
+      "tripadvisor": [
+       "tour",
+       "architecture",
+       "zocalo",
+       "amazing",
+       "hotel",
+       "history"
+      ]
+     }
+    },
+    {
+     "id": 6,
+     "etiqueta": "trip · favorite · sound",
+     "palabras": [
+      "trip",
+      "favorite",
+      "sound",
+      "awesome",
+      "friend",
+      "recommend",
+      "destination",
+      "day trip",
+      "teotihuacan",
+      "hit"
+     ],
+     "n": 427,
+     "npmi": 0.158,
+     "mezcla_fuentes": {
+      "reddit": 424,
+      "instagram": 3
+     },
+     "representativo": {
+      "texto": "I m being none of those things It sounds like a nice trip I hope you enjoy it Ask the locals when you get there stop at a grocery make friends You re not going to starve",
+      "fuente": "reddit",
+      "similitud_centroide": 0.692
+     },
+     "representativo_por_fuente": {
+      "instagram": "Mexico City was not what I expected! It’s actually one of the best places I think I’ve ever seen. I went for a belated birthday trip and it was hands down one of the best cities I’ve ever been to. Save this video if you’ve ever had the desire to go and please ask any questions below! \n\n#mexicocity #",
+      "reddit": "I m being none of those things It sounds like a nice trip I hope you enjoy it Ask the locals when you get there stop at a grocery make friends You re not going to starve"
+     },
+     "palabras_por_fuente": {
+      "reddit": [
+       "trip",
+       "favorite",
+       "sound",
+       "awesome",
+       "recommend",
+       "friend"
+      ],
+      "instagram": [
+       "favorite",
+       "trip",
+       "friend",
+       "bet",
+       "random",
+       "girl"
+      ]
+     }
+    },
+    {
+     "id": 7,
+     "etiqueta": "walk · neighbourhood · live",
+     "palabras": [
+      "walk",
+      "neighbourhood",
+      "live",
+      "town",
+      "nyc",
+      "paris",
+      "london",
+      "life",
+      "park",
+      "rome"
+     ],
+     "n": 558,
+     "npmi": 0.193,
+     "mezcla_fuentes": {
+      "sectur": 9,
+      "reddit": 546,
+      "instagram": 1,
+      "tripadvisor": 2
+     },
+     "representativo": {
+      "texto": "Travel and walking are two of our greatest passions in life along with music Our favorite walking areas include Canal Rings and the Jordaan Amsterdam East Shinjuku Tokyo La Condesa Roma CDMX Old Quarter Hanoi The Marais Paris Old Town Chicago our old neighborhood Seven Dials area London Trastevere Rome Honorable mention the dearly departed Lahaina Maui may she rest in peace",
+      "fuente": "reddit",
+      "similitud_centroide": 0.457
+     },
+     "representativo_por_fuente": {
+      "instagram": "LES DEJAMOS UNAS PLAYERAS EXCLUSIVAS BY @gigazep0 en @brea.st0re \n\nADEMÁS DE LOS MODELOS ANTERIORES \n\nSON MUY POCAS PIEZAS ASÍ QUE CORRAN! \n\nHay de $400 y $450 \n\n#postpunk #darkwave #nuevamusica #discovermusic #merch #cdmx #glooryhole",
+      "reddit": "Travel and walking are two of our greatest passions in life along with music Our favorite walking areas include Canal Rings and the Jordaan Amsterdam East Shinjuku Tokyo La Condesa Roma CDMX Old Quarter Hanoi The Marais Paris Old Town Chicago our old neighborhood Seven Dials area London Trastevere R",
+      "sectur": "instagram tiktok visitaran sala sentirla mas cercana portada inside museums museums house prominent remnants human history also add special dimension experiences something cinema television capitalized on venues productions practically obligated consider scripts like happened casa azul frida kahlo m",
+      "tripadvisor": "world press photo exposicion temporal world press photo interesante agradable patio interior museo bonito cafeteria ademas exposiciones interesantes"
+     },
+     "palabras_por_fuente": {
+      "sectur": [
+       "neighbourhood",
+       "film",
+       "live",
+       "town",
+       "life",
+       "san"
+      ],
+      "reddit": [
+       "walk",
+       "live",
+       "town",
+       "neighbourhood",
+       "week",
+       "street"
+      ],
+      "instagram": [
+       "life",
+       "center",
+       "drink",
+       "week",
+       "roma",
+       "living"
+      ],
+      "tripadvisor": [
+       "centro",
+       "hotel",
+       "visit",
+       "museo",
+       "center",
+       "queen"
+      ]
+     }
+    }
+   ],
+   "por_fuente": {
+    "instagram": {
+     "n": 24,
+     "pct": {
+      "0": 8.33,
+      "1": 0.0,
+      "2": 29.17,
+      "3": 29.17,
+      "4": 4.17,
+      "5": 8.33,
+      "6": 12.5,
+      "7": 4.17
+     },
+     "prop": {
+      "0": 6.73,
+      "1": 3.36,
+      "2": 27.85,
+      "3": 25.46,
+      "4": 4.87,
+      "5": 11.26,
+      "6": 12.65,
+      "7": 7.83
+     },
+     "sin_topico_pct": 4.17
+    },
+    "reddit": {
+     "n": 4178,
+     "pct": {
+      "0": 13.4,
+      "1": 6.39,
+      "2": 6.56,
+      "3": 27.84,
+      "4": 9.02,
+      "5": 12.13,
+      "6": 10.15,
+      "7": 13.07
+     },
+     "prop": {
+      "0": 14.64,
+      "1": 7.09,
+      "2": 7.81,
+      "3": 24.06,
+      "4": 9.92,
+      "5": 13.01,
+      "6": 10.24,
+      "7": 13.22
+     },
+     "sin_topico_pct": 1.44
+    },
+    "sectur": {
+     "n": 25,
+     "pct": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 12.0,
+      "3": 16.0,
+      "4": 4.0,
+      "5": 24.0,
+      "6": 0.0,
+      "7": 36.0
+     },
+     "prop": {
+      "0": 4.58,
+      "1": 1.03,
+      "2": 8.54,
+      "3": 23.54,
+      "4": 4.4,
+      "5": 21.17,
+      "6": 4.58,
+      "7": 32.17
+     },
+     "sin_topico_pct": 8.0
+    },
+    "tripadvisor": {
+     "n": 10,
+     "pct": {
+      "0": 20.0,
+      "1": 10.0,
+      "2": 0.0,
+      "3": 10.0,
+      "4": 0.0,
+      "5": 40.0,
+      "6": 0.0,
+      "7": 20.0
+     },
+     "prop": {
+      "0": 23.31,
+      "1": 10.95,
+      "2": 3.82,
+      "3": 12.74,
+      "4": 0.45,
+      "5": 19.02,
+      "6": 6.21,
+      "7": 23.51
+     },
+     "sin_topico_pct": 0.0
+    }
+   },
+   "fuentes_pequenas": {
+    "instagram": {
+     "n": 24,
+     "frecuencias": [
+      [
+       "mexicocity",
+       8
+      ],
+      [
+       "love",
+       5
+      ],
+      [
+       "reel",
+       5
+      ],
+      [
+       "zocalo",
+       5
+      ],
+      [
+       "crowd",
+       4
+      ],
+      [
+       "ciudaddemexico",
+       4
+      ],
+      [
+       "people",
+       4
+      ],
+      [
+       "explore",
+       3
+      ],
+      [
+       "latin",
+       3
+      ],
+      [
+       "star",
+       3
+      ],
+      [
+       "play",
+       3
+      ],
+      [
+       "center",
+       3
+      ],
+      [
+       "invite",
+       3
+      ],
+      [
+       "family",
+       3
+      ],
+      [
+       "living",
+       3
+      ],
+      [
+       "chant",
+       3
+      ],
+      [
+       "outfit",
+       3
+      ],
+      [
+       "palestinian",
+       3
+      ],
+      [
+       "pin",
+       2
+      ],
+      [
+       "gym",
+       2
+      ],
+      [
+       "oasis",
+       2
+      ],
+      [
+       "drink",
+       2
+      ],
+      [
+       "viral",
+       2
+      ],
+      [
+       "cdramaedit",
+       2
+      ],
+      [
+       "amor",
+       2
+      ]
+     ]
+    },
+    "sectur": {
+     "n": 25,
+     "frecuencias": [
+      [
+       "film",
+       61
+      ],
+      [
+       "cine",
+       22
+      ],
+      [
+       "production",
+       20
+      ],
+      [
+       "pagina",
+       20
+      ],
+      [
+       "cater",
+       19
+      ],
+      [
+       "food",
+       19
+      ],
+      [
+       "cinema",
+       18
+      ],
+      [
+       "ciudad",
+       14
+      ],
+      [
+       "san",
+       14
+      ],
+      [
+       "historia",
+       12
+      ],
+      [
+       "movie",
+       12
+      ],
+      [
+       "cor",
+       12
+      ],
+      [
+       "che",
+       12
+      ],
+      [
+       "award",
+       11
+      ],
+      [
+       "neighbourhood",
+       11
+      ],
+      [
+       "industry",
+       11
+      ],
+      [
+       "casa",
+       11
+      ],
+      [
+       "audiovisual",
+       10
+      ],
+      [
+       "story",
+       10
+      ],
+      [
+       "project",
+       10
+      ],
+      [
+       "cle",
+       10
+      ],
+      [
+       "history",
+       9
+      ],
+      [
+       "character",
+       9
+      ],
+      [
+       "house",
+       9
+      ],
+      [
+       "happen",
+       8
+      ]
+     ]
+    },
+    "tripadvisor": {
+     "n": 10,
+     "frecuencias": [
+      [
+       "hop",
+       6
+      ],
+      [
+       "visit",
+       4
+      ],
+      [
+       "zocalo",
+       4
+      ],
+      [
+       "view",
+       3
+      ],
+      [
+       "vista",
+       3
+      ],
+      [
+       "centro",
+       3
+      ],
+      [
+       "hotel",
+       3
+      ],
+      [
+       "building",
+       2
+      ],
+      [
+       "historico",
+       2
+      ],
+      [
+       "increible",
+       2
+      ],
+      [
+       "bonito",
+       2
+      ],
+      [
+       "historia",
+       2
+      ],
+      [
+       "excursion",
+       2
+      ],
+      [
+       "falto",
+       2
+      ],
+      [
+       "michael",
+       2
+      ],
+      [
+       "jackson",
+       2
+      ],
+      [
+       "hermoso",
+       2
+      ],
+      [
+       "interesante",
+       2
+      ],
+      [
+       "torres",
+       2
+      ],
+      [
+       "campanas",
+       2
+      ],
+      [
+       "tour",
+       2
+      ],
+      [
+       "catedral",
+       2
+      ],
+      [
+       "peso",
+       2
+      ],
+      [
+       "ademas",
+       2
+      ],
+      [
+       "press",
+       2
+      ]
+     ]
+    }
+   }
+  },
+  "negativo": {
+   "tipo": "topicos",
+   "n": 850,
+   "k": 5,
+   "npmi": 0.118,
+   "evaluacion_k": [
+    {
+     "k": 5,
+     "npmi": 0.118,
+     "npmi_ponderada": 0.1204,
+     "diversidad": 0.96,
+     "puntaje": 0.1156,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 6,
+     "npmi": 0.0953,
+     "npmi_ponderada": 0.102,
+     "diversidad": 0.95,
+     "puntaje": 0.0969,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 7,
+     "npmi": 0.0465,
+     "npmi_ponderada": 0.0565,
+     "diversidad": 0.9,
+     "puntaje": 0.0508,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 8,
+     "npmi": -0.0221,
+     "npmi_ponderada": 0.0294,
+     "diversidad": 0.9,
+     "puntaje": 0.0264,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 9,
+     "npmi": -0.0205,
+     "npmi_ponderada": 0.0234,
+     "diversidad": 0.944,
+     "puntaje": 0.0221,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 10,
+     "npmi": -0.0885,
+     "npmi_ponderada": -0.0694,
+     "diversidad": 0.93,
+     "puntaje": -0.0645,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 11,
+     "npmi": -0.0697,
+     "npmi_ponderada": -0.0312,
+     "diversidad": 0.927,
+     "puntaje": -0.0289,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 12,
+     "npmi": -0.0611,
+     "npmi_ponderada": -0.0542,
+     "diversidad": 0.925,
+     "puntaje": -0.0501,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 13,
+     "npmi": -0.0502,
+     "npmi_ponderada": -0.0422,
+     "diversidad": 0.923,
+     "puntaje": -0.039,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 14,
+     "npmi": -0.0672,
+     "npmi_ponderada": -0.0696,
+     "diversidad": 0.907,
+     "puntaje": -0.0631,
+     "puntaje_de": 0.0
+    },
+    {
+     "k": 15,
+     "npmi": -0.0831,
+     "npmi_ponderada": -0.0887,
+     "diversidad": 0.913,
+     "puntaje": -0.081,
+     "puntaje_de": 0.0
+    }
+   ],
+   "topicos": [
+    {
+     "id": 0,
+     "etiqueta": "people · japan · country",
+     "palabras": [
+      "people",
+      "japan",
+      "country",
+      "live",
+      "visit",
+      "japanese",
+      "racist",
+      "experience",
+      "hate",
+      "asian"
+     ],
+     "n": 180,
+     "npmi": 0.251,
+     "mezcla_fuentes": {
+      "reddit": 179,
+      "instagram": 1
+     },
+     "representativo": {
+      "texto": "I have lived in Japan for 3 years While I am not an expert in this topic I can offer some explanations why you might have disliked your trip and address some comments in this post Firstly the places you have been to Tokyo and Kyoto are the big touristy cities of Japan The crowd and sometimes chaotic situations can be overwhelming for a first timer I haven t heard people saying they had a spiritual experience or their life changed by visiting these crowded spots Those sort of stuff are said regar",
+      "fuente": "reddit",
+      "similitud_centroide": 0.441
+     },
+     "representativo_por_fuente": {
+      "instagram": "❌❌ OJOS (REMIX) ❌❌ Navegando las calles de Downtown LA . Mañana my people‼️ #cynicism #eptosuno #djmuggs #downtownla  #cdmx #picounion ps. Always wear your seatbelt.",
+      "reddit": "I have lived in Japan for 3 years While I am not an expert in this topic I can offer some explanations why you might have disliked your trip and address some comments in this post Firstly the places you have been to Tokyo and Kyoto are the big touristy cities of Japan The crowd and sometimes chaotic"
+     },
+     "palabras_por_fuente": {
+      "reddit": [
+       "people",
+       "japan",
+       "country",
+       "visit",
+       "live",
+       "experience"
+      ],
+      "instagram": [
+       "people",
+       "wear",
+       "downtown",
+       "wave",
+       "metro"
+      ]
+     }
+    },
+    {
+     "id": 1,
+     "etiqueta": "day · trip · oaxaca",
+     "palabras": [
+      "day",
+      "trip",
+      "oaxaca",
+      "spend",
+      "week",
+      "bus",
+      "visit",
+      "fly",
+      "spend day",
+      "dead"
+     ],
+     "n": 197,
+     "npmi": 0.158,
+     "mezcla_fuentes": {
+      "sectur": 3,
+      "reddit": 192,
+      "instagram": 2
+     },
+     "representativo": {
+      "texto": "Help with mexico itinerary. Buenos dias   So im planning to go to mexico with my gf  because its our dream destination  We are both from asia  so it will be our first time to mexico here  Because of the journey take long time   24 hour    flight time    im a bit confuse about where to land  which city to visit firsts  etc  So we are planning  around 20 days   not including flight time    My rute   1  landing in CDMX  spend 7 days  2  Going south puebla 2 days  3  Oaxaca 3 days  4  Flying to guad",
+      "fuente": "reddit",
+      "similitud_centroide": 0.497
+     },
+     "representativo_por_fuente": {
+      "instagram": "Do the dead dance @ladygaga 🫵🏻💀 #ladygaga #cdmx #fashion #viral #metro #fitcheck #trend #contentcreator #outfit #reels",
+      "reddit": "Help with mexico itinerary. Buenos dias   So im planning to go to mexico with my gf  because its our dream destination  We are both from asia  so it will be our first time to mexico here  Because of the journey take long time   24 hour    flight time    im a bit confuse about where to land  which ci",
+      "sectur": "ated work food daily battery accessible milanesa cheese sausage egg pork leg mixed together torta daily sustenance tacos guisado triunfo hogar oficina come cubiertos sirve doble tortilla arroz guisados cada dia distinto taco guisado mas cercano alacomida casera pasamos diez horas dia lejos casa apar"
+     },
+     "palabras_por_fuente": {
+      "sectur": [
+       "day",
+       "visit",
+       "dead",
+       "day dead",
+       "spend",
+       "night"
+      ],
+      "reddit": [
+       "day",
+       "trip",
+       "spend",
+       "week",
+       "visit",
+       "oaxaca"
+      ],
+      "instagram": [
+       "dead",
+       "metro",
+       "viral",
+       "downtown"
+      ]
+     }
+    },
+    {
+     "id": 2,
+     "etiqueta": "food · street · eat",
+     "palabras": [
+      "food",
+      "street",
+      "street food",
+      "eat",
+      "sick",
+      "poison",
+      "food poison",
+      "restaurant",
+      "water",
+      "taco"
+     ],
+     "n": 65,
+     "npmi": 0.286,
+     "mezcla_fuentes": {
+      "reddit": 65
+     },
+     "representativo": {
+      "texto": "My mom used to tell me that if you feel revolted by some food don t eat it It will make you sick There s plenty of establishments in the city with claeaner food I m a local and very picky about street food",
+      "fuente": "reddit",
+      "similitud_centroide": 0.65
+     },
+     "representativo_por_fuente": {
+      "reddit": "My mom used to tell me that if you feel revolted by some food don t eat it It will make you sick There s plenty of establishments in the city with claeaner food I m a local and very picky about street food"
+     },
+     "palabras_por_fuente": {
+      "reddit": [
+       "food",
+       "street",
+       "eat",
+       "sick",
+       "street food",
+       "local"
+      ]
+     }
+    },
+    {
+     "id": 3,
+     "etiqueta": "bad · nyc · metro",
+     "palabras": [
+      "bad",
+      "nyc",
+      "metro",
+      "medellin",
+      "god",
+      "avoid",
+      "live",
+      "rome",
+      "london",
+      "subway"
+     ],
+     "n": 127,
+     "npmi": -0.241,
+     "mezcla_fuentes": {
+      "reddit": 127
+     },
+     "representativo": {
+      "texto": "Interesting I thought the Rome subway was among the worst I ve been on Very limited far from where I wanted to be only a couple of lines in a big city I like London Paris Tokyo NYC wasn t bad either I want a subway where I blink and there s a station and I blink again and there s a train",
+      "fuente": "reddit",
+      "similitud_centroide": 0.688
+     },
+     "representativo_por_fuente": {
+      "reddit": "Interesting I thought the Rome subway was among the worst I ve been on Very limited far from where I wanted to be only a couple of lines in a big city I like London Paris Tokyo NYC wasn t bad either I want a subway where I blink and there s a station and I blink again and there s a train"
+     },
+     "palabras_por_fuente": {
+      "reddit": [
+       "bad",
+       "metro",
+       "nyc",
+       "people",
+       "live",
+       "avoid"
+      ]
+     }
+    },
+    {
+     "id": 4,
+     "etiqueta": "time · happen · police",
+     "palabras": [
+      "time",
+      "happen",
+      "police",
+      "wrong",
+      "cop",
+      "travel",
+      "pay",
+      "money",
+      "tourist",
+      "kid"
+     ],
+     "n": 272,
+     "npmi": 0.136,
+     "mezcla_fuentes": {
+      "reddit": 271,
+      "instagram": 1
+     },
+     "representativo": {
+      "texto": "Kind of It was Christmas Day and I was alone so I went to a bar that was doing roast dinners I had a few beers and ended up playing pool with these three Mexican guys and ended up going to this other bar later with him after we were pissed There he told me he was actually a drug dealer for a cartel he wouldn t say which but really low level like the lowest street foot soldier He was a nice enough guy but I decided to leave but by that stage it was super late after midnight and as soon as we went",
+      "fuente": "reddit",
+      "similitud_centroide": 0.423
+     },
+     "representativo_por_fuente": {
+      "instagram": "Waves @imaginedragons \n\n#imaginedragons #imaginedragonsconcert #imaginedragonslive #loomworldtour #loom #danreynolds #cdmx #thunder",
+      "reddit": "Kind of It was Christmas Day and I was alone so I went to a bar that was doing roast dinners I had a few beers and ended up playing pool with these three Mexican guys and ended up going to this other bar later with him after we were pissed There he told me he was actually a drug dealer for a cartel "
+     },
+     "palabras_por_fuente": {
+      "reddit": [
+       "time",
+       "travel",
+       "happen",
+       "wrong",
+       "police",
+       "cop"
+      ],
+      "instagram": [
+       "wave",
+       "people",
+       "wear",
+       "downtown",
+       "metro"
+      ]
+     }
+    }
+   ],
+   "por_fuente": {
+    "instagram": {
+     "n": 5,
+     "pct": {
+      "0": 20.0,
+      "1": 40.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 20.0
+     },
+     "prop": {
+      "0": 26.53,
+      "1": 28.41,
+      "2": 0.0,
+      "3": 24.42,
+      "4": 20.64
+     },
+     "sin_topico_pct": 20.0
+    },
+    "reddit": {
+     "n": 842,
+     "pct": {
+      "0": 21.26,
+      "1": 22.8,
+      "2": 7.72,
+      "3": 15.08,
+      "4": 32.19
+     },
+     "prop": {
+      "0": 22.27,
+      "1": 21.94,
+      "2": 9.91,
+      "3": 15.38,
+      "4": 30.51
+     },
+     "sin_topico_pct": 0.95
+    },
+    "sectur": {
+     "n": 3,
+     "pct": {
+      "0": 0.0,
+      "1": 100.0,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0
+     },
+     "prop": {
+      "0": 23.87,
+      "1": 53.19,
+      "2": 13.39,
+      "3": 0.0,
+      "4": 9.55
+     },
+     "sin_topico_pct": 0.0
+    }
+   },
+   "fuentes_pequenas": {
+    "instagram": {
+     "n": 5,
+     "frecuencias": [
+      [
+       "reel",
+       3
+      ],
+      [
+       "viral",
+       2
+      ],
+      [
+       "dead",
+       1
+      ],
+      [
+       "dance",
+       1
+      ],
+      [
+       "ladygaga",
+       1
+      ],
+      [
+       "fashion",
+       1
+      ],
+      [
+       "metro",
+       1
+      ],
+      [
+       "fitcheck",
+       1
+      ],
+      [
+       "trend",
+       1
+      ],
+      [
+       "contentcreator",
+       1
+      ],
+      [
+       "outfit",
+       1
+      ],
+      [
+       "cumbiaton",
+       1
+      ],
+      [
+       "ñeros",
+       1
+      ],
+      [
+       "barrio",
+       1
+      ],
+      [
+       "chakas",
+       1
+      ],
+      [
+       "chakales",
+       1
+      ],
+      [
+       "fyp",
+       1
+      ],
+      [
+       "ojos",
+       1
+      ],
+      [
+       "remix",
+       1
+      ],
+      [
+       "navegando",
+       1
+      ],
+      [
+       "calles",
+       1
+      ],
+      [
+       "downtown",
+       1
+      ],
+      [
+       "mañana",
+       1
+      ],
+      [
+       "people",
+       1
+      ],
+      [
+       "cynicism",
+       1
+      ]
+     ]
+    },
+    "sectur": {
+     "n": 3,
+     "frecuencias": [
+      [
+       "film",
+       12
+      ],
+      [
+       "taco",
+       10
+      ],
+      [
+       "studio",
+       8
+      ],
+      [
+       "day",
+       5
+      ],
+      [
+       "churubusco",
+       5
+      ],
+      [
+       "dia",
+       4
+      ],
+      [
+       "angel",
+       4
+      ],
+      [
+       "exterminador",
+       4
+      ],
+      [
+       "spanish",
+       4
+      ],
+      [
+       "country",
+       4
+      ],
+      [
+       "club",
+       4
+      ],
+      [
+       "radio",
+       4
+      ],
+      [
+       "james",
+       4
+      ],
+      [
+       "direct",
+       4
+      ],
+      [
+       "milanesa",
+       3
+      ],
+      [
+       "stew",
+       3
+      ],
+      [
+       "tostadas",
+       3
+      ],
+      [
+       "salsa",
+       3
+      ],
+      [
+       "macario",
+       3
+      ],
+      [
+       "joven",
+       3
+      ],
+      [
+       "iguana",
+       3
+      ],
+      [
+       "huston",
+       3
+      ],
+      [
+       "costa",
+       3
+      ],
+      [
+       "gavras",
+       3
+      ],
+      [
+       "butch",
+       3
+      ]
+     ]
+    }
+   }
+  }
+ },
+ "frecuencias_fuente_tono": {
+  "instagram": {
+   "positivo": {
+    "n": 24,
+    "bajo_umbral": true,
+    "frecuencias": [
+     [
+      "mexicocity",
+      8
+     ],
+     [
+      "love",
+      5
+     ],
+     [
+      "reel",
+      5
+     ],
+     [
+      "zocalo",
+      5
+     ],
+     [
+      "crowd",
+      4
+     ],
+     [
+      "ciudaddemexico",
+      4
+     ],
+     [
+      "people",
+      4
+     ],
+     [
+      "explore",
+      3
+     ],
+     [
+      "latin",
+      3
+     ],
+     [
+      "star",
+      3
+     ],
+     [
+      "play",
+      3
+     ],
+     [
+      "center",
+      3
+     ],
+     [
+      "invite",
+      3
+     ],
+     [
+      "family",
+      3
+     ],
+     [
+      "living",
+      3
+     ],
+     [
+      "chant",
+      3
+     ],
+     [
+      "outfit",
+      3
+     ],
+     [
+      "palestinian",
+      3
+     ],
+     [
+      "pin",
+      2
+     ],
+     [
+      "gym",
+      2
+     ],
+     [
+      "oasis",
+      2
+     ],
+     [
+      "drink",
+      2
+     ],
+     [
+      "viral",
+      2
+     ],
+     [
+      "cdramaedit",
+      2
+     ],
+     [
+      "amor",
+      2
+     ],
+     [
+      "jazzphotography",
+      2
+     ],
+     [
+      "oasislive",
+      2
+     ],
+     [
+      "lifestyle",
+      2
+     ],
+     [
+      "ootd",
+      2
+     ],
+     [
+      "repost",
+      2
+     ],
+     [
+      "israeli",
+      2
+     ],
+     [
+      "genocide",
+      2
+     ],
+     [
+      "palestine",
+      2
+     ],
+     [
+      "report",
+      2
+     ],
+     [
+      "attendance",
+      2
+     ],
+     [
+      "palestinalibre",
+      2
+     ],
+     [
+      "freepalestine",
+      2
+     ],
+     [
+      "maratoncdmx",
+      2
+     ],
+     [
+      "runner",
+      2
+     ],
+     [
+      "quesadillas",
+      2
+     ]
+    ]
+   },
+   "negativo": {
+    "n": 5,
+    "bajo_umbral": true,
+    "frecuencias": [
+     [
+      "reel",
+      3
+     ],
+     [
+      "viral",
+      2
+     ],
+     [
+      "dead",
+      1
+     ],
+     [
+      "dance",
+      1
+     ],
+     [
+      "ladygaga",
+      1
+     ],
+     [
+      "fashion",
+      1
+     ],
+     [
+      "metro",
+      1
+     ],
+     [
+      "fitcheck",
+      1
+     ],
+     [
+      "trend",
+      1
+     ],
+     [
+      "contentcreator",
+      1
+     ],
+     [
+      "outfit",
+      1
+     ],
+     [
+      "cumbiaton",
+      1
+     ],
+     [
+      "ñeros",
+      1
+     ],
+     [
+      "barrio",
+      1
+     ],
+     [
+      "chakas",
+      1
+     ],
+     [
+      "chakales",
+      1
+     ],
+     [
+      "fyp",
+      1
+     ],
+     [
+      "ojos",
+      1
+     ],
+     [
+      "remix",
+      1
+     ],
+     [
+      "navegando",
+      1
+     ],
+     [
+      "calles",
+      1
+     ],
+     [
+      "downtown",
+      1
+     ],
+     [
+      "mañana",
+      1
+     ],
+     [
+      "people",
+      1
+     ],
+     [
+      "cynicism",
+      1
+     ],
+     [
+      "eptosuno",
+      1
+     ],
+     [
+      "djmuggs",
+      1
+     ],
+     [
+      "downtownla",
+      1
+     ],
+     [
+      "picounion",
+      1
+     ],
+     [
+      "wear",
+      1
+     ],
+     [
+      "seatbelt",
+      1
+     ],
+     [
+      "regresa",
+      1
+     ],
+     [
+      "theweeknd",
+      1
+     ],
+     [
+      "abeltesfaye",
+      1
+     ],
+     [
+      "afterhourstildawntour",
+      1
+     ],
+     [
+      "afterhours",
+      1
+     ],
+     [
+      "afterhourstildawn",
+      1
+     ],
+     [
+      "afterhourstildawnstadiumtour",
+      1
+     ],
+     [
+      "concierto",
+      1
+     ],
+     [
+      "forosol",
+      1
+     ]
+    ]
+   }
+  },
+  "reddit": {
+   "positivo": {
+    "n": 4178,
+    "bajo_umbral": false,
+    "frecuencias": [
+     [
+      "day",
+      1364
+     ],
+     [
+      "time",
+      997
+     ],
+     [
+      "trip",
+      763
+     ],
+     [
+      "people",
+      720
+     ],
+     [
+      "visit",
+      634
+     ],
+     [
+      "food",
+      634
+     ],
+     [
+      "love",
+      620
+     ],
+     [
+      "travel",
+      607
+     ],
+     [
+      "oaxaca",
+      562
+     ],
+     [
+      "lot",
+      480
+     ],
+     [
+      "stay",
+      410
+     ],
+     [
+      "spend",
+      392
+     ],
+     [
+      "japan",
+      375
+     ],
+     [
+      "week",
+      374
+     ],
+     [
+      "country",
+      368
+     ],
+     [
+      "experience",
+      354
+     ],
+     [
+      "beach",
+      350
+     ],
+     [
+      "plan",
+      348
+     ],
+     [
+      "night",
+      347
+     ],
+     [
+      "walk",
+      320
+     ],
+     [
+      "bus",
+      311
+     ],
+     [
+      "flight",
+      309
+     ],
+     [
+      "nice",
+      305
+     ],
+     [
+      "safe",
+      287
+     ],
+     [
+      "town",
+      280
+     ],
+     [
+      "live",
+      267
+     ],
+     [
+      "local",
+      265
+     ],
+     [
+      "tourist",
+      263
+     ],
+     [
+      "street",
+      262
+     ],
+     [
+      "fly",
+      262
+     ],
+     [
+      "pretty",
+      258
+     ],
+     [
+      "amazing",
+      255
+     ],
+     [
+      "san",
+      251
+     ],
+     [
+      "feel",
+      248
+     ],
+     [
+      "bit",
+      237
+     ],
+     [
+      "hour",
+      236
+     ],
+     [
+      "car",
+      235
+     ],
+     [
+      "drive",
+      228
+     ],
+     [
+      "recommend",
+      225
+     ],
+     [
+      "beautiful",
+      217
+     ]
+    ]
+   },
+   "negativo": {
+    "n": 842,
+    "bajo_umbral": false,
+    "frecuencias": [
+     [
+      "time",
+      175
+     ],
+     [
+      "people",
+      163
+     ],
+     [
+      "day",
+      155
+     ],
+     [
+      "bad",
+      114
+     ],
+     [
+      "travel",
+      86
+     ],
+     [
+      "visit",
+      79
+     ],
+     [
+      "japan",
+      79
+     ],
+     [
+      "country",
+      73
+     ],
+     [
+      "trip",
+      71
+     ],
+     [
+      "live",
+      69
+     ],
+     [
+      "tourist",
+      67
+     ],
+     [
+      "food",
+      64
+     ],
+     [
+      "bus",
+      57
+     ],
+     [
+      "experience",
+      57
+     ],
+     [
+      "street",
+      54
+     ],
+     [
+      "lot",
+      53
+     ],
+     [
+      "spend",
+      53
+     ],
+     [
+      "metro",
+      50
+     ],
+     [
+      "hour",
+      50
+     ],
+     [
+      "local",
+      49
+     ],
+     [
+      "pay",
+      48
+     ],
+     [
+      "happen",
+      48
+     ],
+     [
+      "police",
+      48
+     ],
+     [
+      "walk",
+      47
+     ],
+     [
+      "stay",
+      46
+     ],
+     [
+      "week",
+      46
+     ],
+     [
+      "flight",
+      45
+     ],
+     [
+      "airport",
+      44
+     ],
+     [
+      "station",
+      44
+     ],
+     [
+      "train",
+      44
+     ],
+     [
+      "oaxaca",
+      44
+     ],
+     [
+      "wrong",
+      42
+     ],
+     [
+      "fly",
+      41
+     ],
+     [
+      "cop",
+      41
+     ],
+     [
+      "hotel",
+      40
+     ],
+     [
+      "money",
+      38
+     ],
+     [
+      "leave",
+      38
+     ],
+     [
+      "japanese",
+      37
+     ],
+     [
+      "avoid",
+      36
+     ],
+     [
+      "drive",
+      35
+     ]
+    ]
+   }
+  },
+  "sectur": {
+   "positivo": {
+    "n": 25,
+    "bajo_umbral": true,
+    "frecuencias": [
+     [
+      "film",
+      61
+     ],
+     [
+      "cine",
+      22
+     ],
+     [
+      "production",
+      20
+     ],
+     [
+      "pagina",
+      20
+     ],
+     [
+      "cater",
+      19
+     ],
+     [
+      "food",
+      19
+     ],
+     [
+      "cinema",
+      18
+     ],
+     [
+      "ciudad",
+      14
+     ],
+     [
+      "san",
+      14
+     ],
+     [
+      "historia",
+      12
+     ],
+     [
+      "movie",
+      12
+     ],
+     [
+      "cor",
+      12
+     ],
+     [
+      "che",
+      12
+     ],
+     [
+      "award",
+      11
+     ],
+     [
+      "neighbourhood",
+      11
+     ],
+     [
+      "industry",
+      11
+     ],
+     [
+      "casa",
+      11
+     ],
+     [
+      "audiovisual",
+      10
+     ],
+     [
+      "story",
+      10
+     ],
+     [
+      "project",
+      10
+     ],
+     [
+      "cle",
+      10
+     ],
+     [
+      "history",
+      9
+     ],
+     [
+      "character",
+      9
+     ],
+     [
+      "house",
+      9
+     ],
+     [
+      "happen",
+      8
+     ],
+     [
+      "day",
+      8
+     ],
+     [
+      "museum",
+      8
+     ],
+     [
+      "filmaciones",
+      8
+     ],
+     [
+      "roma",
+      8
+     ],
+     [
+      "pecr",
+      8
+     ],
+     [
+      "museo",
+      8
+     ],
+     [
+      "capital",
+      8
+     ],
+     [
+      "chimalistac",
+      8
+     ],
+     [
+      "persona",
+      7
+     ],
+     [
+      "love",
+      7
+     ],
+     [
+      "visit",
+      7
+     ],
+     [
+      "location",
+      7
+     ],
+     [
+      "set",
+      7
+     ],
+     [
+      "space",
+      7
+     ],
+     [
+      "claudia",
+      7
+     ]
+    ]
+   },
+   "negativo": {
+    "n": 3,
+    "bajo_umbral": true,
+    "frecuencias": [
+     [
+      "film",
+      12
+     ],
+     [
+      "taco",
+      10
+     ],
+     [
+      "studio",
+      8
+     ],
+     [
+      "day",
+      5
+     ],
+     [
+      "churubusco",
+      5
+     ],
+     [
+      "dia",
+      4
+     ],
+     [
+      "angel",
+      4
+     ],
+     [
+      "exterminador",
+      4
+     ],
+     [
+      "spanish",
+      4
+     ],
+     [
+      "country",
+      4
+     ],
+     [
+      "club",
+      4
+     ],
+     [
+      "radio",
+      4
+     ],
+     [
+      "james",
+      4
+     ],
+     [
+      "direct",
+      4
+     ],
+     [
+      "milanesa",
+      3
+     ],
+     [
+      "stew",
+      3
+     ],
+     [
+      "tostadas",
+      3
+     ],
+     [
+      "salsa",
+      3
+     ],
+     [
+      "macario",
+      3
+     ],
+     [
+      "joven",
+      3
+     ],
+     [
+      "iguana",
+      3
+     ],
+     [
+      "huston",
+      3
+     ],
+     [
+      "costa",
+      3
+     ],
+     [
+      "gavras",
+      3
+     ],
+     [
+      "butch",
+      3
+     ],
+     [
+      "cassidy",
+      3
+     ],
+     [
+      "george",
+      3
+     ],
+     [
+      "roy",
+      3
+     ],
+     [
+      "hill",
+      3
+     ],
+     [
+      "titanic",
+      3
+     ],
+     [
+      "david",
+      3
+     ],
+     [
+      "spectre",
+      3
+     ],
+     [
+      "saga",
+      3
+     ],
+     [
+      "sam",
+      3
+     ],
+     [
+      "mendes",
+      3
+     ],
+     [
+      "marta",
+      3
+     ],
+     [
+      "cantinflas",
+      3
+     ],
+     [
+      "pedro",
+      3
+     ],
+     [
+      "jorge",
+      3
+     ],
+     [
+      "negrete",
+      3
+     ]
+    ]
+   }
+  },
+  "tripadvisor": {
+   "positivo": {
+    "n": 10,
+    "bajo_umbral": true,
+    "frecuencias": [
+     [
+      "hop",
+      6
+     ],
+     [
+      "visit",
+      4
+     ],
+     [
+      "zocalo",
+      4
+     ],
+     [
+      "view",
+      3
+     ],
+     [
+      "vista",
+      3
+     ],
+     [
+      "centro",
+      3
+     ],
+     [
+      "hotel",
+      3
+     ],
+     [
+      "building",
+      2
+     ],
+     [
+      "historico",
+      2
+     ],
+     [
+      "increible",
+      2
+     ],
+     [
+      "bonito",
+      2
+     ],
+     [
+      "historia",
+      2
+     ],
+     [
+      "excursion",
+      2
+     ],
+     [
+      "falto",
+      2
+     ],
+     [
+      "michael",
+      2
+     ],
+     [
+      "jackson",
+      2
+     ],
+     [
+      "hermoso",
+      2
+     ],
+     [
+      "interesante",
+      2
+     ],
+     [
+      "torres",
+      2
+     ],
+     [
+      "campanas",
+      2
+     ],
+     [
+      "tour",
+      2
+     ],
+     [
+      "catedral",
+      2
+     ],
+     [
+      "peso",
+      2
+     ],
+     [
+      "ademas",
+      2
+     ],
+     [
+      "press",
+      2
+     ],
+     [
+      "photo",
+      2
+     ],
+     [
+      "museo",
+      2
+     ],
+     [
+      "cathedral",
+      2
+     ],
+     [
+      "amazing",
+      1
+     ],
+     [
+      "incleible",
+      1
+     ],
+     [
+      "hearthquarter",
+      1
+     ],
+     [
+      "survivor",
+      1
+     ],
+     [
+      "impresionante",
+      1
+     ],
+     [
+      "edificio",
+      1
+     ],
+     [
+      "sobrevivido",
+      1
+     ],
+     [
+      "terremotos",
+      1
+     ],
+     [
+      "museos",
+      1
+     ],
+     [
+      "pisos",
+      1
+     ],
+     [
+      "recomendados",
+      1
+     ],
+     [
+      "ciudad",
+      1
+     ]
+    ]
+   },
+   "negativo": {
+    "n": 0,
+    "bajo_umbral": true,
+    "frecuencias": []
+   }
+  }
+ },
+ "comparacion": {
+  "temas": [
+   {
+    "id": 0,
+    "etiqueta": "time · travel · safe",
+    "palabras": [
+     "time",
+     "travel",
+     "safe",
+     "visit",
+     "stay",
+     "lot",
+     "people",
+     "tourist"
+    ],
+    "pct_dmo": 39.11,
+    "pct_percibida": 36.0,
+    "pct_percibida_agregado": 36.0,
+    "pct_por_fuente": {
+     "instagram": 23.96,
+     "reddit": 36.0,
+     "sectur": 39.11,
+     "tripadvisor": 40.99
+    },
+    "brecha_pp": 3.11,
+    "brecha_ic95": [
+     -6.16,
+     12.47
+    ],
+    "clase": "Coincidencia",
+    "pct_negativo_percibida": 19.07,
+    "pct_negativo_dmo": 0.0,
+    "n_percibida": 1982,
+    "n_dmo": 12,
+    "palabras_dmo": [
+     "time",
+     "film",
+     "visit",
+     "neighbourhood",
+     "station",
+     "family"
+    ],
+    "palabras_percibida": [
+     "time",
+     "travel",
+     "visit",
+     "people",
+     "safe",
+     "lot"
+    ],
+    "palabras_por_fuente": {
+     "instagram": [
+      "people",
+      "travel",
+      "time",
+      "family",
+      "weekend",
+      "mexicocity"
+     ],
+     "reddit": [
+      "time",
+      "travel",
+      "visit",
+      "people",
+      "safe",
+      "lot"
+     ],
+     "sectur": [
+      "time",
+      "film",
+      "visit",
+      "neighbourhood",
+      "station",
+      "family"
+     ],
+     "tripadvisor": [
+      "visit",
+      "hotel",
+      "centro",
+      "hop",
+      "amazing",
+      "zocalo"
+     ]
+    },
+    "palabras_compartidas": 2,
+    "ejemplo_dmo": "pueblo barrio magico small town magical neighborhood pueblo chico filmacien grande asi demostr exitosa serie mexicana casa flores small town vibes big filming opportunities cautive audiencia nacional extranjeraconel demonstrated success mexican series casa drama familia llevado vida flores captivate",
+    "ejemplo_percibida": "🌊Freehand done !🌊\nThx for traveling from Australia !\nDM TO BOOK\n\n#mexicocity #cdmxtattoo #tradtattoos #japanesetattoo #ornementaltattoo #mexicocitytattoo #romanorte #condesa #cdmx #cdmxtraditionaltattoo #cdmxjapanesetattoos #romanortetattoo #condesatattoo #mexicocityart #mexicocityartist"
+   },
+   {
+    "id": 1,
+    "etiqueta": "japan · country · people",
+    "palabras": [
+     "japan",
+     "country",
+     "people",
+     "live",
+     "visit",
+     "speak",
+     "japanese",
+     "lol"
+    ],
+    "pct_dmo": 10.79,
+    "pct_percibida": 16.13,
+    "pct_percibida_agregado": 16.13,
+    "pct_por_fuente": {
+     "instagram": 7.1,
+     "reddit": 16.13,
+     "sectur": 10.79,
+     "tripadvisor": 8.79
+    },
+    "brecha_pp": -5.34,
+    "brecha_ic95": [
+     -10.5,
+     0.52
+    ],
+    "clase": "Coincidencia",
+    "pct_negativo_percibida": 21.55,
+    "pct_negativo_dmo": 100.0,
+    "n_percibida": 826,
+    "n_dmo": 2,
+    "palabras_dmo": [
+     "country",
+     "visit",
+     "people",
+     "live",
+     "experience",
+     "speak"
+    ],
+    "palabras_percibida": [
+     "japan",
+     "people",
+     "country",
+     "visit",
+     "live",
+     "experience"
+    ],
+    "palabras_por_fuente": {
+     "instagram": [
+      "people",
+      "living",
+      "speak",
+      "life",
+      "latin",
+      "experience"
+     ],
+     "reddit": [
+      "japan",
+      "people",
+      "country",
+      "visit",
+      "live",
+      "experience"
+     ],
+     "sectur": [
+      "country",
+      "visit",
+      "people",
+      "live",
+      "experience",
+      "speak"
+     ],
+     "tripadvisor": [
+      "visit",
+      "friendly",
+      "view",
+      "plenty",
+      "recommend",
+      "tower"
+     ]
+    },
+    "palabras_compartidas": 5,
+    "ejemplo_dmo": "conic films history spanish oo speaking cinematography several languages passed facilities inaugurated september th hectares country club neighborhood situated southern area mexico city complex created in image likeness hollywood studios according official website the project idea radio businessman ",
+    "ejemplo_percibida": "❌❌ OJOS (REMIX) ❌❌ Navegando las calles de Downtown LA . Mañana my people‼️ #cynicism #eptosuno #djmuggs #downtownla  #cdmx #picounion ps. Always wear your seatbelt."
+   },
+   {
+    "id": 2,
+    "etiqueta": "food · street · eat",
+    "palabras": [
+     "food",
+     "street",
+     "street food",
+     "eat",
+     "taco",
+     "eat street",
+     "water",
+     "street taco"
+    ],
+    "pct_dmo": 21.39,
+    "pct_percibida": 13.18,
+    "pct_percibida_agregado": 13.18,
+    "pct_por_fuente": {
+     "instagram": 12.54,
+     "reddit": 13.18,
+     "sectur": 21.39,
+     "tripadvisor": 9.77
+    },
+    "brecha_pp": 8.21,
+    "brecha_ic95": [
+     -2.5,
+     20.33
+    ],
+    "clase": "Coincidencia",
+    "pct_negativo_percibida": 15.5,
+    "pct_negativo_dmo": 16.67,
+    "n_percibida": 542,
+    "n_dmo": 6,
+    "palabras_dmo": [
+     "food",
+     "street",
+     "taco",
+     "eat",
+     "street food",
+     "history"
+    ],
+    "palabras_percibida": [
+     "food",
+     "street",
+     "eat",
+     "street food",
+     "people",
+     "taco"
+    ],
+    "palabras_por_fuente": {
+     "instagram": [
+      "food",
+      "reel",
+      "people",
+      "drink",
+      "taco",
+      "weekend"
+     ],
+     "reddit": [
+      "food",
+      "street",
+      "eat",
+      "street food",
+      "people",
+      "taco"
+     ],
+     "sectur": [
+      "food",
+      "street",
+      "taco",
+      "eat",
+      "street food",
+      "history"
+     ],
+     "tripadvisor": [
+      "tour",
+      "zocalo",
+      "amazing",
+      "awesome",
+      "peso",
+      "history"
+     ]
+    },
+    "palabras_compartidas": 5,
+    "ejemplo_dmo": "mexico city s magnificence reflected history culture heri tage and course cuisine declared intangible cultural heri tage humanity unesco mexico city considered one gastronomic capitals world offers unparalleled culinary experience tradition creativity found every dish better way get know authentic f",
+    "ejemplo_percibida": "Finde Patrio AF \n\n#sabescomo #holdmybeer #mexico #memer #1 #2025 #memes #canelo #oasis #cdmx #bet #nfl #apple #drink"
+   },
+   {
+    "id": 3,
+    "etiqueta": "day · oaxaca · trip",
+    "palabras": [
+     "day",
+     "oaxaca",
+     "trip",
+     "plan",
+     "night",
+     "fly",
+     "spend",
+     "bus"
+    ],
+    "pct_dmo": 12.45,
+    "pct_percibida": 22.11,
+    "pct_percibida_agregado": 22.11,
+    "pct_por_fuente": {
+     "instagram": 7.31,
+     "reddit": 22.11,
+     "sectur": 12.45,
+     "tripadvisor": 22.54
+    },
+    "brecha_pp": -9.66,
+    "brecha_ic95": [
+     -14.33,
+     -4.09
+    ],
+    "clase": "Percibido, poco proyectado",
+    "pct_negativo_percibida": 12.13,
+    "pct_negativo_dmo": 0.0,
+    "n_percibida": 1080,
+    "n_dmo": 1,
+    "palabras_dmo": [
+     "day",
+     "san",
+     "night",
+     "plan",
+     "option",
+     "visit"
+    ],
+    "palabras_percibida": [
+     "day",
+     "oaxaca",
+     "trip",
+     "spend",
+     "plan",
+     "night"
+    ],
+    "palabras_por_fuente": {
+     "instagram": [
+      "day",
+      "explore",
+      "trip",
+      "beach",
+      "drink",
+      "merida"
+     ],
+     "reddit": [
+      "day",
+      "oaxaca",
+      "trip",
+      "spend",
+      "plan",
+      "night"
+     ],
+     "sectur": [
+      "day",
+      "san",
+      "night",
+      "plan",
+      "option",
+      "visit"
+     ],
+     "tripadvisor": [
+      "bus",
+      "recommend",
+      "hotel",
+      "visit",
+      "tour",
+      "museum"
+     ]
+    },
+    "palabras_compartidas": 3,
+    "ejemplo_dmo": "speaking films found shooting studio stages hollywood big names arnold schwarzenegger leonardo dicaprio claire danes salma hayek jamie lee curtis drew barrymore among others passed hallways sound stages too bven marilyn monroe visited bl angel exterminador s set pay visit bufiuet cinematographer gab",
+    "ejemplo_percibida": "Happy Game Day from Mexico City🇲🇽🐬\n•\n#vamosdolphins #godolphins #miamidolphins #nflkickoff #cdmx #dolphinscheer #miamidolphinscheerleaders #phinsup #gofins #nflmexico #mexicocity #miami #procheer #prodance #nflcheerleaders #explore #dolphins #cheerleaders #nflgameday"
+   },
+   {
+    "id": 4,
+    "etiqueta": "love · reel · feel",
+    "palabras": [
+     "love",
+     "reel",
+     "feel",
+     "wow",
+     "beautiful",
+     "people",
+     "magical",
+     "visit"
+    ],
+    "pct_dmo": 16.26,
+    "pct_percibida": 12.58,
+    "pct_percibida_agregado": 12.58,
+    "pct_por_fuente": {
+     "instagram": 49.08,
+     "reddit": 12.58,
+     "sectur": 16.26,
+     "tripadvisor": 17.91
+    },
+    "brecha_pp": 3.68,
+    "brecha_ic95": [
+     -4.52,
+     14.16
+    ],
+    "clase": "Coincidencia",
+    "pct_negativo_percibida": 10.14,
+    "pct_negativo_dmo": 0.0,
+    "n_percibida": 552,
+    "n_dmo": 4,
+    "palabras_dmo": [
+     "love",
+     "visit",
+     "feel",
+     "food",
+     "beautiful",
+     "people"
+    ],
+    "palabras_percibida": [
+     "love",
+     "people",
+     "visit",
+     "feel",
+     "beautiful",
+     "trip"
+    ],
+    "palabras_por_fuente": {
+     "instagram": [
+      "love",
+      "reel",
+      "viral",
+      "outfit",
+      "people",
+      "amor"
+     ],
+     "reddit": [
+      "love",
+      "people",
+      "visit",
+      "feel",
+      "beautiful",
+      "trip"
+     ],
+     "sectur": [
+      "love",
+      "visit",
+      "feel",
+      "food",
+      "beautiful",
+      "people"
+     ],
+     "tripadvisor": [
+      "visit",
+      "friendly",
+      "lucha",
+      "architecture",
+      "hotel",
+      "vista"
+     ]
+    },
+    "palabras_compartidas": 5,
+    "ejemplo_dmo": "role chased metro station none chabacano even see coffee bars characteristic no smoking signage extremely bloody sequence nothing love shared ana claudia talancen jordan belfi american curious film american inherits restaurant gradually falls love head chef here san cosme station line plays role con",
+    "ejemplo_percibida": "@flvckka #reels #cdmx #grungeaesthetic #love #flvckka #trapméxico #trapmexa #romantizeyourlife #emjay"
+   }
+  ],
+  "temas_resumen": {
+   "jsd": 0.023,
+   "congruencia_tematica": 0.977,
+   "umbral_brecha_pp": 5.0,
+   "fuentes_en_promedio": [
+    "reddit"
+   ]
+  },
+  "sentimiento": {
+   "por_fuente": {
+    "instagram": {
+     "n": 29,
+     "pct_positivo": 82.76,
+     "polaridad_media": 0.332,
+     "metodo": "vader"
+    },
+    "reddit": {
+     "n": 5020,
+     "pct_positivo": 83.23,
+     "polaridad_media": 0.377,
+     "metodo": "vader"
+    },
+    "sectur": {
+     "n": 28,
+     "pct_positivo": 89.29,
+     "polaridad_media": 0.69,
+     "metodo": "vader"
+    },
+    "tripadvisor": {
+     "n": 10,
+     "pct_positivo": 100.0,
+     "polaridad_media": 0.369,
+     "metodo": "vader"
+    }
+   },
+   "pct_positivo_dmo": 89.29,
+   "pct_positivo_percibida": 83.23,
+   "pct_positivo_percibida_agregado": 83.26,
+   "prueba_chi2_dmo_vs_percibida": {
+    "chi2": 0.36,
+    "p_valor": 0.549
+   }
+  },
+  "similitud": {
+   "ias": 0.357,
+   "ic95": [
+    0.289,
+    0.419
+   ],
+   "ias_agregado": 0.362,
+   "por_fuente": {
+    "instagram": {
+     "ias": 0.413,
+     "similitud_max_mediana": 0.319,
+     "n": 29
+    },
+    "reddit": {
+     "ias": 0.357,
+     "similitud_max_mediana": 0.228,
+     "n": 5020
+    },
+    "tripadvisor": {
+     "ias": 0.6,
+     "similitud_max_mediana": 0.406,
+     "n": 10
+    }
+   }
+  },
+  "por_fuente": [
+   {
+    "fuente": "instagram",
+    "es_dmo": false,
+    "pct_positivo": 82.76,
+    "n": 29,
+    "temas_principales": [
+     {
+      "etiqueta": "love · reel · feel",
+      "pct": 49.08
+     },
+     {
+      "etiqueta": "time · travel · safe",
+      "pct": 23.96
+     }
+    ],
+    "temas_positivos": [
+     {
+      "etiqueta": "love · rio · absolutely",
+      "pct": 27.85
+     },
+     {
+      "etiqueta": "people · travel · country",
+      "pct": 25.46
+     }
+    ],
+    "temas_negativos": [
+     {
+      "etiqueta": "day · trip · oaxaca",
+      "pct": 28.41
+     },
+     {
+      "etiqueta": "people · japan · country",
+      "pct": 26.53
+     }
+    ],
+    "ias": 0.413
+   },
+   {
+    "fuente": "reddit",
+    "es_dmo": false,
+    "pct_positivo": 83.23,
+    "n": 5020,
+    "temas_principales": [
+     {
+      "etiqueta": "time · travel · safe",
+      "pct": 36.0
+     },
+     {
+      "etiqueta": "day · oaxaca · trip",
+      "pct": 22.11
+     }
+    ],
+    "temas_positivos": [
+     {
+      "etiqueta": "people · travel · country",
+      "pct": 24.06
+     },
+     {
+      "etiqueta": "day · oaxaca · spend",
+      "pct": 14.64
+     }
+    ],
+    "temas_negativos": [
+     {
+      "etiqueta": "time · happen · police",
+      "pct": 30.51
+     },
+     {
+      "etiqueta": "people · japan · country",
+      "pct": 22.27
+     }
+    ],
+    "ias": 0.357
+   },
+   {
+    "fuente": "sectur",
+    "es_dmo": true,
+    "pct_positivo": 89.29,
+    "n": 28,
+    "temas_principales": [
+     {
+      "etiqueta": "time · travel · safe",
+      "pct": 39.11
+     },
+     {
+      "etiqueta": "food · street · eat",
+      "pct": 21.39
+     }
+    ],
+    "temas_positivos": [
+     {
+      "etiqueta": "walk · neighbourhood · live",
+      "pct": 32.17
+     },
+     {
+      "etiqueta": "people · travel · country",
+      "pct": 23.54
+     }
+    ],
+    "temas_negativos": [
+     {
+      "etiqueta": "day · trip · oaxaca",
+      "pct": 53.19
+     },
+     {
+      "etiqueta": "people · japan · country",
+      "pct": 23.87
+     }
+    ],
+    "ias": null
+   },
+   {
+    "fuente": "tripadvisor",
+    "es_dmo": false,
+    "pct_positivo": 100.0,
+    "n": 10,
+    "temas_principales": [
+     {
+      "etiqueta": "time · travel · safe",
+      "pct": 40.99
+     },
+     {
+      "etiqueta": "day · oaxaca · trip",
+      "pct": 22.54
+     }
+    ],
+    "temas_positivos": [
+     {
+      "etiqueta": "walk · neighbourhood · live",
+      "pct": 23.51
+     },
+     {
+      "etiqueta": "day · oaxaca · spend",
+      "pct": 23.31
+     }
+    ],
+    "ias": 0.6
+   }
+  ],
+  "dmo_vs_cada_fuente": {
+   "instagram": {
+    "n": 29,
+    "n_dmo": 28,
+    "pocos": true,
+    "temas": [
+     {
+      "id": 0,
+      "etiqueta": "time · travel · safe",
+      "pct_dmo": 34.92,
+      "pct_fuente": 22.31,
+      "brecha_pp": 12.61,
+      "brecha_ic95": [
+       -3.54,
+       27.99
+      ],
+      "clase": "Coincidencia",
+      "palabras_dmo": [
+       "time",
+       "film",
+       "visit",
+       "neighbourhood",
+       "station",
+       "family"
+      ],
+      "palabras_fuente": [
+       "people",
+       "travel",
+       "time",
+       "family",
+       "weekend",
+       "mexicocity"
+      ],
+      "palabras_compartidas": 2,
+      "ejemplos_dmo": [
+       "tlalpan borough tranquil location houses episodio casa principal family business courtyard circular fountain interiores armados set site lanzasde appears first episode even main house visita busca parar ademas chimalistac although interiors built set barrio san angel coyoacan concentrala if vou decide visit make time also stop chimalistac historia santa escrita federico gamboa neighborhood san ang",
+       "pueblo barrio magico small town magical neighborhood pueblo chico filmacien grande asi demostr exitosa serie mexicana casa flores small town vibes big filming opportunities cautive audiencia nacional extranjeraconel demonstrated success mexican series casa drama familia llevado vida flores captivated national cemoda y llena secretos gracias floreria que international audiences drama family forma f"
+      ],
+      "ejemplos_fuente": [
+       "🌊Freehand done !🌊\nThx for traveling from Australia !\nDM TO BOOK\n\n#mexicocity #cdmxtattoo #tradtattoos #japanesetattoo #ornementaltattoo #mexicocitytattoo #romanorte #condesa #cdmx #cdmxtraditionaltattoo #cdmxjapanesetattoos #romanortetattoo #condesatattoo #mexicocityart #mexicocityartist",
+       "Repost from @roguednc \n\nLatin star @residente played a show in Mexico City’s center  El Zócalo  and invited a Palestinian family now living in Mexico after the Israeli genocide.\n\nThousands in the crowd then joined in chanting “Free Palestine.”\n\nIt’s reported that more than 180 000 people were in attendance. \n\n#mexico #cdmx #ciudaddeméxico #mexicocity #palestinalibre #freepalestine"
+      ]
+     },
+     {
+      "id": 1,
+      "etiqueta": "japan · country · people",
+      "pct_dmo": 9.64,
+      "pct_fuente": 6.61,
+      "brecha_pp": 3.02,
+      "brecha_ic95": [
+       -3.45,
+       9.8
+      ],
+      "clase": "Marginal en ambos",
+      "palabras_dmo": [
+       "country",
+       "visit",
+       "people",
+       "live",
+       "experience",
+       "speak"
+      ],
+      "palabras_fuente": [
+       "people",
+       "living",
+       "speak",
+       "life",
+       "latin",
+       "experience"
+      ],
+      "palabras_compartidas": 3,
+      "ejemplos_dmo": [
+       "conic films history spanish oo speaking cinematography several languages passed facilities inaugurated september th hectares country club neighborhood situated southern area mexico city complex created in image likeness hollywood studios according official website the project idea radio businessman emilio azcdrraga vidaurreta north american producer rko radio pictures group investors represented h",
+       "cintas emblematicas bevan sello cuentan macario tto gevalden olvidados bt angel ry joven luts buduel icdn noche iguana joha huston missing costa gavras butch cassidy sundgaggiyd george roy hill titanic cinta culto dirigida david spectre saga direecien sam mendes id ademas inaugure fa desfile dia muertos cajdad mexico actores actrices la tulla marta pelix cantinflas pedro infamgh jorge negrete dolo"
+      ],
+      "ejemplos_fuente": [
+       "❌❌ OJOS (REMIX) ❌❌ Navegando las calles de Downtown LA . Mañana my people‼️ #cynicism #eptosuno #djmuggs #downtownla  #cdmx #picounion ps. Always wear your seatbelt."
+      ]
+     },
+     {
+      "id": 2,
+      "etiqueta": "food · street · eat",
+      "pct_dmo": 19.1,
+      "pct_fuente": 11.68,
+      "brecha_pp": 7.42,
+      "brecha_ic95": [
+       -4.77,
+       19.27
+      ],
+      "clase": "Coincidencia",
+      "palabras_dmo": [
+       "food",
+       "street",
+       "taco",
+       "eat",
+       "street food",
+       "history"
+      ],
+      "palabras_fuente": [
+       "food",
+       "reel",
+       "people",
+       "drink",
+       "taco",
+       "weekend"
+      ],
+      "palabras_compartidas": 2,
+      "ejemplos_dmo": [
+       "instructions eat mexico city mexico city capital infinite food nor mal know what eat unwritten rules helo improve experience taquear curb ww follow discover own smells good crave it that s place also check everything clean fresh meat good condition fresh limes cooks handle money ungloved hands lot people lines trust use instincts common sense know quesadilla mexico city quesadilla may may cheese s",
+       "mexico city s magnificence reflected history culture heri tage and course cuisine declared intangible cultural heri tage humanity unesco mexico city considered one gastronomic capitals world offers unparalleled culinary experience tradition creativity found every dish better way get know authentic flavor exploring street food universe aromas colors flavors captivates locals visitors alike classic "
+      ],
+      "ejemplos_fuente": [
+       "Miah Speakeasy\n@barmiahmx \n#lifestyle #new #mexico #cdmx #food #reels #gold #oro"
+      ]
+     },
+     {
+      "id": 3,
+      "etiqueta": "day · oaxaca · trip",
+      "pct_dmo": 11.11,
+      "pct_fuente": 6.81,
+      "brecha_pp": 4.3,
+      "brecha_ic95": [
+       -4.62,
+       12.67
+      ],
+      "clase": "Marginal en ambos",
+      "palabras_dmo": [
+       "day",
+       "san",
+       "night",
+       "plan",
+       "option",
+       "visit"
+      ],
+      "palabras_fuente": [
+       "day",
+       "explore",
+       "trip",
+       "beach",
+       "drink",
+       "merida"
+      ],
+      "palabras_compartidas": 1,
+      "ejemplos_dmo": [
+       "speaking films found shooting studio stages hollywood big names arnold schwarzenegger leonardo dicaprio claire danes salma hayek jamie lee curtis drew barrymore among others passed hallways sound stages too bven marilyn monroe visited bl angel exterminador s set pay visit bufiuet cinematographer gabriel figueroa churubusco studios vital part mexican cinema history continue play major role producti"
+      ],
+      "ejemplos_fuente": [
+       "Mexico City was not what I expected! It’s actually one of the best places I think I’ve ever seen. I went for a belated birthday trip and it was hands down one of the best cities I’ve ever been to. Save this video if you’ve ever had the desire to go and please ask any questions below! \n\n#mexicocity #cdmx #pujol",
+       "Happy Game Day from Mexico City🇲🇽🐬\n•\n#vamosdolphins #godolphins #miamidolphins #nflkickoff #cdmx #dolphinscheer #miamidolphinscheerleaders #phinsup #gofins #nflmexico #mexicocity #miami #procheer #prodance #nflcheerleaders #explore #dolphins #cheerleaders #nflgameday"
+      ]
+     },
+     {
+      "id": 4,
+      "etiqueta": "love · reel · feel",
+      "pct_dmo": 14.52,
+      "pct_fuente": 45.69,
+      "brecha_pp": -31.17,
+      "brecha_ic95": [
+       -48.2,
+       -13.8
+      ],
+      "clase": "Percibido, poco proyectado",
+      "palabras_dmo": [
+       "love",
+       "visit",
+       "feel",
+       "food",
+       "beautiful",
+       "people"
+      ],
+      "palabras_fuente": [
+       "love",
+       "reel",
+       "viral",
+       "outfit",
+       "people",
+       "amor"
+      ],
+      "palabras_compartidas": 2,
+      "ejemplos_dmo": [
+       "anahuacalli museum becomes nest beautiful explanation love provided hernando alfonso herrera prompting users instagram tiktok visit room feel closer it",
+       "instagram tiktok visitaran sala sentirla mas cercana portada inside museums museums house prominent remnants human history also add special dimension experiences something cinema television capitalized on venues productions practically obligated consider scripts like happened casa azul frida kahlo museum coyoacan without access it movie frida would complete biographical film mexican painter lived "
+      ],
+      "ejemplos_fuente": [
+       "@flvckka #reels #cdmx #grungeaesthetic #love #flvckka #trapméxico #trapmexa #romantizeyourlife #emjay",
+       "Oh no 👀 \n\n- #reels #cumbiaton #cdmx #viral #reel #ñeros #barrio #chakas #chakales #fyp"
+      ]
+     }
+    ],
+    "tono": {
+     "pct_positivo_dmo": 89.29,
+     "pct_positivo_fuente": 82.76,
+     "prueba_chi2": {
+      "chi2": 0.11,
+      "p_valor": 0.743
+     }
+    },
+    "parecido": {
+     "valor": 0.413,
+     "ic95": [
+      0.271,
+      0.494
+     ]
+    },
+    "coincidencia_agenda": 0.9085,
+    "palabras_de_la_fuente": [
+     [
+      "reel",
+      2.79
+     ],
+     [
+      "mexicocity",
+      2.79
+     ],
+     [
+      "zocalo",
+      2.2
+     ],
+     [
+      "viral",
+      1.97
+     ],
+     [
+      "outfit",
+      1.97
+     ],
+     [
+      "crowd",
+      1.97
+     ],
+     [
+      "ciudaddemexico",
+      1.97
+     ],
+     [
+      "center",
+      1.71
+     ],
+     [
+      "invite",
+      1.71
+     ],
+     [
+      "living",
+      1.71
+     ],
+     [
+      "chant",
+      1.71
+     ],
+     [
+      "palestinian",
+      1.71
+     ]
+    ],
+    "palabras_de_la_dmo": [
+     [
+      "film",
+      1.28
+     ],
+     [
+      "pagina",
+      0.7
+     ],
+     [
+      "cine",
+      0.7
+     ],
+     [
+      "production",
+      0.68
+     ],
+     [
+      "cater",
+      0.65
+     ],
+     [
+      "cinema",
+      0.65
+     ],
+     [
+      "ciudad",
+      0.57
+     ],
+     [
+      "studio",
+      0.55
+     ],
+     [
+      "san",
+      0.55
+     ],
+     [
+      "neighbourhood",
+      0.53
+     ],
+     [
+      "historia",
+      0.51
+     ],
+     [
+      "project",
+      0.51
+     ]
+    ],
+    "resumen": [
+     "instagram dedica 46 % a «love · reel · feel», frente a 15 % de la DMO.",
+     "Coinciden en «time · travel · safe» (35 % y 22 %). La DMO usa «time, film, visit» y instagram «people, travel, time».",
+     "Tono positivo: DMO 89 %, instagram 83 %.",
+     "Lo que más distingue a instagram de la DMO: reel, mexicocity, zocalo, viral, outfit, crowd.",
+     "Parecido del contenido con la DMO: 0.41 (de 0 a 1)."
+    ]
+   },
+   "reddit": {
+    "n": 5020,
+    "n_dmo": 28,
+    "pocos": false,
+    "temas": [
+     {
+      "id": 0,
+      "etiqueta": "time · travel · safe",
+      "pct_dmo": 34.92,
+      "pct_fuente": 35.46,
+      "brecha_pp": -0.54,
+      "brecha_ic95": [
+       -11.25,
+       10.34
+      ],
+      "clase": "Coincidencia",
+      "palabras_dmo": [
+       "time",
+       "film",
+       "visit",
+       "neighbourhood",
+       "station",
+       "family"
+      ],
+      "palabras_fuente": [
+       "time",
+       "travel",
+       "visit",
+       "people",
+       "safe",
+       "lot"
+      ],
+      "palabras_compartidas": 2,
+      "ejemplos_dmo": [
+       "tlalpan borough tranquil location houses episodio casa principal family business courtyard circular fountain interiores armados set site lanzasde appears first episode even main house visita busca parar ademas chimalistac although interiors built set barrio san angel coyoacan concentrala if vou decide visit make time also stop chimalistac historia santa escrita federico gamboa neighborhood san ang",
+       "pueblo barrio magico small town magical neighborhood pueblo chico filmacien grande asi demostr exitosa serie mexicana casa flores small town vibes big filming opportunities cautive audiencia nacional extranjeraconel demonstrated success mexican series casa drama familia llevado vida flores captivated national cemoda y llena secretos gracias floreria que international audiences drama family forma f"
+      ],
+      "ejemplos_fuente": [
+       "Yea Mexico City is one of my favorite cities to travel to While there are a lot of tourists it does feel like not a lot of people know about it as a great travel destination at least in the US due to negative connotations Before I went for the first time my parents kept warning me about safety concerns despite it actually being pretty safe",
+       "I am Hispanic Chicano but I also have extended family in Colombia and have been there many times not as a tourist People who say there is no danger are wrong People who say it is nothing but danger are wrong If you stay in the tourist area and go only where tourists go you will be fine If you venture into non tourist areas you may or may not be fine it depends The problem is as a foreigner you re "
+      ]
+     },
+     {
+      "id": 1,
+      "etiqueta": "japan · country · people",
+      "pct_dmo": 9.64,
+      "pct_fuente": 15.89,
+      "brecha_pp": -6.25,
+      "brecha_ic95": [
+       -11.19,
+       -0.16
+      ],
+      "clase": "Percibido, poco proyectado",
+      "palabras_dmo": [
+       "country",
+       "visit",
+       "people",
+       "live",
+       "experience",
+       "speak"
+      ],
+      "palabras_fuente": [
+       "japan",
+       "people",
+       "country",
+       "visit",
+       "live",
+       "experience"
+      ],
+      "palabras_compartidas": 5,
+      "ejemplos_dmo": [
+       "conic films history spanish oo speaking cinematography several languages passed facilities inaugurated september th hectares country club neighborhood situated southern area mexico city complex created in image likeness hollywood studios according official website the project idea radio businessman emilio azcdrraga vidaurreta north american producer rko radio pictures group investors represented h",
+       "cintas emblematicas bevan sello cuentan macario tto gevalden olvidados bt angel ry joven luts buduel icdn noche iguana joha huston missing costa gavras butch cassidy sundgaggiyd george roy hill titanic cinta culto dirigida david spectre saga direecien sam mendes id ademas inaugure fa desfile dia muertos cajdad mexico actores actrices la tulla marta pelix cantinflas pedro infamgh jorge negrete dolo"
+      ],
+      "ejemplos_fuente": [
+       "I agree that Japan does get romanticized and there are lots of things in Japans society that are not great But there is a big difference between people moving to Japan or people just visiting Japan for a trip Cause as a tourist you see friendly people clean cities vibrant culture and a great country to visit overall The racism the social pressure strict hierarchy and many other factors are somethi",
+       "I sorry to hear that People will never know about Japan before studying their culture and history Actually I had no problems when I visited Japan Food was not great for me although My sister lives in Tokyo too Well I got the worst feeling when I visited a Japanese restaurant in LA"
+      ]
+     },
+     {
+      "id": 2,
+      "etiqueta": "food · street · eat",
+      "pct_dmo": 19.1,
+      "pct_fuente": 12.98,
+      "brecha_pp": 6.12,
+      "brecha_ic95": [
+       -3.47,
+       18.79
+      ],
+      "clase": "Coincidencia",
+      "palabras_dmo": [
+       "food",
+       "street",
+       "taco",
+       "eat",
+       "street food",
+       "history"
+      ],
+      "palabras_fuente": [
+       "food",
+       "street",
+       "eat",
+       "street food",
+       "people",
+       "taco"
+      ],
+      "palabras_compartidas": 5,
+      "ejemplos_dmo": [
+       "instructions eat mexico city mexico city capital infinite food nor mal know what eat unwritten rules helo improve experience taquear curb ww follow discover own smells good crave it that s place also check everything clean fresh meat good condition fresh limes cooks handle money ungloved hands lot people lines trust use instincts common sense know quesadilla mexico city quesadilla may may cheese s",
+       "mexico city s magnificence reflected history culture heri tage and course cuisine declared intangible cultural heri tage humanity unesco mexico city considered one gastronomic capitals world offers unparalleled culinary experience tradition creativity found every dish better way get know authentic flavor exploring street food universe aromas colors flavors captivates locals visitors alike classic "
+      ],
+      "ejemplos_fuente": [
+       "I don t think it was street food but I had the worst night of food poisoning of my life from I think a water juice from a pizza restaurant",
+       "Bottled water and we mostly ate at restaurants no street food unless it was fried like churros Tap water in CDMX was fine for teeth brushing"
+      ]
+     },
+     {
+      "id": 3,
+      "etiqueta": "day · oaxaca · trip",
+      "pct_dmo": 11.11,
+      "pct_fuente": 21.78,
+      "brecha_pp": -10.67,
+      "brecha_ic95": [
+       -15.21,
+       -5.96
+      ],
+      "clase": "Percibido, poco proyectado",
+      "palabras_dmo": [
+       "day",
+       "san",
+       "night",
+       "plan",
+       "option",
+       "visit"
+      ],
+      "palabras_fuente": [
+       "day",
+       "oaxaca",
+       "trip",
+       "spend",
+       "plan",
+       "night"
+      ],
+      "palabras_compartidas": 3,
+      "ejemplos_dmo": [
+       "speaking films found shooting studio stages hollywood big names arnold schwarzenegger leonardo dicaprio claire danes salma hayek jamie lee curtis drew barrymore among others passed hallways sound stages too bven marilyn monroe visited bl angel exterminador s set pay visit bufiuet cinematographer gabriel figueroa churubusco studios vital part mexican cinema history continue play major role producti"
+      ],
+      "ejemplos_fuente": [
+       "I d recommend buses instead of flying You can take a night bus from CDMX to Oaxaca check https www ado com mx for premium buses and https autobusestitanium com for a cheaper albeit barely less comfortable alternative Also the highway from Oaxaca to Puerto Escondido opened like 3 weeks ago it now takes less than 4 hours which is probably not much more than if you fly considering the total time incl",
+       "Mexico 2 week itinerary . Hi   I am planning a two week trip to Mexico  I will be going solo and will be staying in hostels  My current plan is as follows   CDMX   6 nights  Puebla   1 night  Oaxaca   4 nights  Puerto Esconcido   3 nights  It would be great to receive any pointers on this plan including the number of days spent at each place  I m quite a social and active traveller  I like cities "
+      ]
+     },
+     {
+      "id": 4,
+      "etiqueta": "love · reel · feel",
+      "pct_dmo": 14.52,
+      "pct_fuente": 12.39,
+      "brecha_pp": 2.12,
+      "brecha_ic95": [
+       -6.02,
+       11.04
+      ],
+      "clase": "Coincidencia",
+      "palabras_dmo": [
+       "love",
+       "visit",
+       "feel",
+       "food",
+       "beautiful",
+       "people"
+      ],
+      "palabras_fuente": [
+       "love",
+       "people",
+       "visit",
+       "feel",
+       "beautiful",
+       "trip"
+      ],
+      "palabras_compartidas": 5,
+      "ejemplos_dmo": [
+       "anahuacalli museum becomes nest beautiful explanation love provided hernando alfonso herrera prompting users instagram tiktok visit room feel closer it",
+       "instagram tiktok visitaran sala sentirla mas cercana portada inside museums museums house prominent remnants human history also add special dimension experiences something cinema television capitalized on venues productions practically obligated consider scripts like happened casa azul frida kahlo museum coyoacan without access it movie frida would complete biographical film mexican painter lived "
+      ],
+      "ejemplos_fuente": [
+       "I don t love Gion but I love what you wrote you are totally right that the rain gives it a magical feel",
+       "I love Mexico City beautiful architecture and the people are so kind Probably the friendliest city I ve visited"
+      ]
+     }
+    ],
+    "tono": {
+     "pct_positivo_dmo": 89.29,
+     "pct_positivo_fuente": 83.23,
+     "prueba_chi2": {
+      "chi2": 0.36,
+      "p_valor": 0.547
+     }
+    },
+    "parecido": {
+     "valor": 0.357,
+     "ic95": [
+      0.292,
+      0.408
+     ]
+    },
+    "coincidencia_agenda": 0.977,
+    "palabras_de_la_fuente": [
+     [
+      "day",
+      1.48
+     ],
+     [
+      "time",
+      1.47
+     ],
+     [
+      "trip",
+      1.38
+     ],
+     [
+      "travel",
+      1.26
+     ],
+     [
+      "people",
+      1.22
+     ],
+     [
+      "oaxaca",
+      1.17
+     ],
+     [
+      "stay",
+      1.02
+     ],
+     [
+      "japan",
+      1.01
+     ],
+     [
+      "lot",
+      1.0
+     ],
+     [
+      "week",
+      0.98
+     ],
+     [
+      "spend",
+      0.95
+     ],
+     [
+      "walk",
+      0.91
+     ]
+    ],
+    "palabras_de_la_dmo": [
+     [
+      "film",
+      9.08
+     ],
+     [
+      "pagina",
+      5.09
+     ],
+     [
+      "cine",
+      5.09
+     ],
+     [
+      "production",
+      4.88
+     ],
+     [
+      "cinema",
+      4.54
+     ],
+     [
+      "studio",
+      3.84
+     ],
+     [
+      "historia",
+      3.76
+     ],
+     [
+      "cor",
+      3.76
+     ],
+     [
+      "che",
+      3.76
+     ],
+     [
+      "cater",
+      3.6
+     ],
+     [
+      "audiovisual",
+      3.43
+     ],
+     [
+      "cle",
+      3.43
+     ]
+    ],
+    "resumen": [
+     "reddit dedica 22 % a «day · oaxaca · trip», frente a 11 % de la DMO.",
+     "reddit dedica 16 % a «japan · country · people», frente a 10 % de la DMO.",
+     "Coinciden en «time · travel · safe» (35 % y 35 %). La DMO usa «time, film, visit» y reddit «time, travel, visit».",
+     "Tono positivo: DMO 89 %, reddit 83 %.",
+     "Lo que más distingue a reddit de la DMO: day, time, trip, travel, people, oaxaca.",
+     "Parecido del contenido con la DMO: 0.36 (de 0 a 1)."
+    ]
+   },
+   "tripadvisor": {
+    "n": 10,
+    "n_dmo": 28,
+    "pocos": true,
+    "temas": [
+     {
+      "id": 0,
+      "etiqueta": "time · travel · safe",
+      "pct_dmo": 34.92,
+      "pct_fuente": 40.99,
+      "brecha_pp": -6.07,
+      "brecha_ic95": [
+       -28.29,
+       14.9
+      ],
+      "clase": "Coincidencia",
+      "palabras_dmo": [
+       "time",
+       "film",
+       "visit",
+       "neighbourhood",
+       "station",
+       "family"
+      ],
+      "palabras_fuente": [
+       "visit",
+       "hotel",
+       "centro",
+       "hop",
+       "amazing",
+       "zocalo"
+      ],
+      "palabras_compartidas": 1,
+      "ejemplos_dmo": [
+       "tlalpan borough tranquil location houses episodio casa principal family business courtyard circular fountain interiores armados set site lanzasde appears first episode even main house visita busca parar ademas chimalistac although interiors built set barrio san angel coyoacan concentrala if vou decide visit make time also stop chimalistac historia santa escrita federico gamboa neighborhood san ang",
+       "pueblo barrio magico small town magical neighborhood pueblo chico filmacien grande asi demostr exitosa serie mexicana casa flores small town vibes big filming opportunities cautive audiencia nacional extranjeraconel demonstrated success mexican series casa drama familia llevado vida flores captivated national cemoda y llena secretos gracias floreria que international audiences drama family forma f"
+      ],
+      "ejemplos_fuente": [
+       "amazing view incleible hearthquarter survivor building impresionante vista centro historico mexico edificio sobrevivido terremotos increible bonitos museos historia mexico pisos recomendados vas ciudad mexico amaizing building increible view mexico city must visit city also museum oficina mexico plenty recommend place forma visit",
+       "zocalo cathedral must see took turibus visited museo cera zocalo torre latinoamericana palacio bellas artes cathedral mexico antes"
+      ]
+     },
+     {
+      "id": 1,
+      "etiqueta": "japan · country · people",
+      "pct_dmo": 9.64,
+      "pct_fuente": 8.79,
+      "brecha_pp": 0.84,
+      "brecha_ic95": [
+       -8.18,
+       9.87
+      ],
+      "clase": "Marginal en ambos",
+      "palabras_dmo": [
+       "country",
+       "visit",
+       "people",
+       "live",
+       "experience",
+       "speak"
+      ],
+      "palabras_fuente": [
+       "visit",
+       "friendly",
+       "view",
+       "plenty",
+       "recommend",
+       "tower"
+      ],
+      "palabras_compartidas": 1,
+      "ejemplos_dmo": [
+       "conic films history spanish oo speaking cinematography several languages passed facilities inaugurated september th hectares country club neighborhood situated southern area mexico city complex created in image likeness hollywood studios according official website the project idea radio businessman emilio azcdrraga vidaurreta north american producer rko radio pictures group investors represented h",
+       "cintas emblematicas bevan sello cuentan macario tto gevalden olvidados bt angel ry joven luts buduel icdn noche iguana joha huston missing costa gavras butch cassidy sundgaggiyd george roy hill titanic cinta culto dirigida david spectre saga direecien sam mendes id ademas inaugure fa desfile dia muertos cajdad mexico actores actrices la tulla marta pelix cantinflas pedro infamgh jorge negrete dolo"
+      ],
+      "ejemplos_fuente": [
+       "amazing view incleible hearthquarter survivor building impresionante vista centro historico mexico edificio sobrevivido terremotos increible bonitos museos historia mexico pisos recomendados vas ciudad mexico amaizing building increible view mexico city must visit city also museum oficina mexico plenty recommend place forma visit",
+       "zocalo cathedral must see took turibus visited museo cera zocalo torre latinoamericana palacio bellas artes cathedral mexico antes"
+      ]
+     },
+     {
+      "id": 2,
+      "etiqueta": "food · street · eat",
+      "pct_dmo": 19.1,
+      "pct_fuente": 9.77,
+      "brecha_pp": 9.33,
+      "brecha_ic95": [
+       -5.45,
+       21.86
+      ],
+      "clase": "Marginal en ambos",
+      "palabras_dmo": [
+       "food",
+       "street",
+       "taco",
+       "eat",
+       "street food",
+       "history"
+      ],
+      "palabras_fuente": [
+       "tour",
+       "zocalo",
+       "amazing",
+       "awesome",
+       "peso",
+       "history"
+      ],
+      "palabras_compartidas": 1,
+      "ejemplos_dmo": [
+       "instructions eat mexico city mexico city capital infinite food nor mal know what eat unwritten rules helo improve experience taquear curb ww follow discover own smells good crave it that s place also check everything clean fresh meat good condition fresh limes cooks handle money ungloved hands lot people lines trust use instincts common sense know quesadilla mexico city quesadilla may may cheese s",
+       "mexico city s magnificence reflected history culture heri tage and course cuisine declared intangible cultural heri tage humanity unesco mexico city considered one gastronomic capitals world offers unparalleled culinary experience tradition creativity found every dish better way get know authentic flavor exploring street food universe aromas colors flavors captivates locals visitors alike classic "
+      ],
+      "ejemplos_fuente": []
+     },
+     {
+      "id": 3,
+      "etiqueta": "day · oaxaca · trip",
+      "pct_dmo": 11.11,
+      "pct_fuente": 22.54,
+      "brecha_pp": -11.42,
+      "brecha_ic95": [
+       -27.73,
+       2.63
+      ],
+      "clase": "Coincidencia",
+      "palabras_dmo": [
+       "day",
+       "san",
+       "night",
+       "plan",
+       "option",
+       "visit"
+      ],
+      "palabras_fuente": [
+       "bus",
+       "recommend",
+       "hotel",
+       "visit",
+       "tour",
+       "museum"
+      ],
+      "palabras_compartidas": 1,
+      "ejemplos_dmo": [
+       "speaking films found shooting studio stages hollywood big names arnold schwarzenegger leonardo dicaprio claire danes salma hayek jamie lee curtis drew barrymore among others passed hallways sound stages too bven marilyn monroe visited bl angel exterminador s set pay visit bufiuet cinematographer gabriel figueroa churubusco studios vital part mexican cinema history continue play major role producti"
+      ],
+      "ejemplos_fuente": [
+       "hermoso monumento hermoso disfrutamos vista fotos estabamos hop on hop off bus tomar fotografias"
+      ]
+     },
+     {
+      "id": 4,
+      "etiqueta": "love · reel · feel",
+      "pct_dmo": 14.52,
+      "pct_fuente": 17.91,
+      "brecha_pp": -3.4,
+      "brecha_ic95": [
+       -23.23,
+       16.67
+      ],
+      "clase": "Coincidencia",
+      "palabras_dmo": [
+       "love",
+       "visit",
+       "feel",
+       "food",
+       "beautiful",
+       "people"
+      ],
+      "palabras_fuente": [
+       "visit",
+       "friendly",
+       "lucha",
+       "architecture",
+       "hotel",
+       "vista"
+      ],
+      "palabras_compartidas": 1,
+      "ejemplos_dmo": [
+       "anahuacalli museum becomes nest beautiful explanation love provided hernando alfonso herrera prompting users instagram tiktok visit room feel closer it",
+       "instagram tiktok visitaran sala sentirla mas cercana portada inside museums museums house prominent remnants human history also add special dimension experiences something cinema television capitalized on venues productions practically obligated consider scripts like happened casa azul frida kahlo museum coyoacan without access it movie frida would complete biographical film mexican painter lived "
+      ],
+      "ejemplos_fuente": [
+       "amazing view incleible hearthquarter survivor building impresionante vista centro historico mexico edificio sobrevivido terremotos increible bonitos museos historia mexico pisos recomendados vas ciudad mexico amaizing building increible view mexico city must visit city also museum oficina mexico plenty recommend place forma visit",
+       "zocalo cathedral must see took turibus visited museo cera zocalo torre latinoamericana palacio bellas artes cathedral mexico antes"
+      ]
+     }
+    ],
+    "tono": {
+     "pct_positivo_dmo": 89.29,
+     "pct_positivo_fuente": 100.0,
+     "prueba_chi2": {
+      "chi2": 0.16,
+      "p_valor": 0.692
+     }
+    },
+    "parecido": {
+     "valor": 0.6,
+     "ic95": [
+      0.368,
+      0.657
+     ]
+    },
+    "coincidencia_agenda": 0.9721,
+    "palabras_de_la_fuente": [
+     [
+      "hop",
+      2.49
+     ],
+     [
+      "zocalo",
+      2.16
+     ],
+     [
+      "view",
+      1.87
+     ],
+     [
+      "hotel",
+      1.87
+     ],
+     [
+      "vista",
+      1.48
+     ],
+     [
+      "centro",
+      1.34
+     ],
+     [
+      "visit",
+      1.11
+     ]
+    ],
+    "palabras_de_la_dmo": [
+     [
+      "film",
+      0.44
+     ],
+     [
+      "pagina",
+      0.24
+     ],
+     [
+      "cine",
+      0.24
+     ],
+     [
+      "production",
+      0.23
+     ],
+     [
+      "food",
+      0.23
+     ],
+     [
+      "cater",
+      0.22
+     ],
+     [
+      "cinema",
+      0.22
+     ],
+     [
+      "taco",
+      0.2
+     ],
+     [
+      "studio",
+      0.19
+     ],
+     [
+      "san",
+      0.19
+     ],
+     [
+      "day",
+      0.18
+     ],
+     [
+      "neighbourhood",
+      0.18
+     ]
+    ],
+    "resumen": [
+     "Coinciden en «time · travel · safe» (35 % y 41 %). La DMO usa «time, film, visit» y tripadvisor «visit, hotel, centro»: no es la misma conversación.",
+     "Tono positivo: DMO 89 %, tripadvisor 100 %.",
+     "Lo que más distingue a tripadvisor de la DMO: hop, zocalo, view, hotel, vista, centro.",
+     "Parecido del contenido con la DMO: 0.60 (de 0 a 1)."
+    ]
+   }
+  }
+ },
+ "resumen_brechas": [
+  "El tema «day · oaxaca · trip» ocupa 22 % del contenido de los visitantes y 12 % del de la DMO; 12 % de esos comentarios son negativos.",
+  "Coinciden en «time · travel · safe»: 39 % del contenido de la DMO y 36 % del de los visitantes. La DMO lo aborda con «time, film, visit, neighbourhood» y los visitantes con «time, travel, visit, people».",
+  "Coinciden en «food · street · eat»: 21 % del contenido de la DMO y 13 % del de los visitantes. La DMO lo aborda con «food, street, taco, eat» y los visitantes con «food, street, eat, street food».",
+  "Tono: 89 % de los textos de la DMO son positivos frente a 83 % en promedio de las fuentes de visitantes.",
+  "Alineación semántica global: 0.36 (de 0 a 1; intervalo 95 % 0.29–0.42)."
+ ],
+ "advertencias": [
+  "La DMO tiene sólo 28 textos en este idioma; la comparación es exploratoria.",
+  "Fuentes con muy pocos comentarios en este idioma, que se muestran pero no entran en el promedio de visitantes: instagram (29), tripadvisor (10)."
+ ],
+ "concepto": {
+  "consulta": "price value cost",
+  "umbral_similitud": 0.205,
+  "percentil": 95,
+  "terminos_cercanos": [
+   [
+    "cost",
+    0.808
+   ],
+   [
+    "value",
+    0.739
+   ],
+   [
+    "price",
+    0.718
+   ],
+   [
+    "roughly",
+    0.695
+   ],
+   [
+    "economy",
+    0.586
+   ],
+   [
+    "displace",
+    0.575
+   ],
+   [
+    "loss",
+    0.544
+   ],
+   [
+    "airbnb",
+    0.518
+   ],
+   [
+    "individual",
+    0.515
+   ],
+   [
+    "earn",
+    0.513
+   ],
+   [
+    "worker",
+    0.504
+   ],
+   [
+    "tax",
+    0.496
+   ],
+   [
+    "poor",
+    0.47
+   ],
+   [
+    "wage",
+    0.467
+   ],
+   [
+    "airalo",
+    0.467
+   ],
+   [
+    "send",
+    0.463
+   ],
+   [
+    "expat",
+    0.451
+   ],
+   [
+    "salary",
+    0.436
+   ],
+   [
+    "power",
+    0.434
+   ],
+   [
+    "frankly",
+    0.425
+   ]
+  ],
+  "por_grupo": {
+   "DMO": {
+    "n": 28,
+    "n_ligados": 0,
+    "pct_ligados": 0.0,
+    "pct_mencionan": 0.0,
+    "pct_positivo_ligados": null,
+    "pct_positivo_resto": 89.29,
+    "sim_media": -0.01,
+    "contexto_palabras": [],
+    "contexto_bigramas": []
+   },
+   "Percibida": {
+    "n": 5059,
+    "n_ligados": 255,
+    "pct_ligados": 5.04,
+    "pct_mencionan": 3.56,
+    "pct_positivo_ligados": 82.75,
+    "pct_positivo_resto": 83.28,
+    "sim_media": 0.032,
+    "contexto_palabras": [
+     [
+      "price",
+      5.9
+     ],
+     [
+      "cost",
+      5.75
+     ],
+     [
+      "money",
+      4.83
+     ],
+     [
+      "local",
+      4.78
+     ],
+     [
+      "value",
+      4.17
+     ],
+     [
+      "economy",
+      3.78
+     ],
+     [
+      "expedia",
+      3.39
+     ],
+     [
+      "nomad",
+      3.03
+     ],
+     [
+      "digital",
+      3.01
+     ],
+     [
+      "book",
+      2.7
+     ],
+     [
+      "cash",
+      2.61
+     ],
+     [
+      "salary",
+      2.52
+     ]
+    ],
+    "contexto_bigramas": [
+     [
+      "digital nomad",
+      12
+     ],
+     [
+      "credit card",
+      8
+     ],
+     [
+      "cost living",
+      7
+     ],
+     [
+      "save money",
+      5
+     ],
+     [
+      "spend time",
+      4
+     ],
+     [
+      "hotel price",
+      4
+     ],
+     [
+      "rent car",
+      4
+     ],
+     [
+      "travel agent",
+      4
+     ]
+    ]
+   },
+   "instagram": {
+    "n": 29,
+    "n_ligados": 0,
+    "pct_ligados": 0.0,
+    "pct_mencionan": 0.0,
+    "pct_positivo_ligados": null,
+    "pct_positivo_resto": 82.76,
+    "sim_media": -0.021,
+    "contexto_palabras": [],
+    "contexto_bigramas": []
+   },
+   "reddit": {
+    "n": 5020,
+    "n_ligados": 255,
+    "pct_ligados": 5.08,
+    "pct_mencionan": 3.57,
+    "pct_positivo_ligados": 82.75,
+    "pct_positivo_resto": 83.25,
+    "sim_media": 0.032,
+    "contexto_palabras": [
+     [
+      "price",
+      5.9
+     ],
+     [
+      "cost",
+      5.75
+     ],
+     [
+      "money",
+      4.83
+     ],
+     [
+      "local",
+      4.78
+     ],
+     [
+      "value",
+      4.17
+     ],
+     [
+      "economy",
+      3.78
+     ],
+     [
+      "expedia",
+      3.39
+     ],
+     [
+      "nomad",
+      3.03
+     ],
+     [
+      "digital",
+      3.01
+     ],
+     [
+      "book",
+      2.7
+     ],
+     [
+      "cash",
+      2.61
+     ],
+     [
+      "salary",
+      2.52
+     ]
+    ],
+    "contexto_bigramas": [
+     [
+      "digital nomad",
+      12
+     ],
+     [
+      "credit card",
+      8
+     ],
+     [
+      "cost living",
+      7
+     ],
+     [
+      "save money",
+      5
+     ],
+     [
+      "spend time",
+      4
+     ],
+     [
+      "hotel price",
+      4
+     ],
+     [
+      "rent car",
+      4
+     ],
+     [
+      "travel agent",
+      4
+     ]
+    ]
+   },
+   "tripadvisor": {
+    "n": 10,
+    "n_ligados": 0,
+    "pct_ligados": 0.0,
+    "pct_mencionan": 10.0,
+    "pct_positivo_ligados": null,
+    "pct_positivo_resto": 100.0,
+    "sim_media": 0.046,
+    "contexto_palabras": [],
+    "contexto_bigramas": []
+   }
+  },
+  "top5_global": [
+   {
+    "texto": "Do you know the cost",
+    "fuente": "reddit",
+    "similitud": 0.806,
+    "sentimiento": "positivo"
+   },
+   {
+    "texto": "It s definitely not the value it used to be Frankly other than the cost of getting over there I m finding better experiences for roughly the same price in Spain",
+    "fuente": "reddit",
+    "similitud": 0.748,
+    "sentimiento": "positivo"
+   },
+   {
+    "texto": "Whats at odds with ur values",
+    "fuente": "reddit",
+    "similitud": 0.733,
+    "sentimiento": "positivo"
+   },
+   {
+    "texto": "Also those prices are still absurdly low Not for mexico they re not They re ridiculous",
+    "fuente": "reddit",
+    "similitud": 0.674,
+    "sentimiento": "positivo"
+   },
+   {
+    "texto": "It can definitely be a conflict Brutal honesty if the single most important thing to you is the lowest cost possible travel agents aren t the best way to go But this is also why I like being a cruise specialist My clients generally know what cruise line they want what cabin class and dates I do try to get the best price I can but my clients typically have money and want what they want they dont wa",
+    "fuente": "reddit",
+    "similitud": 0.654,
+    "sentimiento": "positivo"
+   }
+  ],
+  "top5_bm25": [
+   {
+    "texto": "It s definitely not the value it used to be Frankly other than the cost of getting over there I m finding better experiences for roughly the same price in Spain",
+    "fuente": "reddit",
+    "bm25": 18.08,
+    "sentimiento": "positivo"
+   },
+   {
+    "texto": "I compared the price of Airalo vs a local SIM card when I was in Mexico a few months ago The SIM was a better value The one we picked up from Oxxo gave you free browsing on social media too",
+    "fuente": "reddit",
+    "bm25": 10.34,
+    "sentimiento": "positivo"
+   },
+   {
+    "texto": "It can definitely be a conflict Brutal honesty if the single most important thing to you is the lowest cost possible travel agents aren t the best way to go But this is also why I like being a cruise specialist My clients generally know what cruise line they want what cabin class and dates I do try to get the best price I can but my clients typically have money and want what they want they dont wa",
+    "fuente": "reddit",
+    "bm25": 9.59,
+    "sentimiento": "positivo"
+   },
+   {
+    "texto": "in the past I recall being able to eat really well for a fraction of what it would cost in the US Canada The last time I had a burger in Canada it was over 20 and it was NOT in a fancy restaurant It s still cheaper for just about everything in Mexico although the rise in value of the peso recently has eroded both CAD and USD currency exchange discounts",
+    "fuente": "reddit",
+    "bm25": 9.17,
+    "sentimiento": "positivo"
+   },
+   {
+    "texto": "I went to Mexico on a whim because my birthday was the next week I couldn t figure out how to book online so I called When the guy on the phone said the price I said out loud something like damn that s crazy I can t do that He was like we have a 50 off rate So I went to Mexico had the time of my life and it only cost about 500",
+    "fuente": "reddit",
+    "bm25": 8.98,
+    "sentimiento": "negativo"
+   }
+  ],
+  "top5_por_fuente": {
+   "instagram": [
+    {
+     "texto": "In progress… Ahí vamos!!! \n-\n-\n-\n#méxico #cdmx #gratitude #health #training #focus #exercise #healthylifestyle",
+     "fuente": "instagram",
+     "similitud": 0.127,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "Waves @imaginedragons \n\n#imaginedragons #imaginedragonsconcert #imaginedragonslive #loomworldtour #loom #danreynolds #cdmx #thunder",
+     "fuente": "instagram",
+     "similitud": 0.109,
+     "sentimiento": "negativo"
+    },
+    {
+     "texto": "Mexico City was not what I expected! It’s actually one of the best places I think I’ve ever seen. I went for a belated birthday trip and it was hands down one of the best cities I’ve ever been to. Save this video if you’ve ever had the desire to go and please ask any questions below! \n\n#mexicocity #cdmx #pujol",
+     "fuente": "instagram",
+     "similitud": 0.105,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "🌊Freehand done !🌊\nThx for traveling from Australia !\nDM TO BOOK\n\n#mexicocity #cdmxtattoo #tradtattoos #japanesetattoo #ornementaltattoo #mexicocitytattoo #romanorte #condesa #cdmx #cdmxtraditionaltattoo #cdmxjapanesetattoos #romanortetattoo #condesatattoo #mexicocityart #mexicocityartist",
+     "fuente": "instagram",
+     "similitud": 0.081,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "Weekends 🥯\n\n#cdmx #brunch #brunchcdmx #outfit #weekend #ootd #grwm #influencer #microunfluencer #hotspot #bershka #outfitideas",
+     "fuente": "instagram",
+     "similitud": 0.04,
+     "sentimiento": "positivo"
+    }
+   ],
+   "reddit": [
+    {
+     "texto": "Do you know the cost",
+     "fuente": "reddit",
+     "similitud": 0.806,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "It s definitely not the value it used to be Frankly other than the cost of getting over there I m finding better experiences for roughly the same price in Spain",
+     "fuente": "reddit",
+     "similitud": 0.748,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "Whats at odds with ur values",
+     "fuente": "reddit",
+     "similitud": 0.733,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "Also those prices are still absurdly low Not for mexico they re not They re ridiculous",
+     "fuente": "reddit",
+     "similitud": 0.674,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "It can definitely be a conflict Brutal honesty if the single most important thing to you is the lowest cost possible travel agents aren t the best way to go But this is also why I like being a cruise specialist My clients generally know what cruise line they want what cabin class and dates I do try to get the best price I can but my clients typically have money and want what they want they dont wa",
+     "fuente": "reddit",
+     "similitud": 0.654,
+     "sentimiento": "positivo"
+    }
+   ],
+   "sectur": [
+    {
+     "texto": "speaking films found shooting studio stages hollywood big names arnold schwarzenegger leonardo dicaprio claire danes salma hayek jamie lee curtis drew barrymore among others passed hallways sound stages too bven marilyn monroe visited bl angel exterminador s set pay visit bufiuet cinematographer gabriel figueroa churubusco studios vital part mexican cinema history continue play major role producti",
+     "fuente": "sectur",
+     "similitud": 0.042,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "role chased metro station none chabacano even see coffee bars characteristic no smoking signage extremely bloody sequence nothing love shared ana claudia talancen jordan belfi american curious film american inherits restaurant gradually falls love head chef here san cosme station line plays role connection finally albeit dramatic sense trains also appear supporting characters marioneta follow cuba",
+     "fuente": "sectur",
+     "similitud": 0.032,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "anahuacalli museum becomes nest beautiful explanation love provided hernando alfonso herrera prompting users instagram tiktok visit room feel closer it",
+     "fuente": "sectur",
+     "similitud": 0.03,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "big screen epor ciudad mexico mexico city attractive atractiva cine filmmaking filmde filmed lugares sirvieron places served settings escenario peliculas iconic films emblematicas leer aprender read learn watch lecturas fundamentales three fundamental readings comprender creatividad understand creativity cinema cine ruta cineasta filmmaker s route viviendo escena experiencing scene claqueta clapbo",
+     "fuente": "sectur",
+     "similitud": 0.026,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "che che che che che che che che che che ole pecr cor cop cp cp cp cp cp cr che che che che che che cle che che che ole per cr cp cp cp cp che che che che che ch cl gl che che che pecr cor cop cp cp cp cp cp cr che che che che che che che che che che cle pecr cor cor cp cp cr cr che che che che che ch che cle che che che per co cp cp cp cp che che che che che che che che che che ol pec cor cr cp cp",
+     "fuente": "sectur",
+     "similitud": 0.021,
+     "sentimiento": "positivo"
+    }
+   ],
+   "tripadvisor": [
+    {
+     "texto": "torres campanas tour torres campanas historia toma catedral cuesta pesos ademas vista zocalo excelentethe best tour see towers bellss also know history taken catedral cost pesos view zocalo awesome",
+     "fuente": "tripadvisor",
+     "similitud": 0.184,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "hotel punto referencia landmark city hotel admirar arquitectura remanso visitar centro ciudadit hotel much admire architecture visiting city center",
+     "fuente": "tripadvisor",
+     "similitud": 0.154,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "caracteristicas impresionantes lo vimos autobus hop hop off hicimos excursion centro historico autobuses hop hop off favor excursion tarda horas el trafico lleno gente",
+     "fuente": "tripadvisor",
+     "similitud": 0.107,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "show show lucha show olvidate sangrientas",
+     "fuente": "tripadvisor",
+     "similitud": 0.086,
+     "sentimiento": "positivo"
+    },
+    {
+     "texto": "hermoso monumento hermoso disfrutamos vista fotos estabamos hop on hop off bus tomar fotografias",
+     "fuente": "tripadvisor",
+     "similitud": 0.066,
+     "sentimiento": "positivo"
+    }
+   ]
+  },
+  "n_ligados_total": 255
+ }
+}
