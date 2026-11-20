@@ -1,4 +1,6 @@
-# Python 3.10 o superior. Todo corre sin conexión: no se usa ninguna API externa.
+# Python 3.11 o superior (recomendado y probado: 3.13; scikit-learn 1.9 exige 3.11+).
+# Instalar con:  pip install -r requirements.txt   (ver README.md, «Instalación paso a paso»)
+# Todo corre sin conexión: no se usa ninguna API externa.
 pandas>=2.1
 numpy>=1.26
 scipy>=1.11
