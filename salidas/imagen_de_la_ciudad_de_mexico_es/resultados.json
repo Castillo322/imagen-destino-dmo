@@ -9587,5 +9587,271 @@
    ]
   },
   "n_ligados_total": 1099
+ },
+ "conclusiones": {
+  "pregunta": "¿La imagen que proyecta la DMO coincide con la que perciben los visitantes? ¿En qué temas hay brechas y qué debería ajustar la DMO en su comunicación?",
+  "respuesta": "Sólo en parte. La DMO y los visitantes reparten los temas de forma parecida (coincidencia de agenda 0.81), pero el contenido se parece a medias (parecido 0.55 de 1). La DMO destaca más «parque · santo · actividad» (24 % frente a 5 %), «santo · centro · templo» (19 % frente a 6 %), «chapultepec · paseo · reforma» (13 % frente a 4 %). Los visitantes hablan más de «psicología · vos · gestalt» (8 % frente a 0 %), «taco · comida · callejero» (14 % frente a 8 %), «bonito · ninos · animal» (6 % frente a 1 %). Además circulan temas que vienen casi sólo de una fuente, como «iztapalapa · explosión · pipa» (instagram).",
+  "nivel": "parcial",
+  "indicadores": [
+   {
+    "nombre": "Parecido del contenido",
+    "valor": "0.55",
+    "lectura": "alineación parcial"
+   },
+   {
+    "nombre": "Coincidencia de agenda",
+    "valor": "0.81",
+    "lectura": "reparten parecido los temas"
+   },
+   {
+    "nombre": "Tono positivo",
+    "valor": "98 % / 93 %",
+    "lectura": "DMO / visitantes"
+   },
+   {
+    "nombre": "Brechas firmes",
+    "valor": "8",
+    "lectura": "de 15 temas"
+   }
+  ],
+  "decisiones": [
+   {
+    "tipo": "Atender",
+    "titulo": "Quejas más frecuentes",
+    "evidencia": "Temas de los comentarios negativos: «museo · boleto · entrada» (313 comentarios, sobre todo en tripadvisor); «servicio · comida · bonito» (281 comentarios, sobre todo en tripadvisor); «juego · parque · atracción» (196 comentarios, sobre todo en tripadvisor).",
+    "accion": "Llevar estas quejas a los operadores (museos, parques, servicios) y publicar información práctica que las prevenga: horarios, precios, accesos.",
+    "prioridad": "Alta",
+    "palabras": []
+   },
+   {
+    "tipo": "Replantear",
+    "titulo": "parque · santo · actividad",
+    "evidencia": "DMO 24 % de su contenido; visitantes 5 %.",
+    "accion": "La DMO invierte espacio en este tema y los visitantes casi no lo comentan: reforzarlo con contenido de experiencia (qué hacer, cuánto cuesta, cómo llegar) o reasignar parte de ese espacio a los temas que sí comentan.",
+    "prioridad": "Alta",
+    "palabras": [
+     "parque",
+     "santo",
+     "actividad",
+     "zona",
+     "aire",
+     "aire libre"
+    ]
+   },
+   {
+    "tipo": "Replantear",
+    "titulo": "santo · centro · templo",
+    "evidencia": "DMO 19 % de su contenido; visitantes 6 %.",
+    "accion": "La DMO invierte espacio en este tema y los visitantes casi no lo comentan: reforzarlo con contenido de experiencia (qué hacer, cuánto cuesta, cómo llegar) o reasignar parte de ese espacio a los temas que sí comentan.",
+    "prioridad": "Alta",
+    "palabras": [
+     "santo",
+     "centro",
+     "templo",
+     "cuauhtemoc",
+     "historico",
+     "centro historico"
+    ]
+   },
+   {
+    "tipo": "Atender",
+    "titulo": "psicología · vos · gestalt",
+    "evidencia": "Visitantes 8 % del contenido; DMO 0 %. 23 % de esos comentarios son negativos. Viene sobre todo de instagram (71 % del peso del tema).",
+    "accion": "Se comenta más que el promedio y con más quejas (23 % negativos frente a 7 % en general). Revisar los comentarios negativos: si es un problema del destino, atenderlo con los operadores e informar; si no es turismo, sólo vigilarlo.",
+    "prioridad": "Media",
+    "palabras": [
+     "psicología",
+     "vos",
+     "gestalt",
+     "psicoanálisis",
+     "humanismo",
+     "colombia"
+    ]
+   },
+   {
+    "tipo": "Atender",
+    "titulo": "bonito · ninos · animal",
+    "evidencia": "Visitantes 6 % del contenido; DMO 1 %. 18 % de esos comentarios son negativos.",
+    "accion": "Se comenta más que el promedio y con más quejas (18 % negativos frente a 7 % en general). Revisar los comentarios negativos: si es un problema del destino, atenderlo con los operadores e informar; si no es turismo, sólo vigilarlo.",
+    "prioridad": "Media",
+    "palabras": [
+     "bonito",
+     "ninos",
+     "animal",
+     "acuario",
+     "divertido",
+     "recomendar"
+    ]
+   },
+   {
+    "tipo": "Incorporar",
+    "titulo": "taco · comida · callejero",
+    "evidencia": "Visitantes 14 % del contenido; DMO 8 %. 11 % de esos comentarios son negativos. Viene sobre todo de reddit (70 % del peso del tema).",
+    "accion": "Los visitantes lo valoran y la DMO casi no lo comunica: incorporarlo a la comunicación, con el lenguaje que usan los visitantes.",
+    "prioridad": "Media",
+    "palabras": [
+     "taco",
+     "comida",
+     "callejero",
+     "salsa",
+     "comida callejero",
+     "queso"
+    ]
+   },
+   {
+    "tipo": "Incorporar",
+    "titulo": "restaurante · hermoso · zona",
+    "evidencia": "Visitantes 9 % del contenido; DMO 3 %. 4 % de esos comentarios son negativos.",
+    "accion": "Los visitantes lo valoran y la DMO casi no lo comunica: incorporarlo a la comunicación, con el lenguaje que usan los visitantes.",
+    "prioridad": "Media",
+    "palabras": [
+     "restaurante",
+     "hermoso",
+     "zona",
+     "barrio",
+     "caminar",
+     "bar"
+    ]
+   },
+   {
+    "tipo": "Replantear",
+    "titulo": "chapultepec · paseo · reforma",
+    "evidencia": "DMO 13 % de su contenido; visitantes 4 %.",
+    "accion": "La DMO invierte espacio en este tema y los visitantes casi no lo comentan: reforzarlo con contenido de experiencia (qué hacer, cuánto cuesta, cómo llegar) o reasignar parte de ese espacio a los temas que sí comentan.",
+    "prioridad": "Media",
+    "palabras": [
+     "chapultepec",
+     "paseo",
+     "reforma",
+     "paseo reforma",
+     "museo nacional",
+     "mexica"
+    ]
+   },
+   {
+    "tipo": "Informar",
+    "titulo": "«precio valor costo»",
+    "evidencia": "Lo mencionan 5.1 % de los visitantes y 2.1 % de la DMO (2.4 veces más). Palabras cercanas: precio, maya, razonable, elevar, accesible.",
+    "accion": "Los visitantes hablan de esto mucho más que la DMO: publicar información clara al respecto (por ejemplo, precios y relación calidad-precio).",
+    "prioridad": "Media",
+    "palabras": []
+   },
+   {
+    "tipo": "Ajustar enfoque",
+    "titulo": "cine · film · director",
+    "evidencia": "DMO 14 %; visitantes 12 %. La DMO usa «cine, film, pagina» y los visitantes «cine, gracia, historia».",
+    "accion": "Pesan igual pero no es la misma conversación: contar el tema desde lo que valoran los visitantes.",
+    "prioridad": "Media",
+    "palabras": [
+     "cine",
+     "film",
+     "director",
+     "festival",
+     "pelicula",
+     "peliculas"
+    ]
+   },
+   {
+    "tipo": "Ajustar tono",
+    "titulo": "La DMO es más positiva que los visitantes",
+    "evidencia": "Positivo: DMO 98 %, visitantes 93 % (χ², p = 0.000134).",
+    "accion": "Incluir información práctica y realista para que las expectativas no se conviertan en quejas.",
+    "prioridad": "Media",
+    "palabras": []
+   },
+   {
+    "tipo": "Canal",
+    "titulo": "instagram es donde la imagen más se aleja",
+    "evidencia": "Parecido con la DMO: instagram 0.34; tripadvisor 0.49. instagram habla más de iztapalapa · explosión · pipa (22 % vs. 1 %).",
+    "accion": "Adaptar el contenido para instagram en lugar de repetir el mismo mensaje en todos los canales.",
+    "prioridad": "Media",
+    "palabras": []
+   },
+   {
+    "tipo": "Vigilar",
+    "titulo": "iztapalapa · explosión · pipa",
+    "evidencia": "Visitantes 8 % del contenido; DMO 1 %. 22 % de esos comentarios son negativos. Viene sobre todo de instagram (92 % del peso del tema).",
+    "accion": "Casi todo viene de instagram: suele ser coyuntura (noticias) o contenido ajeno al destino. Vigilarlo; comunicarlo sólo si es parte de la oferta turística.",
+    "prioridad": "Media",
+    "palabras": [
+     "iztapalapa",
+     "explosión",
+     "pipa",
+     "explosión pipa",
+     "concordia",
+     "puente concordia"
+    ]
+   },
+   {
+    "tipo": "Mantener",
+    "titulo": "mercado · precio · mexicano",
+    "evidencia": "DMO 4 %; visitantes 7 %.",
+    "accion": "El mensaje sí llega: mantenerlo.",
+    "prioridad": "Baja",
+    "palabras": [
+     "mercado",
+     "precio",
+     "mexicano",
+     "artesanias",
+     "comprar",
+     "comida"
+    ]
+   },
+   {
+    "tipo": "Mantener",
+    "titulo": "museo · arte · exposición",
+    "evidencia": "DMO 4 %; visitantes 6 %.",
+    "accion": "El mensaje sí llega: mantenerlo.",
+    "prioridad": "Baja",
+    "palabras": [
+     "museo",
+     "arte",
+     "exposición",
+     "coleccion",
+     "obra",
+     "arte popular"
+    ]
+   }
+  ],
+  "por_fuente": [
+   {
+    "fuente": "instagram",
+    "parecido": 0.34,
+    "agenda": 0.6828,
+    "tono": -11.6,
+    "habla_mas_de": "iztapalapa · explosión · pipa (22 % vs. 1 %)",
+    "palabras": "explosión, pipa, iztapalapa, psicología, vos"
+   },
+   {
+    "fuente": "reddit",
+    "parecido": 0.344,
+    "agenda": 0.8609,
+    "tono": -0.3,
+    "habla_mas_de": "taco · comida · callejero (27 % vs. 8 %)",
+    "palabras": "puerto, queretarar, merida, oaxaca, lisbon"
+   },
+   {
+    "fuente": "tripadvisor",
+    "parecido": 0.495,
+    "agenda": 0.6614,
+    "tono": -4.5,
+    "habla_mas_de": "restaurante · hermoso · zona (14 % vs. 3 %)",
+    "palabras": "visitar, hermoso, pena, excelente, valer"
+   }
+  ],
+  "notas": [
+   "Las conclusiones salen de reglas fijas sobre los resultados; no saben si un tema es turístico. Revisa las palabras y los ejemplos de cada tema antes de decidir."
+  ],
+  "umbrales": {
+   "parecido_alto": 0.7,
+   "parecido_bajo": 0.45,
+   "agenda_alta": 0.85,
+   "agenda_baja": 0.7,
+   "quejas_x": 2.0,
+   "concentrado": 0.85,
+   "tono_pp": 3.0,
+   "precio_x": 1.5,
+   "prioridad_alta_pp": 10.0
+  }
  }
 }

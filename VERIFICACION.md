@@ -11,7 +11,7 @@ El script prueba el analizador con datos **que no ha visto**, construidos a part
 - los mismos datos como **4 archivos sueltos de formatos distintos** (`dmo.xlsx`, `google_reviews.json`, `blog_viajes.txt`, `foro.tsv`) y como sólo 2 archivos;
 - el tablero, abierto con las herramientas de prueba de Streamlit.
 
-Resultado: **42 de 42 comprobaciones correctas**.
+Resultado: **43 de 43 comprobaciones correctas**.
 
 | Requisito | Dónde se cumple | Comprobación |
 |---|---|---|
@@ -31,7 +31,8 @@ Resultado: **42 de 42 comprobaciones correctas**.
 | 8. Concepto precio/valor/costo | `pipeline/concepto.py` | Similitud para todos los comentarios normales; frecuencia, tono y contexto por grupo; 5 comentarios con su fuente; mención literal con BM25 |
 | Agnóstico a número y nombre de fuentes | Todo el pipeline | Funciona con 4 fuentes y con sólo 2 |
 | Sin APIs externas | Todo el pipeline | Corre con la red bloqueada (proxy a un puerto cerrado) |
-| Tablero | `app.py` | El modo ejemplo abre sus 8 pestañas sin errores; el modo «Subir mis archivos» muestra la carga |
+| Conclusiones para la DMO | `pipeline/conclusiones.py`, pestaña «Conclusiones», reporte y terminal | Con los datos nuevos responde la pregunta del proyecto y propone decisiones, cada una con acción y evidencia |
+| Tablero | `app.py` | El modo ejemplo abre sus 9 pestañas sin errores, la primera «Conclusiones»; el modo «Subir mis archivos» muestra la carga |
 | Repositorio: README, requirements.txt y CSV de ejemplo anonimizado | Raíz del repositorio | README con ejemplos de todos los parámetros; CSV de ejemplo sin menciones ni enlaces |
 
 ## El resultado no depende de cómo se entreguen los archivos
@@ -74,5 +75,5 @@ Por eso el análisis se centra en **qué contienen** los atípicos, no en un nú
 
 - **Número de temas.** Con k fijo en 7, 10, 12 y 15, las dos brechas principales de la DMO se mantienen: parques, de +18 a +24 pp, y Centro Histórico, de +13 a +25 pp (con k = 15, Chapultepec y Reforma se separan en un tema aparte, +9 pp). Del lado de los visitantes se repiten la psicología, Iztapalapa y la comida o la experiencia de la visita.
 - **Limpieza de enlaces.** Se quitan los restos de enlaces que llegaron sin signos («https youtu be XSb9…»), que en el Avance 2 aparecían como palabras. También se quitan las palabras funcionales de otro idioma que se cuelan en comentarios mezclados («you», «and», «not»), que aparecían como palabras propias de Reddit.
-- **Tablero con archivos subidos.** Se subieron las 4 bases originales con Playwright, se configuraron y se analizaron en otro orden y con TripAdvisor comprimido (.gz): unos 3 minutos, 8 pestañas sin errores, búsqueda BM25 funcionando y los mismos números que el ejemplo.
+- **Tablero con archivos subidos.** Se subieron las 4 bases originales con Playwright, se configuraron y se analizaron en otro orden y con TripAdvisor comprimido (.gz): unos 3 minutos, 9 pestañas sin errores, búsqueda BM25 funcionando y los mismos números que el ejemplo.
 - **Reproducibilidad.** Con la semilla 42, dos corridas dan resultados idénticos.

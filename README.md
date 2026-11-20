@@ -31,8 +31,9 @@ streamlit run app.py
 
 Para reproducir el caso CDMX, sube los 4 archivos de `datos/originales/`, renombra `instaUGC` como Instagram y `redditcdmx` como Reddit (opcional) y escribe en palabras a ignorar `mexico,ciudad,cdmx,df,city`. El resultado es idéntico al del ejemplo.
 
-El tablero tiene ocho pestañas:
+El tablero tiene nueve pestañas:
 
+- **Conclusiones**: responde la pregunta del proyecto (¿la imagen que proyecta la DMO coincide con la que perciben los visitantes y qué debería ajustar?) con una respuesta corta, indicadores y **decisiones para la DMO** ordenadas por prioridad, cada una con su evidencia: replantear, incorporar, atender, informar, ajustar enfoque o tono, canal, vigilar y mantener. Se generan solas, con las mismas reglas, para cualquier conjunto de archivos (`pipeline/conclusiones.py`); los umbrales se muestran en la pestaña. También van en el reporte HTML, en la terminal y se descargan como texto.
 - **Resumen**: comentarios por fuente, tono, parecido del contenido, coincidencia de agenda, **número de temas encontrados** y cómo se eligió, y hallazgos principales.
 - **Proyectado vs. percibido**: cada tema en la DMO frente al promedio de visitantes, con su diferencia e intervalo.
 - **DMO vs. cada fuente**: la DMO frente a cada fuente por separado. Cuantitativo: peso de cada tema y diferencia con IC 95 %, tono con χ², parecido y coincidencia de agenda. Cualitativo: frases de resumen, palabras propias de cada lado y, tema por tema, con qué palabras lo dice cada uno y ejemplos de cada lado elegidos con BM25.
@@ -141,7 +142,7 @@ Los archivos más pesados del repositorio van comprimidos con gzip para que GitH
 3. **Sentimiento binario.** En español usa un modelo propio: regresión logística sobre TF-IDF, entrenada con las calificaciones de TripAdvisor (`entrenar_sentimiento.py`; las métricas están en `modelos/metricas_sentimiento_es.json`). En otros idiomas usa VADER.
 4. **Tópicos.** Usa NMF sobre unigramas y bigramas. Elige k entre 5 y 15 por coherencia NPMI × diversidad, medida en 3 muestras. Lo hace para el corpus común y para cada tono. Con menos de 30 comentarios (`--umbral_topicos`) recurre a frecuencias de palabras: listas con conteos y nubes de palabras por fuente y tono (`wordcloud`, sin conexión), en el reporte y en el tablero.
 5. **Comparación DMO vs. visitantes.** Calcula el peso de cada tema por fuente y la diferencia DMO − visitantes con IC 95 % bootstrap. Los visitantes son el promedio de las fuentes, cada una con el mismo peso. También calcula con qué palabras aborda cada lado el tema, el parecido global (coseno de centroides LSA), la coincidencia de agenda (1 − Jensen-Shannon) y una χ² del tono. **Lo mismo se hace para la DMO frente a cada fuente por separado**, con dos capas: cuantitativa (temas con IC, tono con χ², parecido con IC, agenda) y cualitativa (palabras propias de cada lado por log-odds, palabras con que cada lado aborda cada tema y ejemplos de cada lado elegidos con **BM25**, usando las palabras del tema como consulta).
-6. **Reporte.** Incluye las palabras clave por tema y fuente, el comentario representativo (el más cercano al centro del tema) y un resumen de brechas.
+6. **Reporte.** Incluye las conclusiones para la DMO (respuesta a la pregunta del proyecto y decisiones con evidencia), las palabras clave por tema y fuente, el comentario representativo (el más cercano al centro del tema) y un resumen de brechas.
 7. **Visualizaciones.** Mapa t-SNE con color y forma redundantes, por tema y por fuente, y gráficas comparativas.
 8. **Concepto «precio, valor, costo».** Proyecta la consulta al espacio LSA y mide su similitud con cada comentario. Un comentario se considera ligado al concepto si supera el percentil 95. Reporta la comparación DMO vs. visitantes y los 5 comentarios más cercanos, con su fuente. Como complemento calcula **BM25** de la misma consulta: qué porcentaje de cada grupo usa literalmente esas palabras y los 5 que más las usan.
 
@@ -179,4 +180,4 @@ python entrenar_sentimiento.py --csv datos/cdmx_unificado.csv.gz --columna_texto
 
 ## Verificación
 
-`python verificar_requisitos.py` corre el script con datos que no ha visto (otras columnas, otras fuentes, archivos sueltos en xlsx, json, txt y tsv) y revisa cada requisito del proyecto, incluidos el tablero, BM25 y la comparación con cada fuente (42 comprobaciones). Los resultados y las pruebas de robustez están en `VERIFICACION.md`.
+`python verificar_requisitos.py` corre el script con datos que no ha visto (otras columnas, otras fuentes, archivos sueltos en xlsx, json, txt y tsv) y revisa cada requisito del proyecto, incluidos el tablero, BM25, la comparación con cada fuente y las conclusiones (43 comprobaciones). Los resultados y las pruebas de robustez están en `VERIFICACION.md`.

@@ -5985,5 +5985,160 @@
    ]
   },
   "n_ligados_total": 255
+ },
+ "conclusiones": {
+  "pregunta": "¿La imagen que proyecta la DMO coincide con la que perciben los visitantes? ¿En qué temas hay brechas y qué debería ajustar la DMO en su comunicación?",
+  "respuesta": "No. La DMO y los visitantes reparten los temas de forma muy parecida (coincidencia de agenda 0.98), pero el contenido se parece poco (parecido 0.36 de 1). Los visitantes hablan más de «day · oaxaca · trip» (22 % frente a 12 %).",
+  "nivel": "baja",
+  "indicadores": [
+   {
+    "nombre": "Parecido del contenido",
+    "valor": "0.36",
+    "lectura": "alineación baja"
+   },
+   {
+    "nombre": "Coincidencia de agenda",
+    "valor": "0.98",
+    "lectura": "reparten igual los temas"
+   },
+   {
+    "nombre": "Tono positivo",
+    "valor": "89 % / 83 %",
+    "lectura": "DMO / visitantes"
+   },
+   {
+    "nombre": "Brechas firmes",
+    "valor": "1",
+    "lectura": "de 5 temas"
+   }
+  ],
+  "decisiones": [
+   {
+    "tipo": "Atender",
+    "titulo": "Quejas más frecuentes",
+    "evidencia": "Temas de los comentarios negativos: «time · happen · police» (272 comentarios, sobre todo en reddit); «day · trip · oaxaca» (197 comentarios, sobre todo en reddit); «people · japan · country» (180 comentarios, sobre todo en reddit).",
+    "accion": "Llevar estas quejas a los operadores (museos, parques, servicios) y publicar información práctica que las prevenga: horarios, precios, accesos.",
+    "prioridad": "Alta",
+    "palabras": []
+   },
+   {
+    "tipo": "Incorporar",
+    "titulo": "day · oaxaca · trip",
+    "evidencia": "Visitantes 22 % del contenido; DMO 12 %. 12 % de esos comentarios son negativos.",
+    "accion": "Los visitantes lo valoran y la DMO casi no lo comunica: incorporarlo a la comunicación, con el lenguaje que usan los visitantes.",
+    "prioridad": "Media",
+    "palabras": [
+     "day",
+     "oaxaca",
+     "trip",
+     "plan",
+     "night",
+     "fly"
+    ]
+   },
+   {
+    "tipo": "Informar",
+    "titulo": "«price value cost»",
+    "evidencia": "Lo mencionan 5.0 % de los visitantes y 0.0 % de la DMO (la DMO casi no lo menciona). Palabras cercanas: cost, value, price, roughly, economy.",
+    "accion": "Los visitantes hablan de esto mucho más que la DMO: publicar información clara al respecto (por ejemplo, precios y relación calidad-precio).",
+    "prioridad": "Media",
+    "palabras": []
+   },
+   {
+    "tipo": "Canal",
+    "titulo": "reddit es donde la imagen más se aleja",
+    "evidencia": "Parecido con la DMO: reddit 0.36; tripadvisor 0.60. reddit habla más de day · oaxaca · trip (22 % vs. 11 %).",
+    "accion": "Adaptar el contenido para reddit en lugar de repetir el mismo mensaje en todos los canales.",
+    "prioridad": "Media",
+    "palabras": []
+   },
+   {
+    "tipo": "Mantener",
+    "titulo": "time · travel · safe",
+    "evidencia": "DMO 39 %; visitantes 36 %.",
+    "accion": "El mensaje sí llega: mantenerlo.",
+    "prioridad": "Baja",
+    "palabras": [
+     "time",
+     "travel",
+     "safe",
+     "visit",
+     "stay",
+     "lot"
+    ]
+   },
+   {
+    "tipo": "Mantener",
+    "titulo": "food · street · eat",
+    "evidencia": "DMO 21 %; visitantes 13 %.",
+    "accion": "El mensaje sí llega: mantenerlo.",
+    "prioridad": "Baja",
+    "palabras": [
+     "food",
+     "street",
+     "street food",
+     "eat",
+     "taco",
+     "eat street"
+    ]
+   },
+   {
+    "tipo": "Mantener",
+    "titulo": "love · reel · feel",
+    "evidencia": "DMO 16 %; visitantes 13 %.",
+    "accion": "El mensaje sí llega: mantenerlo.",
+    "prioridad": "Baja",
+    "palabras": [
+     "love",
+     "reel",
+     "feel",
+     "wow",
+     "beautiful",
+     "people"
+    ]
+   }
+  ],
+  "por_fuente": [
+   {
+    "fuente": "reddit",
+    "parecido": 0.357,
+    "agenda": 0.977,
+    "tono": -6.1,
+    "habla_mas_de": "day · oaxaca · trip (22 % vs. 11 %)",
+    "palabras": "day, time, trip, travel, people"
+   },
+   {
+    "fuente": "instagram",
+    "parecido": 0.413,
+    "agenda": 0.9085,
+    "tono": -6.5,
+    "habla_mas_de": "love · reel · feel (46 % vs. 15 %)",
+    "palabras": "reel, mexicocity, zocalo, viral, outfit"
+   },
+   {
+    "fuente": "tripadvisor",
+    "parecido": 0.6,
+    "agenda": 0.9721,
+    "tono": 10.7,
+    "habla_mas_de": "—",
+    "palabras": "hop, zocalo, view, hotel, vista"
+   }
+  ],
+  "notas": [
+   "Las conclusiones salen de reglas fijas sobre los resultados; no saben si un tema es turístico. Revisa las palabras y los ejemplos de cada tema antes de decidir.",
+   "La DMO tiene sólo 28 textos en este idioma; la comparación es exploratoria.",
+   "Fuentes con muy pocos comentarios en este idioma, que se muestran pero no entran en el promedio de visitantes: instagram (29), tripadvisor (10)."
+  ],
+  "umbrales": {
+   "parecido_alto": 0.7,
+   "parecido_bajo": 0.45,
+   "agenda_alta": 0.85,
+   "agenda_baja": 0.7,
+   "quejas_x": 2.0,
+   "concentrado": 0.85,
+   "tono_pp": 3.0,
+   "precio_x": 1.5,
+   "prioridad_alta_pp": 10.0
+  }
  }
 }

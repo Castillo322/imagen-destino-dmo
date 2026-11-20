@@ -17,7 +17,7 @@ import pandas as pd
 import plotly.graph_objects as go
 import streamlit as st
 
-from pipeline import lectura
+from pipeline import conclusiones, lectura
 from pipeline.config import CONCEPTO_POR_IDIOMA, K_TOPICOS, PALETAS_ACCESIBLES
 from pipeline.visualizaciones import colores, escala_continua, simbolos_fuente
 
@@ -303,10 +303,11 @@ else:
 st.caption(f"Comentarios en {IDIOMAS.get(P['idioma'], P['idioma']).lower()} · imagen proyectada por la DMO "
            f"({nombre(dmo, None)}) frente a lo que publican los visitantes en " +
            ", ".join(nombre(f, dmo) for f in fuentes if f != dmo))
+st.markdown(f"**Pregunta del proyecto:** {conclusiones.PREGUNTA} La respuesta está en la pestaña «Conclusiones».")
 for a in R.get("advertencias", []):
     st.info(a, icon="ℹ️")
 
-pestanas = st.tabs(["Resumen", "Proyectado vs. percibido", "DMO vs. cada fuente", "Lo que gusta y lo que no", "Por fuente",
+pestanas = st.tabs(["Conclusiones", "Resumen", "Proyectado vs. percibido", "DMO vs. cada fuente", "Lo que gusta y lo que no", "Por fuente",
                     "Explorar y buscar", "Precio, valor y costo", "Comentarios atípicos"])
 
 
@@ -362,8 +363,81 @@ def fig_tono_fuentes():
     return fig
 
 
-# ---------------------------------------------------------------- 1. Resumen
+# ---------------------------------------------------------------- 0. Conclusiones
+TIPO_COLOR = {"Atender": "#D55E00", "Incorporar": "#009E73", "Replantear": "#0072B2", "Informar": "#56B4E9",
+              "Ajustar enfoque": "#CC79A7", "Ajustar tono": "#CC79A7", "Canal": "#E69F00", "Vigilar": "#5F5F5F",
+              "Aprovechar": "#009E73", "Mantener": "#999999"}
+TIPO_EXPLICA = {"Atender": "temas con más quejas que el promedio", "Incorporar": "lo que los visitantes valoran y la DMO no comunica",
+                "Replantear": "lo que la DMO destaca y los visitantes no comentan", "Informar": "el concepto que los visitantes mencionan mucho más",
+                "Ajustar enfoque": "mismo tema, otra conversación", "Ajustar tono": "diferencia de tono significativa",
+                "Canal": "la fuente donde la imagen más se aleja", "Vigilar": "temas que vienen casi sólo de una fuente",
+                "Aprovechar": "los visitantes son más positivos", "Mantener": "mensajes que sí llegan"}
+
 with pestanas[0]:
+    CONC = conclusiones.generar(R, {f: nombre(f, None) for f in fuentes})
+    col_nivel = {"alta": "#009E73", "parcial": "#E69F00", "baja": "#D55E00"}.get(CONC["nivel"], "#5F5F5F")
+    st.markdown(
+        f"<div style='border-left:7px solid {col_nivel};background:rgba(127,127,127,0.07);padding:14px 18px;border-radius:8px;margin-bottom:8px'>"
+        f"<div style='font-size:.8rem;letter-spacing:1px;text-transform:uppercase;opacity:.7'>Pregunta del proyecto</div>"
+        f"<div style='font-size:1.05rem;margin:2px 0 12px'>{CONC['pregunta']}</div>"
+        f"<div style='font-size:.8rem;letter-spacing:1px;text-transform:uppercase;opacity:.7'>Respuesta · alineación {CONC['nivel']}</div>"
+        f"<div style='font-size:1.12rem;font-weight:600;line-height:1.45'>{CONC['respuesta']}</div></div>", unsafe_allow_html=True)
+    cm = st.columns(len(CONC["indicadores"]))
+    for c, ind in zip(cm, CONC["indicadores"]):
+        c.metric(ind["nombre"], ind["valor"], help=ind["lectura"])
+        c.caption(ind["lectura"])
+
+    st.subheader("Qué decisiones puede tomar la DMO")
+    st.caption("Ordenadas por prioridad. Cada una trae la evidencia que la sostiene; abajo se explica cómo se generan.")
+    tipos = list(dict.fromkeys(d["tipo"] for d in CONC["decisiones"]))
+    ver_t = st.multiselect("Mostrar", tipos, default=tipos, key="conc_tipos",
+                           format_func=lambda t: f"{t} · {TIPO_EXPLICA.get(t, '')}")
+    dec = [d for d in CONC["decisiones"] if d["tipo"] in ver_t]
+    for fila in range(0, len(dec), 2):
+        cols = st.columns(2)
+        for c, d in zip(cols, dec[fila:fila + 2]):
+            colr = TIPO_COLOR.get(d["tipo"], "#5F5F5F")
+            pal = f"<div style='font-size:.82rem;opacity:.75;margin-top:4px'>Palabras del tema: {', '.join(d['palabras'])}</div>" if d.get("palabras") else ""
+            c.markdown(
+                f"<div style='border:1px solid rgba(127,127,127,.3);border-top:5px solid {colr};border-radius:8px;padding:10px 14px;height:100%'>"
+                f"<div><span style='background:{colr};color:white;border-radius:4px;padding:1px 8px;font-size:.8rem;font-weight:600'>{d['tipo']}</span>"
+                f" <span style='font-size:.8rem;opacity:.75'>prioridad {d['prioridad'].lower()}</span></div>"
+                f"<div style='font-weight:700;margin:6px 0 4px'>{d['titulo']}</div>"
+                f"<div style='margin-bottom:6px'>{d['accion']}</div>"
+                f"<div style='font-size:.85rem;opacity:.8'>{d['evidencia']}</div>{pal}</div>", unsafe_allow_html=True)
+        st.write("")
+
+    if CONC["por_fuente"]:
+        st.subheader("La DMO frente a cada fuente, en una línea")
+        st.dataframe(pd.DataFrame([{"Fuente": nombre(x["fuente"], dmo), "Parecido con la DMO": x["parecido"],
+                                    "Coincidencia de agenda": x["agenda"], "Tono frente a la DMO (puntos)": x["tono"],
+                                    "Habla más que la DMO de": x["habla_mas_de"], "Sus palabras propias": x["palabras"]}
+                                   for x in CONC["por_fuente"]]), hide_index=True, width="stretch",
+                     column_config={"Parecido con la DMO": st.column_config.ProgressColumn(format="%.2f", min_value=0, max_value=1),
+                                    "Coincidencia de agenda": st.column_config.ProgressColumn(format="%.2f", min_value=0, max_value=1),
+                                    "Tono frente a la DMO (puntos)": st.column_config.NumberColumn(format="%+.1f")})
+    for nota in CONC["notas"]:
+        st.caption(nota)
+    st.download_button("Descargar las conclusiones (texto)", conclusiones.texto(CONC).encode("utf-8"),
+                       f"conclusiones_{P['idioma']}.txt", "text/plain")
+    with st.expander("¿Cómo se generan estas conclusiones?"):
+        U = CONC["umbrales"]
+        st.markdown(f"""Se calculan solas a partir de los resultados de los 8 pasos, con las mismas reglas para cualquier archivo:
+
+- **Respuesta:** alineación alta si el parecido del contenido es ≥ {U['parecido_alto']}, parcial entre {U['parecido_bajo']} y {U['parecido_alto']}, baja si es menor. La coincidencia de agenda (≥ {U['agenda_alta']} alta, < {U['agenda_baja']} baja) dice si reparten igual los temas.
+- **Replantear:** temas que la DMO destaca más (brecha ≥ 5 puntos con intervalo firme).
+- **Incorporar:** temas que los visitantes mencionan más, sin exceso de quejas y presentes en varias fuentes.
+- **Atender:** temas con un porcentaje de comentarios negativos ≥ {U['quejas_x']:.0f} veces el general, y los temas más frecuentes de los comentarios negativos.
+- **Vigilar:** temas en los que una sola fuente aporta ≥ {100 * U['concentrado']:.0f} % del peso (suelen ser noticias o contenido ajeno).
+- **Ajustar enfoque:** temas en los que coinciden pero comparten a lo mucho una palabra principal.
+- **Ajustar tono:** la DMO es ≥ {U['tono_pp']:.0f} puntos más positiva y la χ² es significativa.
+- **Informar:** los visitantes mencionan el concepto («{P.get('concepto') or 'precio valor costo'}») ≥ {U['precio_x']} veces más que la DMO.
+- **Canal:** la fuente con menor parecido con la DMO.
+- **Prioridad alta:** brechas de ≥ {U['prioridad_alta_pp']:.0f} puntos y las quejas más frecuentes.""")
+
+
+# ---------------------------------------------------------------- 1. Resumen
+with pestanas[1]:
     cols = st.columns(len(fuentes))
     for c, f in zip(cols, fuentes):
         n = R["conteos"][f]
@@ -423,7 +497,7 @@ with pestanas[0]:
 
 
 # ---------------------------------------------------------------- 2. Proyectado vs percibido
-with pestanas[1]:
+with pestanas[2]:
     if not TEMAS:
         st.warning("No hubo suficientes comentarios para identificar temas comunes.")
     else:
@@ -505,7 +579,7 @@ def fig_palabras(pares, color, titulo, n=12):
     return fig
 
 
-with pestanas[2]:
+with pestanas[3]:
     if not PF_IND:
         st.warning("No hubo suficientes comentarios para comparar la DMO con cada fuente por separado.")
     else:
@@ -698,7 +772,7 @@ def nubes_por_fuente():
                 c.caption("Muy pocos comentarios: " + ", ".join(f"{w} ({n})" for w, n in d["frecuencias"][:8]))
 
 
-with pestanas[3]:
+with pestanas[4]:
     st.markdown("**Porcentaje de comentarios con tono positivo**")
     st.plotly_chart(fig_tono_fuentes(), width="stretch", key="tono")
     izq, der = st.columns(2)
@@ -710,7 +784,7 @@ with pestanas[3]:
 
 
 # ---------------------------------------------------------------- 4. Por fuente
-with pestanas[4]:
+with pestanas[5]:
     filas = []
     for fila in COMP.get("por_fuente", []):
         f = fila["fuente"]
@@ -741,7 +815,7 @@ with pestanas[4]:
 
 
 # ---------------------------------------------------------------- 5. Explorar
-with pestanas[5]:
+with pestanas[6]:
     mapa = D[D.en_mapa].copy()
     if mapa.empty:
         st.warning("No hay suficientes comentarios para dibujar el mapa.")
@@ -872,7 +946,7 @@ with pestanas[5]:
                 st.caption(f"Se buscó: {cons}. Se muestran hasta 30 comentarios, del más al menos relevante.")
 
 # ---------------------------------------------------------------- 6. Concepto
-with pestanas[6]:
+with pestanas[7]:
     CC = R["concepto"]
     pg = CC["por_grupo"]
     st.markdown(f"Comentarios cuyo contenido se acerca a **«{P['concepto']}»**, aunque no usen esas palabras exactas. "
@@ -953,7 +1027,7 @@ with pestanas[6]:
 
 
 # ---------------------------------------------------------------- 7. Atípicos
-with pestanas[7]:
+with pestanas[8]:
     O = R["outliers"]
     OG = R.get("outliers_global", {})
     st.markdown("Comentarios que se apartan claramente de lo habitual: temas poco comunes, textos muy cortos o muy "

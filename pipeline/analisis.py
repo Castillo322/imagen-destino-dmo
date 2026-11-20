@@ -12,7 +12,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from . import comparacion, concepto, config, nubes, outliers, reporte, sentimiento, topicos, visualizaciones
+from . import comparacion, conclusiones, concepto, config, nubes, outliers, reporte, sentimiento, topicos, visualizaciones
 from .bm25 import BM25
 from .preprocesamiento import Preprocesador, limpiar, preprocesar
 from .representacion import EspacioLSA
@@ -203,6 +203,7 @@ def ejecutar(df, col_texto, col_fuente, dmo, idioma, titulo, paleta, excluir=(),
         "concepto": res_conc,
     }
     res = json.loads(json.dumps(res, ensure_ascii=False, cls=Codificador))  # mismas llaves que al leer de disco
+    res["conclusiones"] = conclusiones.generar(res)  # respuesta a la pregunta del proyecto y decisiones para la DMO
     paso(0.92, "Visualizaciones")
     figs = visualizaciones.figuras(df, res, col_texto, dmo, paleta, titulo)
     fuentes_orden = [dmo] + sorted(f for f in frec_ft if f != dmo)

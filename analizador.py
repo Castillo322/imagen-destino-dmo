@@ -100,6 +100,9 @@ def main(argv=None):
         print(f"\nDMO frente a {f}:")
         for b in c["resumen"]:
             print("  -", b)
+    if res.get("conclusiones"):
+        from pipeline.conclusiones import texto
+        print("\n" + texto(res["conclusiones"]))
 
 
 if __name__ == "__main__":

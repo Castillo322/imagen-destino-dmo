@@ -134,6 +134,12 @@ ok("5. DMO frente a cada fuente: palabras propias de cada lado, ejemplos y frase
    all(c["palabras_de_la_fuente"] and c["resumen"] and any(t["ejemplos_fuente"] for t in c["temas"]) for c in IND.values())
    and "DMO frente a cada fuente" in html)
 
+# Respuesta a la pregunta del proyecto y decisiones para la DMO (generadas para estos datos nuevos)
+CO = R.get("conclusiones", {})
+ok("6. Conclusiones: responde la pregunta del proyecto y propone decisiones con evidencia",
+   bool(CO.get("respuesta")) and len(CO.get("decisiones", [])) >= 2 and all(d.get("evidencia") and d.get("accion") for d in CO["decisiones"])
+   and "Conclusiones para la DMO" in html, f"{len(CO.get('decisiones', []))} decisiones · {CO.get('respuesta', '')[:80]}…")
+
 # BM25
 sys.path.insert(0, str(RAIZ))
 from pipeline.bm25 import BM25  # noqa: E402
@@ -172,7 +178,8 @@ try:
     at.run()
     at.sidebar.radio[0].set_value("Ejemplo: Ciudad de México").run()
     pest = [t.label for t in at.tabs]
-    ok("Tablero: modo ejemplo abre sus 8 pestañas sin errores", not at.exception and len(pest) >= 8, ", ".join(pest))
+    ok("Tablero: modo ejemplo abre sus 9 pestañas sin errores (la primera, «Conclusiones»)",
+       not at.exception and len(pest) >= 9 and pest[0] == "Conclusiones", ", ".join(pest))
     at2 = AppTest.from_file(str(RAIZ / "app.py"), default_timeout=60)
     at2.run()
     ok("Tablero: modo «Subir mis archivos» muestra la carga de archivos", not at2.exception and

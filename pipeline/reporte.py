@@ -78,6 +78,16 @@ def _por_fuente_individual(comp):
     return html
 
 
+def _conclusiones(res):
+    from .conclusiones import generar as gen_conc
+    c = res.get("conclusiones") or gen_conc(res)
+    filas = [[_e(d["tipo"]), _e(d["prioridad"]), _e(d["titulo"]), _e(d["accion"]), _e(d["evidencia"])] for d in c["decisiones"]]
+    return (f"<div style='border-left:5px solid #5B3E94;background:#F3F1F8;padding:10px 16px;border-radius:6px'>"
+            f"<p><b>Pregunta del proyecto.</b> {_e(c['pregunta'])}</p><p><b>Respuesta.</b> {_e(c['respuesta'])}</p></div>"
+            "<h3>Decisiones para la DMO</h3>" + _tabla(filas, ["Tipo", "Prioridad", "Tema", "Qué hacer", "Evidencia"])
+            + "<p><small>" + " ".join(_e(n) for n in c["notas"]) + "</small></p>")
+
+
 def generar(res, figs, ruta, titulo, nubes=None):
     p = res["parametros"]
     conteo = [[_e(f), c["total"], c["en_idioma"], c["outliers"], c["analizados"]] for f, c in res["conteos"].items()]
@@ -138,6 +148,7 @@ Temas: <b>{res['topicos']['conjunto'].get('k', '—')}</b> en común, {res['topi
 <div class="k"><div><b>{sim['ias']:.2f}</b>alineación semántica (IC 95 % {sim['ic95'][0]:.2f}–{sim['ic95'][1]:.2f})</div>
 <div><b>{_cong}</b>congruencia temática</div>
 <div><b>{comp['sentimiento']['pct_positivo_dmo']:.0f} % / {comp['sentimiento']['pct_positivo_percibida']:.0f} %</b>positivos DMO / percibida</div></div>
+<h2>Conclusiones para la DMO</h2>{_conclusiones(res)}
 <h2>Resumen de brechas</h2><ul>{brechas}</ul>
 <h2>Comentarios por fuente</h2>{_tabla(conteo, ["Fuente", "Total", "En el idioma del análisis", "Atípicos", "Analizados"])}
 <h2>Comparación de temas: DMO frente a imagen percibida</h2>
