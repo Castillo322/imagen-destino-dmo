@@ -182,8 +182,8 @@ try:
        not at.exception and len(pest) >= 9 and pest[0] == "Conclusiones", ", ".join(pest))
     at2 = AppTest.from_file(str(RAIZ / "app.py"), default_timeout=60)
     at2.run()
-    ok("Tablero: modo «Subir mis archivos» muestra la carga de archivos", not at2.exception and
-       any("dos o más archivos" in m.value for m in at2.markdown))
+    ok("Tablero: modo «Subir mis archivos» muestra la carga de archivos, con Sectur ya cargada como DMO", not at2.exception and
+       any("dos o más archivos" in m.value for m in at2.markdown) and any("Sectur" in c.label and c.value for c in at2.checkbox))
 except Exception as e:  # noqa: BLE001
     ok("Tablero: pruebas automáticas", False, repr(e)[:300])
 

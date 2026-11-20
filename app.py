@@ -1,8 +1,10 @@
 """Tablero: imagen proyectada por la DMO frente a la imagen percibida por los visitantes.
 
 Dos modos (barra lateral):
-- «Subir mis archivos»: dos o más archivos, uno por fuente (csv, tsv, txt, xlsx, xls, json, jsonl o parquet). Se
-  elige cuál es la DMO, el tablero corre los 8 pasos del análisis y muestra los resultados de esos archivos.
+- «Subir mis archivos»: basta con subir el archivo de los visitantes (Sectur CDMX ya está cargada como DMO) y presionar
+  «Analizar»; o desactivar Sectur y subir dos o más archivos, uno por fuente (csv, tsv, txt, xlsx, xls, json, jsonl o
+  parquet). Columnas, DMO, idioma y parámetros se detectan solos y se pueden cambiar en «Ajustes». El tablero corre los
+  8 pasos del análisis y muestra los resultados de esos archivos.
 - «Ejemplo: Ciudad de México»: muestra los resultados que generó analizador.py en salidas/.
 Uso:  streamlit run app.py
 """
@@ -121,14 +123,34 @@ def lista_palabras(pares, n=12):
 
 
 # ---------------------------------------------------------------- carga de archivos
+SECTUR = Path(__file__).parent / "datos" / "originales" / "sectur.csv"  # la DMO del caso CDMX, ya incluida
+IGNORAR_CDMX = "mexico, ciudad, cdmx, df, city"  # el nombre del destino aparece en todo y no distingue temas
+
+
+def nombre_sugerido(nombre_archivo: str) -> str:
+    """Nombre de la fuente a partir del archivo; reconoce las fuentes conocidas («instaUGC» -> instagram)."""
+    base = lectura.nombre_de_archivo(nombre_archivo)
+    for patron, nom in ((r"insta", "instagram"), (r"reddit", "reddit"), (r"trip\s*advisor", "tripadvisor"), (r"sectur", "sectur")):
+        if re.search(patron, base, re.I):
+            return nom
+    return base
+
+
 def panel_carga(paleta):
-    """Archivos del usuario -> configuración por fuente -> análisis completo. Guarda el resultado en la sesión."""
+    """Archivos del usuario -> (detección automática, ajustes opcionales) -> análisis completo. Guarda el resultado en la sesión.
+
+    Por defecto basta con subir el archivo de los visitantes y presionar «Analizar»: la DMO de la CDMX (Sectur) ya está
+    cargada y las columnas, el idioma, el número de temas y lo demás se detectan solos. Todo se puede cambiar en «Ajustes».
+    """
     from pipeline.analisis import ErrorDeDatos, ejecutar, html_reporte
-    st.markdown("Sube **dos o más archivos**: uno con lo que publica la **DMO** (imagen proyectada) y uno o más con lo que "
-                "publican los **visitantes** (imagen percibida). Cada archivo es una fuente. Formatos: CSV, TSV, TXT, "
-                "Excel (xlsx, xls), JSON, JSONL y Parquet, también comprimidos con .gz. Si tienes todo en un solo archivo con una columna que indica la "
-                "fuente, súbelo solo y elige esa columna.")
-    subidos = st.file_uploader("Archivos", type=FORMATOS, accept_multiple_files=True, key="subidos")
+    hay_sectur = SECTUR.exists()
+    st.markdown("Sube el archivo con lo que publican los **visitantes** y presiona **Analizar**: la DMO de la CDMX "
+                "(**Sectur**) ya está cargada y todo lo demás se detecta solo. Si traes tu propia DMO, desactiva la casilla y "
+                "sube dos o más archivos (uno por fuente).")
+    usar_sectur = st.checkbox("Comparar contra Sectur CDMX (ya cargada)", value=hay_sectur, disabled=not hay_sectur,
+                              help="Desactívala para subir otro archivo como DMO.")
+    subidos = st.file_uploader("Archivos: CSV, TSV, TXT, Excel (xlsx, xls), JSON, JSONL o Parquet, también .gz",
+                               type=FORMATOS, accept_multiple_files=True, key="subidos")
     if not subidos:
         return
     tablas = {}
@@ -139,88 +161,109 @@ def panel_carga(paleta):
             st.error(f"No pude leer «{s.name}»: {e}")
     if not tablas:
         return
-    partes, configs = [], []
-    if len(tablas) == 1:
-        nom, t = next(iter(tablas.items()))
-        st.markdown(f"**{nom}** · {len(t):,} filas · columnas: {', '.join(map(str, t.columns))}")
-        cand_f = [c for c in t.columns if 2 <= t[c].nunique() <= 30]
-        if not cand_f:
-            st.warning("Con un solo archivo se necesita una columna que diga de qué fuente es cada comentario. "
-                       "Sube al menos dos archivos (uno por fuente).")
-            return
-        c1, c2 = st.columns(2)
-        col_f = c1.selectbox("Columna que indica la fuente", cand_f)
-        cand_t = lectura.columnas_de_texto(t) or list(t.columns)
-        ctex = c2.multiselect("Columnas de texto", cand_t, default=[c for c in lectura.sugerir_columnas(t)[0] if c in cand_t
-                                                                         and c != col_f][:1] or cand_t[:1])
-        if not ctex:
-            st.warning("Elige al menos una columna de texto.")
-            return
-        for f, g in t.groupby(col_f):
-            partes.append(lectura.armar_fuente(g, ctex, str(f)))
+    if usar_sectur and any(nombre_sugerido(n) == "sectur" for n in tablas):
+        usar_sectur = False  # subió su propio archivo de Sectur: no se carga dos veces
+    if usar_sectur:
+        tablas_todas = {"sectur.csv": leer_subido(SECTUR.read_bytes(), "sectur.csv")} | tablas
     else:
-        st.markdown("##### Cada fuente")
-        cols = st.columns(min(len(tablas), 4))
-        for i, (nom, t) in enumerate(tablas.items()):
-            with cols[i % len(cols)].container(border=True):
-                st.markdown(f"**{nom}**  \n{len(t):,} filas")
-                sug_t, sug_l = lectura.sugerir_columnas(t)
-                cand = lectura.columnas_de_texto(t) or [str(c) for c in t.columns]
-                nf = st.text_input("Nombre de la fuente", lectura.nombre_de_archivo(nom), key=f"nom_{nom}").strip()
-                ctex = st.multiselect("Columnas de texto", cand, default=[c for c in sug_t if c in cand], key=f"col_{nom}",
-                                      help="Si eliges varias, se unen en un solo comentario (por ejemplo, título y cuerpo).")
-                ops = ["(ninguna)"] + cand
-                clis = st.selectbox("Columna con varios comentarios por celda", ops,
-                                    index=ops.index(sug_l) if sug_l in ops else 0, key=f"lis_{nom}",
-                                    help="Por ejemplo, las respuestas de un hilo de foro unidas con « - »: cada una se "
-                                         "analiza como un comentario aparte.")
-                sep = st.text_input("Separador de esos comentarios", " - ", key=f"sep_{nom}") if clis != "(ninguna)" else " - "
-                with st.popover("Vista previa"):
-                    st.dataframe(t.head(8), hide_index=True)
-                configs.append((nom, nf, ctex, None if clis == "(ninguna)" else clis, sep))
-        nombres_f = [c[1] for c in configs]
-        if any(not n for n in nombres_f) or len(set(nombres_f)) < len(nombres_f):
-            st.error("Cada fuente necesita un nombre distinto.")
-            return
-        for nom, nf, ctex, clis, sep in configs:
-            try:
-                partes.append(lectura.armar_fuente(tablas[nom], ctex, nf, clis, sep))
-            except ValueError as e:
-                st.error(str(e))
+        tablas_todas = tablas
+    falta_fuente = len(tablas_todas) < 2
+
+    partes, configs, col_fuente = [], [], None
+    with st.expander("Ajustes (opcional): columnas, DMO, idioma y parámetros", expanded=falta_fuente):
+        if len(tablas_todas) == 1:
+            nom, t = next(iter(tablas_todas.items()))
+            varias = st.toggle("Mi archivo trae varias fuentes en una columna", value=False,
+                               help="Por ejemplo, una columna «fuente» con los valores dmo, reseñas, foro…")
+            if varias:
+                cand_f = [c for c in t.columns if 2 <= t[c].nunique() <= 30]
+                if not cand_f:
+                    st.warning("No encontré una columna con pocas categorías que indique la fuente.")
+                    return
+                c1, c2 = st.columns(2)
+                col_fuente = c1.selectbox("Columna que indica la fuente", cand_f)
+                cand_t = lectura.columnas_de_texto(t) or list(t.columns)
+                ctex = c2.multiselect("Columnas de texto", cand_t, default=[c for c in lectura.sugerir_columnas(t)[0] if c in cand_t
+                                                                                 and c != col_fuente][:1] or cand_t[:1])
+                if not ctex:
+                    st.warning("Elige al menos una columna de texto.")
+                    return
+                for f, g in t.groupby(col_fuente):
+                    partes.append(lectura.armar_fuente(g, ctex, str(f)))
+        if col_fuente is None:
+            st.markdown("**Cada archivo es una fuente**")
+            cols = st.columns(min(len(tablas_todas), 4))
+            for i, (nom, t) in enumerate(tablas_todas.items()):
+                with cols[i % len(cols)].container(border=True):
+                    incluida = usar_sectur and nom == "sectur.csv" and i == 0
+                    st.markdown(f"**{nom}**{' (incluida)' if incluida else ''}  \n{len(t):,} filas")
+                    sug_t, sug_l = lectura.sugerir_columnas(t)
+                    cand = lectura.columnas_de_texto(t) or [str(c) for c in t.columns]
+                    nf = st.text_input("Nombre de la fuente", nombre_sugerido(nom), key=f"nom_{nom}").strip()
+                    ctex = st.multiselect("Columnas de texto", cand, default=[c for c in sug_t if c in cand], key=f"col_{nom}",
+                                          help="Si eliges varias, se unen en un solo comentario (por ejemplo, título y cuerpo).")
+                    ops = ["(ninguna)"] + cand
+                    clis = st.selectbox("Columna con varios comentarios por celda", ops,
+                                        index=ops.index(sug_l) if sug_l in ops else 0, key=f"lis_{nom}",
+                                        help="Por ejemplo, las respuestas de un hilo de foro unidas con « - »: cada una se "
+                                             "analiza como un comentario aparte.")
+                    sep = st.text_input("Separador de esos comentarios", " - ", key=f"sep_{nom}") if clis != "(ninguna)" else " - "
+                    with st.popover("Vista previa"):
+                        st.dataframe(t.head(8), hide_index=True)
+                    configs.append((nom, nf, ctex, None if clis == "(ninguna)" else clis, sep))
+            nombres_f = [c[1] for c in configs]
+            if any(not n for n in nombres_f) or len(set(nombres_f)) < len(nombres_f):
+                st.error("Cada fuente necesita un nombre distinto.")
                 return
-    df = pd.concat(partes, ignore_index=True)
-    fuentes_d = list(dict.fromkeys(df.fuente))
-    if len(fuentes_d) < 2:
-        st.warning("Se necesitan al menos dos fuentes para comparar.")
-        return
-    st.caption("Comentarios por fuente: " + " · ".join(f"{f}: {n:,}" for f, n in df.fuente.value_counts().items()))
-    dmo = st.radio("¿Cuál es la DMO (imagen proyectada)?", fuentes_d, horizontal=True,
-                   index=fuentes_d.index(lectura.sugerir_dmo(fuentes_d)))
-    muestra = tuple(df.groupby("fuente").head(80).texto.astype(str).str[:300])
-    sug = idioma_sugerido(muestra)
-    lista_idiomas = list(IDIOMAS) + ([sug] if sug not in IDIOMAS else [])
-    c1, c2, c3 = st.columns(3)
-    idioma = c1.selectbox("Idioma a analizar", lista_idiomas, index=lista_idiomas.index(sug), format_func=lambda x: IDIOMAS.get(x, x),
-                          help="Se propone el idioma más frecuente en tus archivos. Los comentarios en otros idiomas se dejan "
-                               "fuera; para analizarlos, vuelve a correr con ese idioma.")
-    titulo = c2.text_input("Título", "Imagen del destino")
-    excluir = c3.text_input("Palabras a ignorar (separadas por coma)", "",
-                            help="Por ejemplo, el nombre del destino: aparece en todas partes y no ayuda a distinguir temas.")
-    with st.expander("Opciones avanzadas"):
+            for nom, nf, ctex, clis, sep in configs:
+                if not ctex:
+                    st.error(f"Elige al menos una columna de texto para «{nf}».")
+                    return
+                try:
+                    partes.append(lectura.armar_fuente(tablas_todas[nom], ctex, nf, clis, sep))
+                except ValueError as e:
+                    st.error(str(e))
+                    return
+        df = pd.concat(partes, ignore_index=True) if partes else pd.DataFrame(columns=["texto", "fuente"])
+        fuentes_d = list(dict.fromkeys(df.fuente))
+        if len(fuentes_d) < 2 and fuentes_d == ["sectur"]:
+            st.warning("Ya está Sectur (la DMO). Sube también el archivo de los visitantes para comparar.")
+            return
+        if len(fuentes_d) < 2:
+            st.warning("Se necesitan al menos dos fuentes para comparar: activa «Comparar contra Sectur CDMX», sube otro "
+                       "archivo o indica arriba que tu archivo trae varias fuentes en una columna.")
+            return
+        sug_dmo = "sectur" if usar_sectur and "sectur" in fuentes_d else lectura.sugerir_dmo(fuentes_d)
+        dmo = st.radio("¿Cuál es la DMO (imagen proyectada)?", fuentes_d, horizontal=True, index=fuentes_d.index(sug_dmo))
+        muestra = tuple(df.groupby("fuente").head(80).texto.astype(str).str[:300])
+        sug = idioma_sugerido(muestra)
+        lista_idiomas = list(IDIOMAS) + ([sug] if sug not in IDIOMAS else [])
+        c1, c2, c3 = st.columns(3)
+        idioma = c1.selectbox("Idioma a analizar", lista_idiomas, index=lista_idiomas.index(sug), format_func=lambda x: IDIOMAS.get(x, x),
+                              help="Se propone el idioma más frecuente en tus archivos. Los comentarios en otros idiomas se dejan "
+                                   "fuera; para analizarlos, vuelve a correr con ese idioma.")
+        titulo = c2.text_input("Título", "Imagen de la Ciudad de México" if usar_sectur else "Imagen del destino")
+        excluir = c3.text_input("Palabras a ignorar (separadas por coma)", IGNORAR_CDMX if usar_sectur else "",
+                                help="Por ejemplo, el nombre del destino: aparece en todas partes y no ayuda a distinguir temas.")
         a1, a2, a3 = st.columns(3)
         k_fijo = a1.number_input("Número de temas (0 = lo elige el análisis)", 0, 30, 0,
                                  help=f"Por defecto se prueban de {K_TOPICOS.start} a {K_TOPICOS.stop - 1} temas y se queda el "
                                       "número que da temas más coherentes y menos repetidos.")
         contam = a2.slider("% de comentarios atípicos a separar", 0.0, 10.0, 3.0, 0.5)
         concepto = a3.text_input("Idea a rastrear", CONCEPTO_POR_IDIOMA.get(idioma, CONCEPTO_POR_IDIOMA["en"]))
+    conteo = df.fuente.value_counts()
+    vis = [f for f in fuentes_d if f != dmo]
+    st.markdown(f"**Se va a comparar** la DMO, **{nombre(dmo, None)}** ({conteo[dmo]:,} textos), con "
+                + ", ".join(f"**{nombre(f, dmo)}** ({conteo[f]:,})" for f in vis)
+                + f" · idioma: {IDIOMAS.get(idioma, idioma).lower()} · lo demás, automático.")
     if not st.button("Analizar", type="primary"):
         return
     barra = st.progress(0.0, "Preparando…")
     try:
-        resultado = ejecutar(df, "texto", "fuente", dmo, idioma, titulo, paleta, excluir=excluir.split(","),
+        resultado = ejecutar(df, "texto", "fuente", dmo, idioma, titulo, paleta, excluir=[w.strip() for w in excluir.split(",")],
                              contaminacion=contam / 100, texto_concepto=concepto.strip() or None, k_topicos=int(k_fijo) or None,
                              progreso=lambda f, m: barra.progress(min(float(f), 1.0), m),
-                             origen=", ".join(tablas))
+                             origen=", ".join(tablas_todas))
     except (ErrorDeDatos, ValueError) as e:
         barra.empty()
         st.error(str(e))

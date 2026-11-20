@@ -16,7 +16,7 @@ Resultado: **43 de 43 comprobaciones correctas**.
 | Requisito | Dónde se cumple | Comprobación |
 |---|---|---|
 | CLI con los 7 parámetros | `analizador.py` (argparse) | Corre con columnas y fuentes nuevas; registra los 7 parámetros en `resultados.json` |
-| Cualquier archivo, mínimo dos, y tablero con esos archivos | `pipeline/lectura.py`, `app.py` («Subir mis archivos»), `analizador.py --csv a b c` | xlsx, json, txt y tsv (uno por fuente) y sólo dos archivos; también csv, jsonl, parquet, xls y .gz. En el tablero, los 4 archivos originales se subieron, se configuraron y se analizaron sin errores |
+| Cualquier archivo, mínimo dos, y tablero con esos archivos | `pipeline/lectura.py`, `app.py` («Subir mis archivos»), `analizador.py --csv a b c` | xlsx, json, txt y tsv (uno por fuente) y sólo dos archivos; también csv, jsonl, parquet, xls y .gz. En el tablero, los 4 archivos originales se subieron, se configuraron y se analizaron sin errores. Con Sectur ya cargada como DMO, basta con subir los 3 archivos de visitantes y presionar «Analizar» (sin tocar ajustes): el resultado es idéntico al del ejemplo |
 | Número de temas determinado por el análisis y reportado | `pipeline/topicos.py`, Resumen del tablero, reporte y terminal | Se prueban de 5 a 15 temas y se elige por coherencia NPMI × diversidad; el número aparece en el tablero, en el reporte y al final de la terminal |
 | 1. Limpieza, tokenización, palabras vacías, lematización y etiqueta de fuente | `pipeline/preprocesamiento.py` | Sin URLs, menciones, emojis, números ni signos en el texto procesado; las fuentes nuevas se conservan |
 | 2. Atípicos con una técnica vista en clase + uni, bi y trigramas; sólo los normales siguen | `pipeline/outliers.py` | Isolation Forest único sobre la base unificada; n-gramas de toda la base y por fuente; los atípicos no tienen tono |
@@ -32,7 +32,7 @@ Resultado: **43 de 43 comprobaciones correctas**.
 | Agnóstico a número y nombre de fuentes | Todo el pipeline | Funciona con 4 fuentes y con sólo 2 |
 | Sin APIs externas | Todo el pipeline | Corre con la red bloqueada (proxy a un puerto cerrado) |
 | Conclusiones para la DMO | `pipeline/conclusiones.py`, pestaña «Conclusiones», reporte y terminal | Con los datos nuevos responde la pregunta del proyecto y propone decisiones, cada una con acción y evidencia |
-| Tablero | `app.py` | El modo ejemplo abre sus 9 pestañas sin errores, la primera «Conclusiones»; el modo «Subir mis archivos» muestra la carga |
+| Tablero | `app.py` | El modo ejemplo abre sus 9 pestañas sin errores, la primera «Conclusiones»; el modo «Subir mis archivos» muestra la carga, con Sectur ya cargada como DMO |
 | Repositorio: README, requirements.txt y CSV de ejemplo anonimizado | Raíz del repositorio | README con ejemplos de todos los parámetros; CSV de ejemplo sin menciones ni enlaces |
 
 ## El resultado no depende de cómo se entreguen los archivos

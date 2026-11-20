@@ -2,11 +2,11 @@
 
 Compara la imagen de un destino que proyecta su organización de marketing (DMO) con la que perciben los visitantes en otras fuentes (reseñas, redes sociales, foros). El caso de estudio es la Ciudad de México: **Sectur CDMX** (DMO) frente a **TripAdvisor**, **Instagram** y **Reddit**.
 
-Funciona con **cualquier conjunto de archivos**: se suben dos o más (uno de la DMO y uno o más de visitantes), en CSV, TSV, TXT, Excel (xlsx, xls), JSON, JSONL o Parquet, y se genera el tablero de esos archivos. El número de temas lo determina el propio análisis.
+Funciona con **cualquier conjunto de archivos**: en el tablero basta con subir el archivo de los visitantes (Sectur CDMX ya viene cargada como DMO) y presionar «Analizar»; o se desactiva Sectur y se suben dos o más archivos (uno de la DMO y uno o más de visitantes), en CSV, TSV, TXT, Excel (xlsx, xls), JSON, JSONL o Parquet, y se genera el tablero de esos archivos. El número de temas lo determina el propio análisis.
 
 El proyecto tiene dos piezas que usan el mismo código (`pipeline/analisis.py`):
 
-- `app.py`, el tablero de Streamlit. En **«Subir mis archivos»** se cargan los archivos, se elige cuál es la DMO y el tablero corre los 8 pasos. En **«Ejemplo: Ciudad de México»** muestra el análisis ya hecho del caso.
+- `app.py`, el tablero de Streamlit. En **«Subir mis archivos»** se suben los archivos y se presiona «Analizar»: la DMO (Sectur, ya cargada), las columnas, el idioma y los parámetros se detectan solos, y el tablero corre los 8 pasos. En **«Ejemplo: Ciudad de México»** muestra el análisis ya hecho del caso.
 - `analizador.py`, el mismo análisis desde la terminal. Acepta un archivo unificado o varios archivos (uno por fuente) y escribe los resultados en `salidas/`.
 
 Todo corre sin conexión; no se usa ninguna API externa. El resultado no depende del orden en que se suban los archivos, de su nombre ni del orden de sus filas.
@@ -27,9 +27,9 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-**Subir mis archivos.** Por cada archivo se propone automáticamente el nombre de la fuente (el nombre del archivo), las columnas de texto y, si existe, una columna con varios comentarios por celda (por ejemplo, las respuestas de un hilo de Reddit unidas con « - »), que se separan en comentarios individuales. Todo se puede cambiar. Después se elige cuál es la DMO, el idioma (se propone el más frecuente) y, si se quiere, palabras a ignorar. «Analizar» corre todo y muestra el tablero; el reporte HTML se descarga desde la barra lateral.
+**Subir mis archivos.** Por defecto la DMO es Sectur CDMX, que ya viene cargada (`datos/originales/sectur.csv`): sólo se sube el archivo, o los archivos, de los visitantes y se presiona «Analizar». Arriba del botón se resume qué se va a comparar. Todo lo demás se detecta solo y se puede cambiar en «Ajustes (opcional)»: por cada archivo, el nombre de la fuente (el nombre del archivo; reconoce Instagram, Reddit y TripAdvisor), las columnas de texto y, si existe, una columna con varios comentarios por celda (por ejemplo, las respuestas de un hilo de Reddit unidas con « - »), que se separan en comentarios individuales; cuál es la DMO, el idioma (se propone el más frecuente), las palabras a ignorar (con Sectur: `mexico, ciudad, cdmx, df, city`), el número de temas, el % de atípicos y la idea a rastrear. Para usar otra DMO se desactiva la casilla de Sectur y se suben dos o más archivos; si un solo archivo trae todas las fuentes en una columna, se indica en «Ajustes». El reporte HTML se descarga desde la barra lateral.
 
-Para reproducir el caso CDMX, sube los 4 archivos de `datos/originales/`, renombra `instaUGC` como Instagram y `redditcdmx` como Reddit (opcional) y escribe en palabras a ignorar `mexico,ciudad,cdmx,df,city`. El resultado es idéntico al del ejemplo.
+Para reproducir el caso CDMX, sube `TripAdvisor`, `instaUGC` y `redditcdmx` de `datos/originales/` (Sectur ya está cargada) y presiona «Analizar». El resultado es idéntico al del ejemplo.
 
 El tablero tiene nueve pestañas:
 
