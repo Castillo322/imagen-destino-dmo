@@ -174,6 +174,19 @@ def armar_fuente(df: pd.DataFrame, columnas_texto, nombre_fuente: str, columna_l
     return out.reset_index(drop=True)
 
 
+_CONOCIDAS = ((r"insta", "instagram"), (r"reddit", "reddit"), (r"trip[\s_-]*advisor", "tripadvisor"), (r"sectur", "sectur"))
+
+
+def nombre_sugerido(nombre_archivo) -> str:
+    """Nombre de la fuente a partir del archivo; reconoce las fuentes conocidas («instaUGC.csv» -> instagram,
+    «redditcdmx.csv» -> reddit, «TripAdvisor.csv.gz» -> tripadvisor). Cualquier otro: el nombre del archivo."""
+    base = nombre_de_archivo(nombre_archivo)
+    for patron, nom in _CONOCIDAS:
+        if re.search(patron, base, re.I):
+            return nom
+    return base
+
+
 def nombre_de_archivo(nombre: str) -> str:
     """«a30fa1d0-TripAdvisor.csv» -> «TripAdvisor»: quita la extensión y prefijos de identificador."""
     base = Path(str(nombre)).name
