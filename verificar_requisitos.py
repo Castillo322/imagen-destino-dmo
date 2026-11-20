@@ -1,7 +1,8 @@
 """Comprueba, con datos que el script no ha visto, cada requisito del Proyecto Final.
 
 Construye CSV nuevos a partir de datos/ejemplo.csv con OTROS nombres de columnas y de fuentes,
-corre analizador.py como lo haría el profesor en la demostración y revisa las salidas.
+corre analizador.py como lo haría el profesor en la demostración y revisa las salidas. También comprueba la
+versión de terminal completa: que analizador.py abra el tablero (tablero.py) con los resultados de la corrida.
 
 Uso:  python verificar_requisitos.py
 Sale con código 1 si algún requisito falla.
@@ -26,7 +27,8 @@ def ok(req, cond, detalle=""):
 
 
 def correr(args, entorno=None):
-    p = subprocess.run([PY, str(RAIZ / "analizador.py")] + args, capture_output=True, text=True, cwd=RAIZ,
+    """Corre analizador.py sin abrir el tablero (el tablero se prueba aparte, al final)."""
+    p = subprocess.run([PY, str(RAIZ / "analizador.py")] + args + ["--sin_tablero"], capture_output=True, text=True, cwd=RAIZ,
                        env=entorno or os.environ.copy())
     return p.returncode, p.stdout + p.stderr
 
@@ -169,7 +171,18 @@ ok("Archivos: 4 archivos de formatos distintos (xlsx, json, txt, tsv), uno por f
 rc8, log8 = correr(["--csv", str(sep_dir / "dmo.xlsx"), str(sep_dir / "blog_viajes.txt"), "--columna_texto", "texto",
                     "--columna_fuente", "fuente", "--etiqueta_dmo", "dmo", "--idioma", "es", "--titulo", "Dos archivos",
                     "--paleta", "okabe_ito", "--salida", str(tmp / "dos_archivos")])
-ok("Archivos: con sólo dos archivos (DMO y una fuente)", rc8 == 0, log8[-300:] if rc8 else "")
+ok("Archivos: con sólo dos archivos (DMO y una fuente sin columna de fuente, como el archivo del profesor)", rc8 == 0,
+   log8[-300:] if rc8 else "")
+dmo_sola = sep_dir / "dmo.csv"
+pd.DataFrame({"review_text": partes["dmo"]}).to_csv(dmo_sola, index=False)
+rc9, log9 = correr(["--csv", str(dmo_sola), str(csv4), "--columna_texto", "review_text", "--columna_fuente", "canal",
+                    "--etiqueta_dmo", "dmo", "--idioma", "es", "--titulo", "DMO y unificado", "--paleta", "viridis",
+                    "--salida", str(tmp / "dmo_unificado")])
+R9 = json.load(open(next((tmp / "dmo_unificado").glob("*_es")) / "resultados.json")) if rc9 == 0 else {}
+n_dmo = R9.get("conteos", {}).get("dmo", {}).get("total")
+ok("Archivos: DMO en su archivo + base unificada que también la trae (la DMO no se duplica)",
+   rc9 == 0 and n_dmo == len(partes["dmo"]) and "se omite" in log9 and set(R9["conteos"]) == set(nuevo.canal),
+   f"DMO: {n_dmo} textos (archivo propio: {len(partes['dmo'])})" if rc9 == 0 else log9[-300:])
 
 # Tablero: modo ejemplo sin errores en ninguna pestaña (los resultados de salidas/)
 try:
@@ -184,6 +197,15 @@ try:
     at2.run()
     ok("Tablero: modo «Subir mis archivos» muestra la carga de archivos, con Sectur ya cargada como DMO", not at2.exception and
        any("dos o más archivos" in m.value for m in at2.markdown) and any("Sectur" in c.label and c.value for c in at2.checkbox))
+    os.environ["IMAGEN_RESULTADOS"] = str(carpeta)  # lo mismo que hace analizador.py al abrir tablero.py
+    at3 = AppTest.from_file(str(RAIZ / "tablero.py"), default_timeout=180)
+    at3.run()
+    pest3 = [t.label for t in at3.tabs]
+    ok("Tablero de terminal (tablero.py): abre la corrida de la terminal con sus 9 pestañas y la paleta pedida",
+       not at3.exception and len(pest3) >= 9 and pest3[0] == "Conclusiones" and not at3.sidebar.radio
+       and at3.title and at3.title[0].value == titulo and at3.sidebar.selectbox[0].value == "cividis",
+       f"título «{at3.title[0].value if at3.title else '—'}», paleta {at3.sidebar.selectbox[0].value if at3.sidebar.selectbox else '—'}")
+    os.environ.pop("IMAGEN_RESULTADOS", None)
 except Exception as e:  # noqa: BLE001
     ok("Tablero: pruebas automáticas", False, repr(e)[:300])
 
@@ -216,8 +238,41 @@ readme = (RAIZ / "README.md").read_text(encoding="utf-8")
 ok("Repositorio: requirements.txt, README con ejemplos y CSV de ejemplo",
    (RAIZ / "requirements.txt").exists() and (RAIZ / "datos" / "ejemplo.csv").exists() and
    all(f"--{k}" in readme for k in ["csv", "columna_texto", "columna_fuente", "etiqueta_dmo", "idioma", "titulo", "paleta"]))
-ok("Repositorio: CSV de ejemplo anonimizado (sin menciones ni enlaces)",
-   not base.comentario.str.contains(r"@(?!usuario)\w|https?://", regex=True).any())
+ok("Repositorio: archivos de prueba anonimizados (sin menciones, enlaces, teléfonos ni correos)",
+   (RAIZ / "datos" / "ejemplo_visitantes.csv").exists() and
+   not any(t.str.contains(r"@(?!usuario)\w|https?://|\b\d{2}[\s-]?\d{4}[\s-]?\d{4}\b|\S+@\S+\.\w", regex=True).any()
+           for t in (base.comentario.astype(str), pd.read_csv(RAIZ / "datos" / "ejemplo_visitantes.csv").comentario.astype(str))))
+
+# Versión de terminal completa: analizador.py (sin --sin_tablero) termina el análisis y abre el tablero
+import socket  # noqa: E402
+import time  # noqa: E402
+import urllib.request  # noqa: E402
+puerto = 8765
+proc = subprocess.Popen([PY, str(RAIZ / "analizador.py"), "--csv", str(sep_dir / "dmo.xlsx"), str(sep_dir / "blog_viajes.txt"),
+                         "--columna_texto", "texto", "--columna_fuente", "fuente", "--etiqueta_dmo", "dmo", "--idioma", "es",
+                         "--titulo", "Tablero desde la terminal", "--paleta", "plasma", "--salida", str(tmp / "con_tablero"),
+                         "--puerto", str(puerto)], cwd=RAIZ, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
+                        env={**os.environ, "BROWSER": "none"})
+listo, salud, url, inicio = False, "", "", time.time()
+while time.time() - inicio < 300:
+    linea = proc.stdout.readline()
+    if not linea and proc.poll() is not None:
+        break
+    if "Tablero listo" in linea:
+        listo = True
+        url = linea.split("Tablero listo:")[1].split()[0]
+        try:
+            salud = urllib.request.urlopen(url + "/_stcore/health", timeout=10).read().decode()
+        except Exception as e:  # noqa: BLE001
+            salud = repr(e)
+        break
+proc.terminate()
+try:
+    proc.wait(timeout=20)
+except subprocess.TimeoutExpired:
+    proc.kill()
+ok("Terminal → Streamlit: al terminar, analizador.py abre el tablero con los resultados (servidor respondiendo)",
+   listo and salud.strip() == "ok", f"{url if listo else '—'} · salud: {salud.strip()[:40]}")
 
 ancho = max(len(r) for r, _, _ in resultados)
 for req, bien, det in resultados:

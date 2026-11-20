@@ -7,6 +7,9 @@ Dos modos (barra lateral):
   8 pasos del análisis y muestra los resultados de esos archivos.
 - «Ejemplo: Ciudad de México»: muestra los resultados que generó analizador.py en salidas/.
 Uso:  streamlit run app.py
+
+Versión de terminal: analizador.py (los 7 parámetros) abre tablero.py, que corre este mismo archivo con la carpeta de
+resultados y la paleta de la terminal (variable TABLERO_TERMINAL). Así las dos versiones muestran exactamente lo mismo.
 """
 import hashlib
 import json
@@ -24,6 +27,8 @@ from pipeline.config import CONCEPTO_POR_IDIOMA, K_TOPICOS, PALETAS_ACCESIBLES
 from pipeline.visualizaciones import colores, escala_continua, simbolos_fuente
 
 st.set_page_config(page_title="Imagen del destino", page_icon="🗺️", layout="wide")
+# Versión de terminal: tablero.py define {"resultados": carpeta, "paleta": paleta}; en la versión web no existe
+TERMINAL = globals().get("TABLERO_TERMINAL")
 
 CARPETA = Path(__file__).parent / "salidas"
 IDIOMAS = {"es": "Español", "en": "Inglés", "fr": "Francés", "pt": "Portugués", "it": "Italiano", "de": "Alemán"}
@@ -57,10 +62,21 @@ def corridas():
 
 
 @st.cache_data(show_spinner=False)
-def cargar(carpeta):
-    r = json.loads((CARPETA / carpeta / "resultados.json").read_text(encoding="utf-8"))
-    df = pd.read_parquet(CARPETA / carpeta / "corpus_procesado.parquet")
+def cargar(carpeta, version=None):
+    """Resultados de una corrida: el nombre de una carpeta de salidas/ o la ruta completa de la carpeta."""
+    ruta = Path(carpeta) if Path(carpeta).is_absolute() or (Path(carpeta) / "resultados.json").exists() else CARPETA / carpeta
+    r = json.loads((ruta / "resultados.json").read_text(encoding="utf-8"))
+    df = pd.read_parquet(ruta / "corpus_procesado.parquet")
     return r, df[[c for c in COLS_D if c in df.columns]]
+
+
+def reporte_html(ruta_html: Path):
+    if ruta_html.exists():
+        return ruta_html.read_text(encoding="utf-8")
+    if ruta_html.with_suffix(".html.gz").exists():  # en el repositorio va comprimido
+        import gzip
+        return gzip.decompress(ruta_html.with_suffix(".html.gz").read_bytes()).decode("utf-8")
+    return None
 
 
 @st.cache_data(show_spinner=False, max_entries=24)
@@ -127,13 +143,7 @@ SECTUR = Path(__file__).parent / "datos" / "originales" / "sectur.csv"  # la DMO
 IGNORAR_CDMX = "mexico, ciudad, cdmx, df, city"  # el nombre del destino aparece en todo y no distingue temas
 
 
-def nombre_sugerido(nombre_archivo: str) -> str:
-    """Nombre de la fuente a partir del archivo; reconoce las fuentes conocidas («instaUGC» -> instagram)."""
-    base = lectura.nombre_de_archivo(nombre_archivo)
-    for patron, nom in ((r"insta", "instagram"), (r"reddit", "reddit"), (r"trip\s*advisor", "tripadvisor"), (r"sectur", "sectur")):
-        if re.search(patron, base, re.I):
-            return nom
-    return base
+nombre_sugerido = lectura.nombre_sugerido
 
 
 def panel_carga(paleta):
@@ -281,11 +291,21 @@ def panel_carga(paleta):
 # ---------------------------------------------------------------- barra lateral y datos
 with st.sidebar:
     st.markdown("### Imagen del destino")
-    modo = st.radio("Datos", ["Subir mis archivos", "Ejemplo: Ciudad de México"],
-                    help="Sube tus propios archivos o mira el análisis ya hecho de la Ciudad de México.")
-    paleta = st.selectbox("Paleta de colores", PALETAS_ACCESIBLES, format_func=lambda p: NOMBRE_PALETA.get(p, p),
+    if TERMINAL:
+        modo = "Terminal"
+        st.caption("Versión de terminal: resultados de la corrida de `analizador.py`.")
+    else:
+        modo = st.radio("Datos", ["Subir mis archivos", "Ejemplo: Ciudad de México"],
+                        help="Sube tus propios archivos o mira el análisis ya hecho de la Ciudad de México.")
+    opciones_paleta = list(PALETAS_ACCESIBLES)
+    pal_terminal = str((TERMINAL or {}).get("paleta") or "").replace("okabe-ito", "okabe_ito")
+    if pal_terminal and pal_terminal not in opciones_paleta:
+        opciones_paleta.append(pal_terminal)
+    paleta = st.selectbox("Paleta de colores", opciones_paleta, format_func=lambda p: NOMBRE_PALETA.get(p, p),
+                          index=opciones_paleta.index(pal_terminal) if pal_terminal else 0,
                           help="Todas son legibles con daltonismo. Okabe-Ito usa colores muy distintos entre sí; las demás "
-                               "también se distinguen en escala de grises.")
+                               "también se distinguen en escala de grises." + (" Empieza con la que se pidió en la terminal."
+                                                                              if pal_terminal else ""))
 
 HTML_REPORTE = None
 if modo == "Subir mis archivos":
@@ -297,6 +317,15 @@ if modo == "Subir mis archivos":
         st.stop()
     S = st.session_state["subido"]
     R, D, clave, HTML_REPORTE = S["res"], S["df"], S["firma"], S["html"]
+elif TERMINAL:
+    ruta_t = Path(TERMINAL.get("resultados") or "")
+    if not (ruta_t / "resultados.json").exists():
+        st.error(f"No encuentro resultados en «{ruta_t}». Corre primero `python analizador.py ...` (ver README).")
+        st.stop()
+    version = (ruta_t / "resultados.json").stat().st_mtime
+    R, D = cargar(str(ruta_t.resolve()), version)
+    clave = f"{ruta_t.resolve()}@{version}"
+    HTML_REPORTE = reporte_html(ruta_t / "reporte.html")
 else:
     opciones = corridas()
     if not opciones:
@@ -305,12 +334,7 @@ else:
     with st.sidebar:
         clave = st.selectbox("Corpus", list(opciones), format_func=opciones.get)
     R, D = cargar(clave)
-    ruta_html = CARPETA / clave / "reporte.html"
-    if ruta_html.exists():
-        HTML_REPORTE = ruta_html.read_text(encoding="utf-8")
-    elif ruta_html.with_suffix(".html.gz").exists():  # en el repositorio va comprimido
-        import gzip
-        HTML_REPORTE = gzip.decompress(ruta_html.with_suffix(".html.gz").read_bytes()).decode("utf-8")
+    HTML_REPORTE = reporte_html(CARPETA / clave / "reporte.html")
 
 P = R["parametros"]
 dmo = P["etiqueta_dmo"]
@@ -343,6 +367,10 @@ if modo != "Subir mis archivos":
     st.title(P["titulo"])
 else:
     st.subheader(P["titulo"])
+if TERMINAL:
+    archivos_t = " ".join(Path(x).name for x in str(P.get("csv", "")).split())
+    st.caption(f"Corrida de terminal · archivos: {archivos_t or '—'} · DMO: «{dmo}» · idioma: {P['idioma']} · "
+               f"paleta pedida: {P.get('paleta', '—')} · resultados en {Path(TERMINAL['resultados']).name}/")
 st.caption(f"Comentarios en {IDIOMAS.get(P['idioma'], P['idioma']).lower()} · imagen proyectada por la DMO "
            f"({nombre(dmo, None)}) frente a lo que publican los visitantes en " +
            ", ".join(nombre(f, dmo) for f in fuentes if f != dmo))

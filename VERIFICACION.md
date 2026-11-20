@@ -8,14 +8,21 @@ python verificar_requisitos.py
 
 El script prueba el analizador con datos **que no ha visto**, construidos a partir de `datos/ejemplo.csv`:
 - un CSV con columnas `review_text` y `canal` y fuentes `dmo`, `google_reviews`, `blog_viajes` y `foro`;
-- los mismos datos como **4 archivos sueltos de formatos distintos** (`dmo.xlsx`, `google_reviews.json`, `blog_viajes.txt`, `foro.tsv`) y como sólo 2 archivos;
-- el tablero, abierto con las herramientas de prueba de Streamlit.
+- los mismos datos como **4 archivos sueltos de formatos distintos** (`dmo.xlsx`, `google_reviews.json`, `blog_viajes.txt`, `foro.tsv`);
+- **dos archivos**: el de la DMO y uno de visitantes sin columna de fuente, como el que podría dar el profesor;
+- el archivo de la DMO **más la base unificada que también la trae**, para comprobar que la DMO no se duplica;
+- la **versión de terminal completa**: `analizador.py` sin `--sin_tablero` termina el análisis y abre el tablero (`tablero.py`); se comprueba que el servidor de Streamlit responde;
+- los dos tableros (`tablero.py` y `app.py`), abiertos con las herramientas de prueba de Streamlit.
 
-Resultado: **43 de 43 comprobaciones correctas**.
+Resultado: **46 de 46 comprobaciones correctas**.
+
+Además se comprobó a mano que la versión de terminal con `sectur.csv` + `cdmx_unificado.csv.gz` da los mismos números que la base unificada sola: los 4 grupos, 15 temas, parecido 0.55, agenda 0.81 y las mismas conclusiones.
 
 | Requisito | Dónde se cumple | Comprobación |
 |---|---|---|
 | CLI con los 7 parámetros | `analizador.py` (argparse) | Corre con columnas y fuentes nuevas; registra los 7 parámetros en `resultados.json` |
+| La terminal enlaza con Streamlit | `analizador.py` → `tablero.py` | Al terminar abre el tablero con los resultados de la corrida y la paleta pedida; el servidor responde «ok». `tablero.py` abre sus 9 pestañas sin errores, con el título y la paleta de la terminal |
+| Dos archivos: DMO + visitantes (base unificada, una plataforma o el archivo del profesor) | `analizador.py` (`leer_entrada`) | DMO en `.xlsx` + visitantes en `.txt` sin columna de fuente; DMO propia + base unificada que también la trae: la DMO queda una sola vez y la terminal avisa |
 | Cualquier archivo, mínimo dos, y tablero con esos archivos | `pipeline/lectura.py`, `app.py` («Subir mis archivos»), `analizador.py --csv a b c` | xlsx, json, txt y tsv (uno por fuente) y sólo dos archivos; también csv, jsonl, parquet, xls y .gz. En el tablero, los 4 archivos originales se subieron, se configuraron y se analizaron sin errores. Con Sectur ya cargada como DMO, basta con subir los 3 archivos de visitantes y presionar «Analizar» (sin tocar ajustes): el resultado es idéntico al del ejemplo |
 | Número de temas determinado por el análisis y reportado | `pipeline/topicos.py`, Resumen del tablero, reporte y terminal | Se prueban de 5 a 15 temas y se elige por coherencia NPMI × diversidad; el número aparece en el tablero, en el reporte y al final de la terminal |
 | 1. Limpieza, tokenización, palabras vacías, lematización y etiqueta de fuente | `pipeline/preprocesamiento.py` | Sin URLs, menciones, emojis, números ni signos en el texto procesado; las fuentes nuevas se conservan |
@@ -33,7 +40,7 @@ Resultado: **43 de 43 comprobaciones correctas**.
 | Sin APIs externas | Todo el pipeline | Corre con la red bloqueada (proxy a un puerto cerrado) |
 | Conclusiones para la DMO | `pipeline/conclusiones.py`, pestaña «Conclusiones», reporte y terminal | Con los datos nuevos responde la pregunta del proyecto y propone decisiones, cada una con acción y evidencia |
 | Tablero | `app.py` | El modo ejemplo abre sus 9 pestañas sin errores, la primera «Conclusiones»; el modo «Subir mis archivos» muestra la carga, con Sectur ya cargada como DMO |
-| Repositorio: README, requirements.txt y CSV de ejemplo anonimizado | Raíz del repositorio | README con ejemplos de todos los parámetros; CSV de ejemplo sin menciones ni enlaces |
+| Repositorio: README, requirements.txt y CSV de ejemplo anonimizado | Raíz del repositorio | README con ejemplos de todos los parámetros; archivos de prueba (`datos/ejemplo.csv` y `datos/ejemplo_visitantes.csv`) sin menciones, enlaces, teléfonos ni correos |
 
 ## El resultado no depende de cómo se entreguen los archivos
 

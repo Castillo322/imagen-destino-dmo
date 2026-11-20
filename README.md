@@ -1,39 +1,64 @@
 # Imagen del destino: proyectada (DMO) vs. percibida
 
-Compara la imagen de un destino que proyecta su organización de marketing (DMO) con la que perciben los visitantes en otras fuentes (reseñas, redes sociales, foros). El caso de estudio es la Ciudad de México: **Sectur CDMX** (DMO) frente a **TripAdvisor**, **Instagram** y **Reddit**.
+Compara la imagen de un destino que proyecta su organización de marketing (DMO) con la que perciben los visitantes en otras fuentes digitales (reseñas, redes sociales, foros). El caso de estudio es la Ciudad de México: **Sectur CDMX** (DMO) frente a **TripAdvisor**, **Instagram** y **Reddit**.
 
-Responde la pregunta del proyecto: **¿la imagen que proyecta la DMO coincide con la que perciben los visitantes? ¿En qué temas hay brechas y qué debería ajustar la DMO en su comunicación?** La respuesta, con las decisiones para la DMO y su evidencia, sale sola en la primera pestaña del tablero.
-
-Funciona con **cualquier conjunto de archivos**. En el tablero basta con subir el archivo de los visitantes (Sectur CDMX ya viene cargada como DMO) y presionar «Analizar». También se puede quitar Sectur y subir dos o más archivos: uno de la DMO y uno o más de visitantes, en CSV, TSV, TXT, Excel (xlsx, xls), JSON, JSONL o Parquet. El número de temas lo determina el propio análisis.
+Responde la pregunta del proyecto: **¿la imagen que proyecta la DMO coincide con la que perciben los visitantes? ¿En qué temas hay brechas y qué debería ajustar la DMO en su comunicación?**
 
 Proyecto final de Visualización de Datos. Alejandro Castillo Avalos, Ingeniería de Datos e Inteligencia Artificial, DICIS, Universidad de Guanajuato.
 
+## Las dos versiones
+
+| | **Versión de terminal** (la que se presenta) | Versión web |
+|---|---|---|
+| Cómo se usa | `python analizador.py` con los **7 parámetros obligatorios** | Se abre una página y se suben los archivos |
+| Qué hace | Corre los 8 pasos del análisis, imprime el resumen y las conclusiones, guarda los resultados y **abre solo el tablero de Streamlit** con esos resultados | Corre los mismos 8 pasos y muestra el mismo tablero |
+| Archivos | `analizador.py` → `tablero.py` | `app.py` |
+| Dónde corre | En la computadora (sin conexión) | En la computadora o publicada en Streamlit Community Cloud |
+
+Las dos usan exactamente el mismo código de análisis (`pipeline/analisis.py`) y el mismo tablero, con sus nueve pestañas. Por eso dan los mismos resultados. Todo corre sin conexión: no se usa ninguna API externa ni se envía ningún texto a otro servicio. El resultado no depende del orden en que se den los archivos, de su nombre ni del orden de sus filas.
+
 ## Contenido
 
-1. [Qué incluye](#qué-incluye)
+1. [Cumplimiento del proyecto, punto por punto](#cumplimiento-del-proyecto-punto-por-punto)
 2. [Requisitos: Python y librerías](#requisitos-python-y-librerías)
 3. [Instalación paso a paso](#instalación-paso-a-paso)
-4. [Usar el tablero](#usar-el-tablero)
-5. [Publicar el tablero en internet (Streamlit Community Cloud)](#publicar-el-tablero-en-internet-streamlit-community-cloud)
-6. [Actualizar el repositorio desde la página de GitHub](#actualizar-el-repositorio-desde-la-página-de-github)
-7. [Uso desde la terminal](#uso-desde-la-terminal)
-8. [Qué hace cada paso](#qué-hace-cada-paso)
-9. [Estructura del repositorio](#estructura-del-repositorio)
-10. [Problemas comunes](#problemas-comunes)
-11. [Verificación](#verificación)
+4. [Versión de terminal (la que se presenta)](#versión-de-terminal-la-que-se-presenta)
+5. [Archivos de prueba](#archivos-de-prueba)
+6. [El tablero: las nueve pestañas](#el-tablero-las-nueve-pestañas)
+7. [Versión web y publicación en Streamlit Community Cloud](#versión-web-y-publicación-en-streamlit-community-cloud)
+8. [Actualizar el repositorio desde la página de GitHub](#actualizar-el-repositorio-desde-la-página-de-github)
+9. [Qué hace cada paso](#qué-hace-cada-paso)
+10. [Estructura del repositorio](#estructura-del-repositorio)
+11. [Problemas comunes](#problemas-comunes)
+12. [Verificación](#verificación)
 
-## Qué incluye
+## Cumplimiento del proyecto, punto por punto
 
-Dos piezas que usan exactamente el mismo código (`pipeline/analisis.py`), así que dicen lo mismo:
+| Requisito del proyecto | Cómo se cumple | Dónde |
+|---|---|---|
+| Script de Python ejecutable desde la línea de comandos | `python analizador.py` con los 7 parámetros obligatorios; al terminar abre el tablero | `analizador.py`, `tablero.py` |
+| 1. Ruta del CSV unificado con columna de fuente | `--csv`: la base unificada, o el archivo de la DMO y el de los visitantes. Formatos: csv, tsv, txt, xlsx, xls, json, jsonl, parquet y `.gz` | `pipeline/lectura.py` |
+| 2. Columna de comentarios | `--columna_texto`. Si un archivo no la tiene, se detecta sola | |
+| 3. Columna de fuente | `--columna_fuente` | |
+| 4. Etiqueta de la DMO | `--etiqueta_dmo`. Sus registros son la imagen proyectada; el resto, la percibida | |
+| 5. Idioma objetivo | `--idioma` (`es`, `en`, `fr`, `pt`, `it`, `de`…): cambia la detección de idioma, las palabras vacías, la lematización y el modelo de tono | `pipeline/preprocesamiento.py` |
+| 6. Título del reporte | `--titulo`: en el reporte, el tablero y el nombre de la carpeta de salida | |
+| 7. Paleta accesible | `--paleta`: `okabe_ito`, `viridis`, `cividis`, `plasma`, `inferno`, `magma`; el tablero se abre con esa paleta | `pipeline/visualizaciones.py` |
+| Procesamiento 1. Limpieza y preprocesamiento | Quita URLs, menciones, emojis, números y signos; minúsculas; tokeniza, quita palabras vacías y lematiza según el idioma. La etiqueta de fuente se conserva en cada registro | `pipeline/preprocesamiento.py` |
+| 2. Atípicos y n-gramas | Isolation Forest (visto en clase). Unigramas, bigramas y trigramas de los atípicos (de toda la base y por fuente). Sólo los normales siguen | `pipeline/outliers.py` |
+| 3. Sentimiento binario | Positivo/negativo. En español, regresión logística entrenada con las estrellas de TripAdvisor; en otros idiomas, VADER. Dos grupos, cada uno con su fuente | `pipeline/sentimiento.py` |
+| 4. Tópicos por sentimiento | NMF para positivos y para negativos; el número de temas se elige solo. **Condición especial:** con menos de 30 comentarios (`--umbral_topicos`) se usan frecuencias de palabras y nubes de palabras | `pipeline/topicos.py`, `pipeline/nubes.py` |
+| 5. Comparación DMO vs. percibida | Tópicos (DMO vs. agregado y vs. cada fuente, con brechas e intervalos), sentimiento (con χ²), similitud semántica global (**índice de alineación**, coseno LSA con intervalo) y tabla por fuente | `pipeline/comparacion.py` |
+| 6. Resultados clave | Palabras clave de cada tópico positivo y negativo indicando la fuente; comentario representativo (el más cercano al centroide); resumen de brechas. Se imprimen en la terminal, van en el reporte HTML y en el tablero | `pipeline/reporte.py` |
+| 7. Visualizaciones interactivas | Dispersión de comentarios (t-SNE) con **color + forma**, por tópico (positivos y negativos) y por fuente, con el comentario al pasar el cursor; gráficas que contrastan temas y tono de la DMO y de los visitantes | Tablero y reporte |
+| 8. Concepto «precio, valor, costo» | Similitud semántica de cada comentario con el concepto; dispersión interactiva; comparación DMO vs. percibida (frecuencia, tono y contexto); los 5 más cercanos con su fuente; como complemento, mención literal con BM25 | `pipeline/concepto.py` |
+| GitHub, `requirements.txt` y `README.md` con ejemplos con todos los parámetros | Este archivo; ver [Uso desde la terminal](#versión-de-terminal-la-que-se-presenta) | |
+| CSV de ejemplo anonimizado con la columna de fuente | `datos/ejemplo.csv` (columna `plataforma`) y `datos/ejemplo_visitantes.csv` | [Archivos de prueba](#archivos-de-prueba) |
+| Sin APIs externas, offline | Se comprobó corriendo con la red bloqueada | `verificar_requisitos.py` |
+| Agnóstico al número y nombre de las fuentes | Se comprobó con 2 y 4 fuentes, con otros nombres de columnas y fuentes, y con un archivo por fuente | `verificar_requisitos.py` |
+| Demostración en vivo con datos no vistos | Se corre con el archivo que dé el profesor: `--csv <archivo_de_la_DMO> <archivo_del_profesor>` | [Comandos](#comandos-listos-para-copiar) |
 
-- **`app.py`**: el tablero web de Streamlit. Tiene dos modos:
-  - **«Subir mis archivos»**: se suben los archivos, se presiona «Analizar» y el tablero corre los 8 pasos del análisis.
-  - **«Ejemplo: Ciudad de México»**: muestra al instante el análisis ya hecho del caso, guardado en `salidas/`.
-- **`analizador.py`**: el mismo análisis desde la terminal. Escribe los resultados en `salidas/`.
-
-Todo corre en la computadora, sin conexión: no se usa ninguna API externa ni se envía ningún texto a otro servicio. El resultado no depende del orden en que se suban los archivos, de su nombre ni del orden de sus filas.
-
-El tablero en línea es https://imagen-destino-cdmx.streamlit.app. Es privado: sólo entran las cuentas invitadas (ver [Publicar el tablero](#publicar-el-tablero-en-internet-streamlit-community-cloud)).
+Además, el tablero responde la pregunta del proyecto en su primera pestaña («Conclusiones»): una respuesta corta, indicadores y decisiones para la DMO con su evidencia.
 
 ## Requisitos: Python y librerías
 
@@ -64,15 +89,15 @@ Se instalan todas con `pip install -r requirements.txt`. Ninguna se descarga apa
 | `pyarrow` | 26.0.1 | 14.0 | Leer y escribir archivos Parquet |
 | `matplotlib` | 3.11.2 | 3.8 | Escalas de color y nubes de palabras |
 | `plotly` | 7.1.0 | 5.20 | Gráficas interactivas del tablero y del reporte |
-| `streamlit` | 1.67.0 | 1.50 | El tablero web |
+| `streamlit` | 1.67.0 | 1.50 | El tablero |
 | `langdetect` | 1.0.9 | 1.0.9 | Detectar el idioma de cada comentario |
 | `stopwordsiso` | 0.7.1 | 0.6.1 | Palabras vacías («de», «la», «que») de muchos idiomas |
 | `simplemma` | 2.0.0 | 1.0 | Lematizar («tacos» → «taco», «cuesta» → «costar») |
 | `emoji` | 2.16.0 | 2.8 | Quitar emojis |
 | `vaderSentiment` | 3.3.2 | 3.3.2 | Tono en inglés |
 | `wordcloud` | 1.9.6 | 1.9.3 | Nubes de palabras |
-| `openpyxl` | 3.1.5 | 3.1 | Leer archivos `.xlsx` subidos |
-| `xlrd` | 2.0.2 | 2.0 | Leer archivos `.xls` subidos |
+| `openpyxl` | 3.1.5 | 3.1 | Leer archivos `.xlsx` |
+| `xlrd` | 2.0.2 | 2.0 | Leer archivos `.xls` |
 
 Sólo `scikit-learn` está fijado a una versión: el modelo de tono se guardó con la 1.9 y otra versión puede no cargarlo (ver [Problemas comunes](#problemas-comunes)). Las demás aceptan versiones más nuevas.
 
@@ -109,7 +134,7 @@ El repositorio es privado, así que primero el dueño tiene que invitarte: en Gi
 
 ### 3. Crea un entorno virtual
 
-Un entorno virtual guarda las librerías del proyecto aparte de las del sistema. Abre la terminal **dentro de la carpeta del proyecto** (la que tiene `app.py`) y ejecuta:
+Un entorno virtual guarda las librerías del proyecto aparte de las del sistema. Abre la terminal **dentro de la carpeta del proyecto** (la que tiene `analizador.py`) y ejecuta:
 
 **Windows (PowerShell o Símbolo del sistema):**
 
@@ -125,7 +150,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-Al activarlo, la línea de la terminal empieza con `(.venv)`. Cada vez que abras una terminal nueva para usar el proyecto, vuelve a activarlo con la segunda línea.
+Al activarlo, la línea de la terminal empieza con `(.venv)`. Cada vez que abras una terminal nueva para usar el proyecto, entra a la carpeta y vuelve a activarlo con la segunda línea.
 
 ### 4. Instala las librerías
 
@@ -144,49 +169,188 @@ python -c "import sklearn, streamlit, pandas; print('scikit-learn', sklearn.__ve
 
 Debe mostrar `scikit-learn 1.9.x`.
 
-### 5. Abre el tablero
+### 5. Prueba rápida
 
 ```bash
-streamlit run app.py
+python analizador.py --csv datos/ejemplo.csv --columna_texto comentario --columna_fuente plataforma \
+  --etiqueta_dmo sectur --idioma es --titulo "Prueba" --paleta viridis
 ```
 
-Se abre solo en el navegador en http://localhost:8501. Si no se abre, copia esa dirección en el navegador. Para cerrarlo, en la terminal presiona `Ctrl+C`.
+En unos segundos imprime el avance, el resumen y las conclusiones, y abre el tablero en el navegador. Para cerrarlo, presiona `Ctrl+C` en la terminal.
 
-## Usar el tablero
+## Versión de terminal (la que se presenta)
 
-### Analizar archivos nuevos (modo «Subir mis archivos»)
+### Los 7 parámetros obligatorios
 
-1. En la barra lateral, deja marcado **«Subir mis archivos»**.
-2. La casilla **«Comparar contra Sectur CDMX (ya cargada)»** está activada: Sectur ya está cargada como DMO (`datos/originales/sectur.csv`).
-3. En **«Archivos»**, arrastra el archivo con lo que publican los visitantes, o varios, uno por fuente.
-4. Arriba del botón aparece una línea que resume qué se va a comparar, por ejemplo: «Se va a comparar la DMO, Sectur (487 textos), con TripAdvisor (22,128)… · idioma: español».
-5. Presiona **«Analizar»**. Una barra muestra el avance; con las 4 bases tarda unos 3 minutos.
-6. Aparecen las nueve pestañas, la primera con las conclusiones. El reporte HTML se descarga con el botón de la barra lateral.
+| # | Parámetro | Qué es | Ejemplo |
+|---|-----------|--------|---------|
+| 1 | `--csv` | La **base unificada** (un archivo con la columna de texto y la de fuente) **o el archivo de la DMO y el de los visitantes**. Formatos: csv, tsv, txt, xlsx, xls, json, jsonl, parquet (también `.gz`) | `datos/cdmx_unificado.csv.gz` |
+| 2 | `--columna_texto` | Columna con los comentarios. Si un archivo no la tiene, se detecta sola | `texto` |
+| 3 | `--columna_fuente` | Columna que identifica la fuente. En un archivo sin esa columna, la fuente es el nombre del archivo | `fuente` |
+| 4 | `--etiqueta_dmo` | Valor de la fuente que corresponde a la DMO (con su propio archivo, el nombre del archivo sin extensión) | `sectur` |
+| 5 | `--idioma` | Idioma objetivo. Sólo se analizan los comentarios en ese idioma | `es` |
+| 6 | `--titulo` | Título del reporte y del tablero; también nombra la carpeta de salida | `"Imagen de la CDMX"` |
+| 7 | `--paleta` | Paleta de colores. Aptas para daltonismo: `okabe_ito`, `viridis`, `cividis`, `plasma`, `inferno`, `magma` | `okabe_ito` |
 
-**Cómo deben venir los archivos.** Una fila por comentario y una columna con el texto. El nombre del archivo se usa como nombre de la fuente; reconoce solo Instagram, Reddit y TripAdvisor. Se aceptan CSV, TSV, TXT, Excel (`.xlsx`, `.xls`), JSON, JSONL y Parquet, también comprimidos con `.gz`, de hasta 200 MB cada uno. Las demás columnas (fecha, calificación, etc.) se ignoran. Si una celda trae varios comentarios juntos separados por « - », como las respuestas de un hilo de Reddit, se separan solos.
+Ejemplo con los 7 parámetros (en macOS y Linux; en Windows, ver la nota de abajo):
 
-**Todo lo demás es automático.** Las columnas de texto, el idioma (el más frecuente en los archivos), el número de temas y los demás parámetros se detectan solos. Si se quiere cambiar algo, está en el desplegable **«Ajustes (opcional)»**:
+```bash
+python analizador.py \
+  --csv datos/cdmx_unificado.csv.gz \
+  --columna_texto texto \
+  --columna_fuente fuente \
+  --etiqueta_dmo sectur \
+  --idioma es \
+  --titulo "Imagen de la Ciudad de México" \
+  --paleta okabe_ito
+```
 
-- Por cada archivo: el nombre de la fuente, las columnas de texto, la columna con varios comentarios por celda y su separador.
-- Cuál es la DMO.
-- El idioma.
-- El título.
-- Las palabras a ignorar. Con Sectur vienen ya: `mexico, ciudad, cdmx, df, city`, porque el nombre del destino aparece en todo y no distingue temas.
-- El número de temas (0 = lo elige el análisis).
-- El % de atípicos a separar (3 % por defecto).
-- La idea a rastrear («precio valor costo»).
+**En Windows**, escribe el comando en una sola línea (sin `\`) o cambia `\` por `^` en el Símbolo del sistema o por `` ` `` en PowerShell. Las rutas pueden ir con `/` o con `\`.
 
-**Usar otra DMO.** Quita la casilla de Sectur y sube dos o más archivos: el de la DMO y los de visitantes. Si todas las fuentes vienen en un solo archivo con una columna que dice la fuente, súbelo solo y activa en «Ajustes» el interruptor «Mi archivo trae varias fuentes en una columna». Los comentarios en un idioma distinto al elegido se dejan fuera; para analizarlos, vuelve a correr con ese idioma.
+### Qué pasa al correrlo
 
-**Reproducir el caso CDMX.** Sube `TripAdvisor.csv.gz`, `instaUGC.csv` y `redditcdmx.csv` de `datos/originales/` (Sectur ya está cargada) y presiona «Analizar». El resultado es idéntico al del modo ejemplo.
+1. Dice qué archivos leyó y qué fuentes va a comparar, por ejemplo: `Fuentes a comparar: tripadvisor (22,128), reddit (5,450), sectur [DMO] (487), instagram (424)`.
+2. Muestra el avance de cada paso con el tiempo transcurrido.
+3. Guarda los resultados en `salidas/<titulo>_<idioma>/`: `reporte.html`, `resultados.json` y `corpus_procesado.parquet`.
+4. Imprime cuántos temas encontró, el resumen de brechas, la comparación de la DMO con cada fuente y las conclusiones para la DMO (respuesta a la pregunta del proyecto y decisiones).
+5. **Abre el tablero de Streamlit** (`tablero.py`) en el navegador, en http://localhost:8501, con los resultados de esa corrida y la paleta elegida. Si el puerto está ocupado usa el siguiente (8502…). Si el navegador no se abre solo, copia la dirección que aparece en la terminal.
+6. El tablero sigue abierto mientras la terminal esté abierta. Para cerrarlo, presiona `Ctrl+C` en la terminal.
 
-### Ver el análisis ya hecho (modo «Ejemplo: Ciudad de México»)
+### Dar los datos: un archivo o dos
 
-En la barra lateral, elige **«Ejemplo: Ciudad de México»**. Abre al instante los resultados guardados en `salidas/`. Hay dos: en español (el principal) y en inglés (exploratorio, porque la DMO tiene pocos textos en inglés).
+**Un archivo: la base unificada.** Tiene una fila por comentario, una columna de texto y una columna de fuente. Los registros cuya fuente es `--etiqueta_dmo` son la imagen proyectada; el resto, la percibida. Así viene `datos/cdmx_unificado.csv.gz` (columnas `texto` y `fuente`, con `sectur`, `tripadvisor`, `instagram` y `reddit`).
 
-### Las nueve pestañas
+**Dos archivos: el de la DMO y el de los visitantes.** Se ponen uno tras otro en `--csv`. El archivo de los visitantes puede ser la base unificada, una sola plataforma (TripAdvisor, Instagram o Reddit) o el archivo que proponga el profesor. También se aceptan más de dos archivos. Así se reparten las fuentes:
 
-- **Conclusiones**: responde la pregunta del proyecto con una respuesta corta, indicadores y **decisiones para la DMO** ordenadas por prioridad, cada una con su evidencia. Los tipos de decisión son: replantear, incorporar, atender, informar, ajustar enfoque o tono, canal, vigilar y mantener. Se generan solas, con las mismas reglas, para cualquier conjunto de archivos (`pipeline/conclusiones.py`). Los umbrales se muestran en la pestaña. Las conclusiones también van en el reporte HTML, en la terminal y se descargan como texto.
+- **Si un archivo trae la columna de fuente** (como la base unificada), cada fila conserva su etiqueta.
+- **Si no la trae**, todo el archivo es una sola fuente con el nombre del archivo. Se reconocen las fuentes del caso: `sectur.csv` → `sectur`, `TripAdvisor.csv.gz` → `tripadvisor`, `instaUGC.csv` → `instagram`, `redditcdmx.csv` → `reddit`. Cualquier otro archivo usa su nombre: `google_reviews.xlsx` → `google_reviews`.
+- **La DMO no se duplica:** si la DMO viene en su propio archivo y otro archivo también la trae (como la base unificada, que ya incluye a Sectur), se usa la del archivo propio y la otra se omite. La terminal lo avisa.
+- **Columna de texto:** si un archivo no tiene la columna de `--columna_texto`, se detecta sola. Por ejemplo, `instaUGC.csv` la tiene en `description`, y en `redditcdmx.csv` se unen `title` y `text`. Si una celda trae varios comentarios juntos separados por « - », como las respuestas de un hilo de Reddit, se separan en comentarios individuales.
+
+### Comandos listos para copiar
+
+Desde la carpeta del proyecto, con el entorno virtual activado. Cada comando usa un título distinto, así que cada corrida queda en su propia carpeta de `salidas/`. Con Sectur conviene `--excluir "mexico,ciudad,cdmx,df,city"`: el nombre del destino aparece en todo y no distingue temas.
+
+**Sectur frente a la base unificada (las 3 fuentes de visitantes):**
+
+```bash
+python analizador.py --csv datos/originales/sectur.csv datos/cdmx_unificado.csv.gz --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Sectur vs visitantes" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
+```
+
+**Sectur frente a TripAdvisor:**
+
+```bash
+python analizador.py --csv datos/originales/sectur.csv datos/originales/TripAdvisor.csv.gz --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Sectur vs TripAdvisor" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
+```
+
+**Sectur frente a Instagram:**
+
+```bash
+python analizador.py --csv datos/originales/sectur.csv datos/originales/instaUGC.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Sectur vs Instagram" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
+```
+
+**Sectur frente a Reddit** (en español quedan pocos comentarios porque casi todo Reddit está en inglés; el segundo comando analiza el inglés):
+
+```bash
+python analizador.py --csv datos/originales/sectur.csv datos/originales/redditcdmx.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Sectur vs Reddit" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
+python analizador.py --csv datos/originales/sectur.csv datos/originales/redditcdmx.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma en --titulo "Sectur vs Reddit" --paleta okabe_ito --excluir "mexico,city,cdmx,mexican"
+```
+
+**Sólo la base unificada (un archivo, como dice el proyecto):**
+
+```bash
+python analizador.py --csv datos/cdmx_unificado.csv.gz --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Imagen de la Ciudad de México" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
+```
+
+**Sectur frente al archivo del profesor.** Copia el archivo a la carpeta `datos/` y cambia `ARCHIVO_DEL_PROFESOR.csv` por su nombre:
+
+```bash
+python analizador.py --csv datos/originales/sectur.csv datos/ARCHIVO_DEL_PROFESOR.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Sectur vs archivo del profesor" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
+```
+
+- Si el archivo del profesor **ya trae su propia DMO y una columna de fuente**, es una base unificada: pásalo solo, con sus nombres de columnas y su etiqueta de DMO, por ejemplo: `--csv datos/ARCHIVO.csv --columna_texto comentario --columna_fuente plataforma --etiqueta_dmo dmo`.
+- Si una columna no existe, la terminal dice cuáles hay. Corrige el nombre y vuelve a correr.
+- Si los comentarios están en otro idioma, cambia `--idioma` (por ejemplo, `en`).
+
+### Parámetros opcionales
+
+| Parámetro | Por defecto | Qué hace |
+|-----------|-------------|----------|
+| `--excluir` | vacío | Palabras a ignorar, separadas por coma. Se usa para el nombre del destino, que aparece en casi todo y no distingue temas |
+| `--sin_tablero` | — | Sólo genera los archivos; no abre el tablero |
+| `--puerto` | 8501 | Puerto del tablero; si está ocupado se usa el siguiente |
+| `--umbral_topicos` | 30 | Con menos comentarios se reportan frecuencias de palabras en lugar de tópicos. Una fuente con menos comentarios no entra en el promedio de visitantes |
+| `--contaminacion` | 0.03 | Proporción de comentarios atípicos que se separa en cada fuente |
+| `--umbral_polaridad` | 0 | Polaridad mínima para llamar positivo a un comentario |
+| `--concepto` | «precio valor costo» | Concepto a buscar por similitud semántica (se traduce según el idioma) |
+| `--k_topicos` | automático | Fija el número de tópicos (por defecto el análisis lo elige y lo imprime al terminar) |
+| `--semilla` | 42 | Semilla para que todo sea reproducible |
+| `--salida` | `salidas` | Carpeta de salida |
+
+Con todos los parámetros (obligatorios y opcionales):
+
+```bash
+python analizador.py --csv datos/cdmx_unificado.csv.gz --columna_texto texto --columna_fuente fuente \
+  --etiqueta_dmo sectur --idioma es --titulo "Imagen de la Ciudad de México" --paleta cividis \
+  --excluir "mexico,ciudad,cdmx,df,city" --umbral_topicos 30 --contaminacion 0.03 --umbral_polaridad 0 \
+  --concepto "precio valor costo" --k_topicos 10 --semilla 42 --salida salidas --puerto 8501
+```
+
+`python analizador.py --help` muestra todos los parámetros.
+
+### Volver a abrir el tablero sin repetir el análisis
+
+```bash
+streamlit run tablero.py -- --resultados salidas/sectur_vs_tripadvisor_es --paleta okabe_ito
+```
+
+Sin `--resultados` abre la corrida más reciente de `salidas/`.
+
+### Salidas
+
+En `salidas/<titulo>_<idioma>/`:
+
+- `corpus_procesado.parquet`: una fila por comentario. Para cada uno guarda:
+  - su fuente y su texto original;
+  - los lemas (el texto ya limpio y lematizado);
+  - si es atípico, su tono y su tema;
+  - su cercanía con el concepto y su puntaje BM25 del concepto;
+  - sus coordenadas en el mapa.
+- `resultados.json`: todos los resultados agregados, incluidas las conclusiones. Es lo que lee el tablero.
+- `reporte.html`: reporte interactivo autocontenido (funciona sin conexión). En el repositorio, el de los ejemplos va comprimido (`reporte.html.gz`); desde el tablero se descarga ya descomprimido.
+
+## Archivos de prueba
+
+Dos archivos anonimizados para probar el script en segundos. Las menciones a cuentas aparecen como `@usuario`, y se quitaron teléfonos, correos y enlaces:
+
+- **`datos/ejemplo.csv`**: el formato de entrada que pide el proyecto, una base unificada. Trae 360 comentarios: 120 de la DMO (Sectur), 120 de TripAdvisor y 120 de Instagram. Usa a propósito otros nombres de columnas: el texto está en `comentario` y la fuente en `plataforma`, con los valores `sectur`, `tripadvisor` e `instagram`.
+
+  ```
+  plataforma,comentario
+  sectur,dishes local flavor seafood city without eat good seafood ceviche tostadas …
+  instagram,"Feria Oaxaqueña en CDMX 😱 Puedes encontrar deliciosa comida de Oaxaca …"
+  tripadvisor,hermoso gastar monton aqui bonito interesante historia antecedentes diseno general merece parada
+  ```
+
+  ```bash
+  python analizador.py --csv datos/ejemplo.csv --columna_texto comentario --columna_fuente plataforma --etiqueta_dmo sectur --idioma es --titulo "Prueba" --paleta viridis
+  ```
+
+- **`datos/ejemplo_visitantes.csv`**: un archivo de visitantes de una sola plataforma, sin columna de fuente. Es como el que podría dar el profesor: 300 reseñas con columnas `comentario`, `calificacion` y `fecha`. Se compara con Sectur:
+
+  ```bash
+  python analizador.py --csv datos/originales/sectur.csv datos/ejemplo_visitantes.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Prueba con dos archivos" --paleta cividis --excluir "mexico,ciudad,cdmx,df,city"
+  ```
+
+  Como no tiene la columna `texto`, la terminal avisa que usa `comentario`. Como tiene pocas reseñas negativas, los negativos se analizan con frecuencias de palabras en lugar de tópicos: es la condición especial del paso 4.
+
+Los datos completos del caso están en `datos/originales/` (las 4 bases tal como se entregaron) y en `datos/cdmx_unificado.csv.gz` (las 4 unidas).
+
+## El tablero: las nueve pestañas
+
+Es el mismo en la versión de terminal (`tablero.py`) y en la web (`app.py`). La paleta se cambia en la barra lateral; en la versión de terminal empieza con la que se pidió en `--paleta`. Cada fuente conserva siempre el mismo color y la misma forma; la DMO es siempre el cuadrado. El reporte HTML se descarga desde la barra lateral.
+
+- **Conclusiones**: responde la pregunta del proyecto con una respuesta corta, indicadores y **decisiones para la DMO** ordenadas por prioridad, cada una con su evidencia. Los tipos de decisión son: replantear, incorporar, atender, informar, ajustar enfoque o tono, canal, vigilar y mantener. Se generan solas, con las mismas reglas, para cualquier conjunto de archivos (`pipeline/conclusiones.py`). Los umbrales se muestran en la pestaña.
 - **Resumen**: muestra:
   - comentarios por fuente;
   - tono, parecido del contenido y coincidencia de agenda;
@@ -199,16 +363,30 @@ En la barra lateral, elige **«Ejemplo: Ciudad de México»**. Abre al instante 
 - **Lo que gusta y lo que no**: tono por fuente, temas de cada tono y nubes de palabras por fuente y tono.
 - **Por fuente**: temas principales y tono de cada fuente, y mapa de calor fuente × tema.
 - **Explorar y buscar**: mapa de comentarios con color y forma, *hover* y selección con lazo. Incluye la **búsqueda BM25**: qué porcentaje de cada fuente usa las palabras buscadas y los comentarios más relevantes.
-- **Precio, valor y costo**: cercanía semántica con la idea y, como complemento, mención literal con BM25.
+- **Precio, valor y costo**: dispersión de todos los comentarios según su cercanía con la idea, comparación DMO vs. visitantes, los 5 más cercanos y, como complemento, la mención literal con BM25.
 - **Comentarios atípicos**: unigramas, bigramas y trigramas de toda la base y de cada fuente.
 
-Paletas aptas para daltonismo, en la barra lateral:
-- **Okabe-Ito** (por defecto): colores muy distintos entre sí. Se amplía con la paleta «muted» de Paul Tol cuando hay más de 8 categorías.
+Paletas aptas para daltonismo:
+- **Okabe-Ito**: colores muy distintos entre sí. Se amplía con la paleta «muted» de Paul Tol cuando hay más de 8 categorías.
 - viridis, cividis, plasma, inferno y magma.
 
-Cada fuente conserva siempre el mismo color y la misma forma; la DMO es siempre el cuadrado.
+## Versión web y publicación en Streamlit Community Cloud
 
-## Publicar el tablero en internet (Streamlit Community Cloud)
+### Usarla en la computadora
+
+```bash
+streamlit run app.py
+```
+
+En **«Subir mis archivos»** la casilla «Comparar contra Sectur CDMX (ya cargada)» está activada:
+
+1. Arrastra el archivo de los visitantes.
+2. Revisa la línea que resume qué se va a comparar.
+3. Presiona **«Analizar»**.
+
+Columnas, idioma y parámetros se detectan solos y se pueden cambiar en **«Ajustes (opcional)»**. Para usar otra DMO, quita la casilla y sube dos o más archivos. En **«Ejemplo: Ciudad de México»** se ven al instante los resultados guardados en `salidas/`. Se aceptan archivos de hasta 200 MB.
+
+### Publicarla en internet
 
 Así se publicó https://imagen-destino-cdmx.streamlit.app. Es gratis y no necesita servidor propio: Streamlit lee el repositorio de GitHub y corre `app.py`.
 
@@ -217,12 +395,12 @@ Así se publicó https://imagen-destino-cdmx.streamlit.app. Es gratis y no neces
 3. Llena el formulario:
    - **Repository:** `Castillo322/imagen-destino-dmo`
    - **Branch:** `main`
-   - **Main file path:** `app.py`. Escríbelo completo; el autocompletado puede proponer otro archivo, como `entrenar_sentimiento.py`.
+   - **Main file path:** `app.py`. Escríbelo completo; el autocompletado puede proponer otro archivo.
    - **App URL:** el nombre de la dirección, por ejemplo `imagen-destino-cdmx`.
 4. Abre **«Advanced settings»** y en **Python version** elige **3.13**. No hace falta agregar *secrets*: el proyecto no usa contraseñas ni APIs.
-5. Presiona **«Deploy»**. La primera vez instala las librerías de `requirements.txt` y tarda unos minutos. Cuando termina, aparece el tablero.
+5. Presiona **«Deploy»**. La primera vez instala las librerías de `requirements.txt` y tarda unos minutos.
 
-**Quién puede entrar.** Como el repositorio es privado, la app también lo es: sólo la ven las cuentas invitadas. Para invitar a alguien, abre la app, presiona **«Share»** (arriba a la derecha) y escribe su correo. Esa persona recibe un correo y entra con la cuenta de ese correo. En el mismo menú está la opción para hacerla pública, que permite entrar a cualquiera con el enlace. El repositorio es privado porque `datos/` y `salidas/` contienen publicaciones reales.
+**Quién puede entrar.** Como el repositorio es privado, la app también lo es: sólo la ven las cuentas invitadas. Para invitar a alguien, abre la app, presiona **«Share»** (arriba a la derecha) y escribe su correo. Esa persona recibe un correo y entra con la cuenta de ese correo. En el mismo menú está la opción para hacerla pública. El repositorio es privado porque `datos/` y `salidas/` contienen publicaciones reales.
 
 **Actualizaciones.** Cada vez que se sube un cambio a la rama `main` de GitHub, la app se actualiza sola en uno o dos minutos. Si no se actualiza, en la app abre **«Manage app»** (abajo a la derecha) y usa **«Reboot app»**. Si la app pasa un tiempo sin visitas, se «duerme»: al abrirla aparece un botón para despertarla y tarda un poco en volver.
 
@@ -237,101 +415,8 @@ No hace falta saber git: todo se puede hacer desde la página del repositorio.
   - `datos/originales/TripAdvisor.csv.gz`
   - `salidas/*/reporte.html.gz`
 
-  El script y el tablero los leen así, sin descomprimirlos.
-- **No subas** la carpeta `.venv/`, carpetas `__pycache__/`, archivos `.DS_Store` de macOS ni ZIP del proyecto: no hacen falta y GitHub no descomprime los ZIP.
-
-## Uso desde la terminal
-
-Con el entorno virtual activado y dentro de la carpeta del proyecto. El script pide 7 parámetros obligatorios:
-
-```bash
-python analizador.py \
-  --csv datos/cdmx_unificado.csv.gz \
-  --columna_texto texto \
-  --columna_fuente fuente \
-  --etiqueta_dmo sectur \
-  --idioma es \
-  --titulo "Imagen de la Ciudad de México" \
-  --paleta viridis \
-  --excluir "mexico,ciudad,cdmx,df,city"
-```
-
-En Windows, escribe el comando en una sola línea (sin `\`) o cambia `\` por `^` en el Símbolo del sistema o por `` ` `` en PowerShell.
-
-| # | Parámetro | Qué es |
-|---|-----------|--------|
-| 1 | `--csv` | Un archivo unificado (una fila por comentario) **o varios archivos, uno por fuente**. Formatos: csv, tsv, txt, xlsx, xls, json, jsonl, parquet (también `.gz`) |
-| 2 | `--columna_texto` | Columna con el texto. Con varios archivos se pueden unir varias separadas por coma; si un archivo no la tiene, se detecta sola |
-| 3 | `--columna_fuente` | Columna que identifica la fuente. Con varios archivos, la fuente es el nombre de cada archivo |
-| 4 | `--etiqueta_dmo` | Fuente que corresponde a la DMO (con varios archivos, el nombre del archivo de la DMO sin extensión) |
-| 5 | `--idioma` | Idioma objetivo: `es`, `en`, `fr`, `pt`, `it`, `de`… Sólo se analizan los comentarios en ese idioma |
-| 6 | `--titulo` | Título del reporte y nombre de la carpeta de salida |
-| 7 | `--paleta` | Paleta. Aptas para daltonismo: `okabe_ito`, `viridis`, `cividis`, `plasma`, `inferno`, `magma` |
-
-Parámetros opcionales:
-
-| Parámetro | Por defecto | Qué hace |
-|-----------|-------------|----------|
-| `--excluir` | vacío | Palabras a ignorar, separadas por coma. Se usa para el nombre del destino, que aparece en casi todo y no distingue temas |
-| `--umbral_topicos` | 30 | Con menos comentarios se reportan frecuencias de palabras en lugar de tópicos. Una fuente con menos comentarios no entra en el promedio de visitantes |
-| `--contaminacion` | 0.03 | Proporción esperada de comentarios atípicos por fuente |
-| `--umbral_polaridad` | 0 | Polaridad mínima para llamar positivo a un comentario |
-| `--concepto` | «precio valor costo» | Concepto a buscar por similitud semántica (se traduce según el idioma) |
-| `--k_topicos` | automático | Fija el número de tópicos (por defecto el análisis lo elige y lo imprime al terminar) |
-| `--semilla` | 42 | Semilla para que todo sea reproducible |
-| `--salida` | `salidas` | Carpeta de salida |
-
-El script no supone nombres ni número de fuentes: los toma del archivo. Por ejemplo, con el CSV de ejemplo, que usa otros nombres de columnas:
-
-```bash
-python analizador.py --csv datos/ejemplo.csv --columna_texto comentario --columna_fuente plataforma \
-  --etiqueta_dmo sectur --idioma es --titulo "Ejemplo" --paleta cividis
-```
-
-Con todos los parámetros (obligatorios y opcionales):
-
-```bash
-python analizador.py --csv datos/cdmx_unificado.csv.gz --columna_texto texto --columna_fuente fuente \
-  --etiqueta_dmo sectur --idioma es --titulo "Imagen de la Ciudad de México" --paleta cividis \
-  --excluir "mexico,ciudad,cdmx,df,city" --umbral_topicos 30 --contaminacion 0.03 --umbral_polaridad 0 \
-  --concepto "precio valor costo" --k_topicos 10 --semilla 42 --salida salidas
-```
-
-Con un archivo por fuente, en cualquier formato (aquí, las 4 bases originales tal como vienen):
-
-```bash
-python analizador.py --csv datos/originales/sectur.csv datos/originales/TripAdvisor.csv.gz \
-  datos/originales/instaUGC.csv datos/originales/redditcdmx.csv \
-  --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es \
-  --titulo "Imagen de la Ciudad de México" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
-```
-
-Al terminar imprime:
-- cuántos temas encontró;
-- las conclusiones para la DMO;
-- el resumen de brechas;
-- la comparación de la DMO con cada fuente.
-
-Para el corpus en inglés (sobre todo Reddit):
-
-```bash
-python analizador.py --csv datos/cdmx_unificado.csv.gz --columna_texto texto --columna_fuente fuente \
-  --etiqueta_dmo sectur --idioma en --titulo "Imagen de la Ciudad de México" --paleta viridis \
-  --excluir "mexico,city,cdmx,mexican"
-```
-
-### Salidas
-
-En `salidas/<titulo>_<idioma>/`:
-
-- `corpus_procesado.parquet`: una fila por comentario. Para cada uno guarda:
-  - su fuente y su texto original;
-  - los lemas (el texto ya limpio y lematizado);
-  - si es atípico, su tono y su tema;
-  - su cercanía con el concepto y su puntaje BM25 del concepto;
-  - sus coordenadas en el mapa.
-- `resultados.json`: todos los resultados agregados, incluidas las conclusiones. Es lo que lee el tablero.
-- `reporte.html`: reporte interactivo autocontenido (funciona sin conexión). En el repositorio va comprimido (`reporte.html.gz`); desde el tablero se descarga ya descomprimido.
+  El script y los tableros los leen así, sin descomprimirlos.
+- **No subas** la carpeta `.venv/`, carpetas `__pycache__/`, archivos `.DS_Store` de macOS, ZIP del proyecto ni las carpetas nuevas de `salidas/` que se crean al probar.
 
 ## Qué hace cada paso
 
@@ -359,7 +444,7 @@ En `salidas/<titulo>_<idioma>/`:
    - Calcula el peso de cada tema por fuente y la diferencia DMO − visitantes con IC 95 % bootstrap. Los visitantes son el promedio de las fuentes, cada una con el mismo peso.
    - También calcula:
      - con qué palabras aborda cada lado el tema;
-     - el parecido global (coseno de centroides LSA);
+     - el parecido global o índice de alineación (coseno de centroides LSA);
      - la coincidencia de agenda (1 − Jensen-Shannon);
      - una χ² del tono.
    - **Lo mismo se hace para la DMO frente a cada fuente por separado**, con dos capas:
@@ -403,8 +488,9 @@ Los temas se nombran sólo con sus palabras principales: no se les asigna ningun
 ## Estructura del repositorio
 
 ```
-app.py                     tablero de Streamlit
-analizador.py              el mismo análisis desde la terminal (CLI)
+analizador.py              EL SCRIPT: los 7 parámetros, los 8 pasos y abre el tablero (versión de terminal)
+tablero.py                 tablero de la versión de terminal (lo abre analizador.py)
+app.py                     tablero completo; versión web (subir archivos) y base de tablero.py
 requirements.txt           librerías que se instalan con pip
 README.md                  este archivo
 VERIFICACION.md            qué se comprobó y cómo (requisitos y robustez)
@@ -414,8 +500,8 @@ unificar_fuentes.py        une las 4 bases originales en datos/cdmx_unificado.cs
 .gitignore                 archivos que git no debe subir
 .streamlit/config.toml     colores y ajustes del tablero
 pipeline/                  el análisis, un módulo por paso:
-  analisis.py                encadena los 8 pasos (lo usan app.py y analizador.py)
-  lectura.py                 lee cualquier formato y propone columnas
+  analisis.py                encadena los 8 pasos (lo usan las dos versiones)
+  lectura.py                 lee cualquier formato, propone columnas y nombra las fuentes
   preprocesamiento.py        idioma, limpieza, palabras vacías y lemas
   representacion.py          TF-IDF y LSA
   outliers.py                atípicos (Isolation Forest) y sus n-gramas
@@ -430,11 +516,12 @@ pipeline/                  el análisis, un módulo por paso:
   nubes.py                   nubes de palabras
   config.py                  parámetros por defecto
 datos/
-  originales/                las 4 bases tal como se entregaron (sectur.csv es la DMO que usa el tablero)
+  ejemplo.csv                ARCHIVO DE PRUEBA: base unificada chica y anonimizada (columna de fuente «plataforma»)
+  ejemplo_visitantes.csv     ARCHIVO DE PRUEBA: archivo de visitantes de una sola plataforma, sin columna de fuente
+  originales/                las 4 bases tal como se entregaron (sectur.csv es la DMO)
   cdmx_unificado.csv.gz      las 4 bases unidas en un archivo
-  ejemplo.csv                CSV chico y anonimizado para pruebas
 modelos/                     modelo de tono en español y sus métricas
-salidas/                     resultados del ejemplo CDMX (español e inglés); los lee el tablero
+salidas/                     resultados del ejemplo CDMX (español e inglés); aquí se guardan también las corridas nuevas
 validacion/                  muestra para validar el tono a mano (100 comentarios por fuente)
 ```
 
@@ -461,12 +548,21 @@ python entrenar_sentimiento.py --csv datos/cdmx_unificado.csv.gz --columna_texto
 | macOS: error de certificados (SSL) al instalar | Ejecuta «Install Certificates.command» en *Aplicaciones › Python 3.13*. |
 | Aviso `InconsistentVersionWarning` o error al cargar `sentimiento_es.joblib` | Hay otra versión de scikit-learn. Instala la correcta (`pip install "scikit-learn>=1.9,<1.10"`) o vuelve a entrenar el modelo con `entrenar_sentimiento.py`. |
 | `ModuleNotFoundError` (por ejemplo, `No module named 'streamlit'`) | El entorno virtual no está activado. Actívalo (paso 3) y, si hace falta, repite `pip install -r requirements.txt`. |
-| «Port 8501 is already in use» | Ya hay un tablero abierto. Ciérralo, o usa otro puerto: `streamlit run app.py --server.port 8502`. |
-| El tablero dice que se necesitan al menos dos fuentes | Deja activada «Comparar contra Sectur CDMX», sube otro archivo o, si tu archivo trae varias fuentes en una columna, indícalo en «Ajustes». |
-| Faltan muchos comentarios en los conteos | Se analizan sólo los del idioma elegido. Revisa el idioma en «Ajustes». |
+| «No existe el archivo …» | La ruta está mal o la terminal no está en la carpeta del proyecto. Entra con `cd` a la carpeta que tiene `analizador.py`. |
+| «La columna «texto» no existe…» | Con un solo archivo, usa los nombres de columnas que muestra el mensaje. Si ese archivo es de una sola fuente, pásalo junto con el de la DMO. |
+| «Ninguna fuente se llama «sectur»» | Revisa `--etiqueta_dmo`: con un archivo propio, es el nombre del archivo sin extensión. La terminal muestra las fuentes que encontró. |
+| El tablero no se abre solo en el navegador | Copia la dirección que imprime la terminal (http://localhost:8501) en el navegador. |
+| «Port 8501 is already in use» o el tablero abre otra corrida | Ya hay un tablero abierto en otra terminal. Ciérralo con `Ctrl+C`, o usa `--puerto 8502`. |
+| Faltan muchos comentarios en los conteos | Se analizan sólo los del idioma elegido. Revisa `--idioma`. |
 | La app en línea muestra un error o no se actualiza | En la app, «Manage app» › «Reboot app». Los registros de instalación están en ese mismo panel. |
 | La app en línea pide iniciar sesión o dice que no tienes acceso | Es privada: el dueño tiene que invitar tu correo con «Share». |
 
 ## Verificación
 
-`python verificar_requisitos.py` corre el script con datos que no ha visto: otras columnas, otras fuentes y archivos sueltos en xlsx, json, txt y tsv. Revisa cada requisito del proyecto, incluidos el tablero, BM25, la comparación con cada fuente y las conclusiones: 43 comprobaciones, todas correctas. Los resultados y las pruebas de robustez están en `VERIFICACION.md`.
+`python verificar_requisitos.py` corre el script con datos que no ha visto: otras columnas, otras fuentes y archivos sueltos en xlsx, json, txt y tsv. Revisa:
+- cada requisito del proyecto;
+- la entrada con dos archivos, incluida la DMO más la base unificada sin duplicarla;
+- que la terminal abra el tablero con los resultados;
+- los dos tableros, BM25, la comparación con cada fuente y las conclusiones.
+
+Los resultados y las pruebas de robustez están en `VERIFICACION.md`.
