@@ -2,7 +2,7 @@
 
 # Imagen del destino: proyectada vs. percibida
 
-**Análisis de texto con inteligencia artificial para comparar lo que comunica una organización de turismo (DMO) con lo que publican sus visitantes**
+**Análisis de texto para comparar lo que comunica una organización de turismo (DMO) con lo que publican sus visitantes**
 
 Caso de estudio: Ciudad de México · Sectur CDMX frente a TripAdvisor, Instagram y Reddit · 28,476 textos
 
@@ -613,7 +613,7 @@ Salamanca, Guanajuato, México
 [![Correo](https://img.shields.io/badge/Correo-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
 [![GitHub](https://img.shields.io/badge/GitHub-Castillo322-181717?logo=github&logoColor=white)](https://github.com/Castillo322)
 
-*Uno la ciencia de datos con la gestión de empresas: convierto datos de operación, ventas y opiniones de clientes en indicadores, tableros y automatizaciones que ayudan a decidir.*
+*Convierto datos —textos, opiniones, ventas y operación— en análisis, tableros y automatizaciones que ayudan a tomar decisiones.*
 
 </div>
 
@@ -622,16 +622,25 @@ Salamanca, Guanajuato, México
 | Programa | Institución |
 |---|---|
 | **Ingeniería de Datos e Inteligencia Artificial** *(en curso)* | División de Ingenierías Campus Irapuato-Salamanca (DICIS), Universidad de Guanajuato |
-| **Licenciatura en Gestión Empresarial** | Universidad de Guanajuato |
-| **Lean Six Sigma Yellow Belt** *(certificación)* | Lean Six Sigma Institute (LSSI) |
+
+**Materias relacionadas:** Procesamiento de lenguaje natural · Aprendizaje automático · Redes neuronales artificiales · Visión por computadora · Análisis de datos · Visualización de datos
+
+#### Cursos complementarios
+
+| Curso | Área |
+|---|---|
+| **Power BI** | Tableros e indicadores |
+| **Excel** | Análisis y manejo de datos |
+| **Python** | Programación y ciencia de datos |
+| **C++** | Programación |
 
 ### 💼 Experiencia
 
 | Rol | Dónde | Qué hice |
 |---|---|---|
-| **Prácticas profesionales** | IPower Electronics · Salamanca, Gto. · 2026 | Sistematicé procesos con DMAIC; definí KPIs y perfiles de puesto por área; automaticé el registro de solicitudes de cotización (correo → Odoo con IA) |
-| **Docente de Inteligencia Artificial** | Bachillerato · Modelo Dual | Clases de IA aplicada y uso de herramientas de IA generativa |
-| **Instructor** | Cursos de capacitación | Medición de tiempos y metodología DMAIC |
+| **Prácticas profesionales** | Sector privado | Análisis de datos e indicadores de desempeño; automatización de procesos administrativos |
+| **Docente de Inteligencia Artificial** | Bachillerato | Clases de IA aplicada y uso de herramientas de IA generativa |
+| **Instructor de cursos** | Capacitación | Cursos de análisis de datos, programación e inteligencia artificial |
 
 ### 📂 Proyectos
 
@@ -646,20 +655,21 @@ Salamanca, Guanajuato, México
 
 | Área | |
 |---|---|
-| **Datos y aprendizaje automático** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white) ![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white) |
-| **Visualización** | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) ![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white) ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge) |
+| **Lenguajes** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white) |
+| **Datos y aprendizaje automático** | ![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white) ![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white) |
+| **Visualización y reportes** | ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) ![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) ![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge) |
 | **Automatización** | ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white) ![Odoo](https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white) |
 | **Entorno** | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![LaTeX](https://img.shields.io/badge/LaTeX-008080?style=for-the-badge&logo=latex&logoColor=white) ![Anaconda](https://img.shields.io/badge/Anaconda-44A833?style=for-the-badge&logo=anaconda&logoColor=white) |
 
 ### 🧠 Áreas de interés
 
-Ciencia de datos · Aprendizaje automático · Procesamiento de lenguaje natural · Visión por computadora · Analítica de negocio y KPIs · Mejora continua (DMAIC)
+Ciencia de datos · Aprendizaje automático · Procesamiento de lenguaje natural · Visión por computadora · Visualización de datos · Automatización de procesos
 
 ### 📫 Contacto
 
 <div align="center">
 
-**Abierto a oportunidades** en ciencia de datos, analítica de negocio, automatización de procesos e IA aplicada.<br>
+**Abierto a oportunidades** en ciencia de datos, análisis de datos, automatización de procesos e IA aplicada.<br>
 Para proyectos, prácticas o empleo, escríbeme:
 
 [![Correo](https://img.shields.io/badge/Correo-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
