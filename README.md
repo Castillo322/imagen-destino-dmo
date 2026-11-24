@@ -614,9 +614,19 @@ Salamanca, Guanajuato, México
 [![Correo institucional](https://img.shields.io/badge/Correo_UG-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
 [![GitHub](https://img.shields.io/badge/GitHub-Castillo322-181717?logo=github&logoColor=white)](https://github.com/Castillo322)
 
-*Convierto datos —textos, opiniones, ventas y operación— en análisis, tableros y automatizaciones que ayudan a tomar decisiones.*
+*Analizo datos con inteligencia artificial y desarrollo aplicaciones y páginas web para micro, pequeñas y medianas empresas: convierto datos en análisis, tableros y automatizaciones que ayudan a tomar decisiones.*
 
 </div>
+
+### 🧩 Lo que hago
+
+| Área | En qué consiste |
+|---|---|
+| **Análisis de datos e inteligencia artificial** | Limpieza y análisis de datos, modelos de aprendizaje automático y redes neuronales, procesamiento de lenguaje natural y visión por computadora |
+| **Desarrollo web y de aplicaciones** | Páginas web y sistemas a la medida para mipymes y pymes: cotizaciones, agenda, catálogos, manuales y herramientas internas |
+| **Automatización e integraciones** | Conexión de tiendas en línea, correo y sistemas de gestión (ERP); flujos automáticos con apoyo de IA |
+| **Tableros e indicadores** | Tableros interactivos y reportes de indicadores en Power BI, Excel y Streamlit |
+| **Docencia y capacitación** | Clases y cursos de análisis de datos, programación e inteligencia artificial |
 
 ### 🎓 Formación
 
@@ -624,54 +634,85 @@ Salamanca, Guanajuato, México
 |---|---|
 | **Ingeniería de Datos e Inteligencia Artificial** *(en curso)* | División de Ingenierías Campus Irapuato-Salamanca (DICIS), Universidad de Guanajuato |
 
-**Materias relacionadas:** Procesamiento de lenguaje natural · Aprendizaje automático · Redes neuronales artificiales · Visión por computadora · Análisis de datos · Visualización de datos
+**Materias relacionadas:** Procesamiento de lenguaje natural · Aprendizaje automático · Redes neuronales artificiales · Visión por computadora · Big Data · Análisis de datos · Visualización de datos
 
 #### Cursos complementarios
 
 | Curso | Área |
 |---|---|
-| **Power BI** | Tableros e indicadores |
-| **Excel** | Análisis y manejo de datos |
 | **Python** | Programación y ciencia de datos |
 | **C++** | Programación |
+| **Linux** | Terminal y administración del sistema |
+| **Power BI** | Tableros e indicadores |
+| **Excel** | Análisis y manejo de datos |
+| **Desarrollo de videojuegos** | Programación de videojuegos |
 
 ### 💼 Experiencia
 
-| Rol | Dónde | Qué hice |
+| Rol | Dónde | Qué hago |
 |---|---|---|
+| **Desarrollo de aplicaciones y páginas web** | Micro, pequeñas y medianas empresas | Sitios web y sistemas a la medida, tableros e integraciones de tiendas en línea con sistemas de inventario |
 | **Prácticas profesionales** | Sector privado | Análisis de datos e indicadores de desempeño; automatización de procesos administrativos |
 | **Docente de Inteligencia Artificial** | Bachillerato | Clases de IA aplicada y uso de herramientas de IA generativa |
 | **Instructor de cursos** | Capacitación | Cursos de análisis de datos, programación e inteligencia artificial |
 
 ### 📂 Proyectos
 
-| Proyecto | Qué resuelve | Herramientas |
+#### Datos e inteligencia artificial
+
+| Proyecto | Qué hace | Herramientas |
 |---|---|---|
-| **Imagen del destino** *(este repositorio)* | Compara la imagen que proyecta una DMO con la que perciben sus visitantes en 28 mil textos | Python, NLP, scikit-learn, Streamlit |
-| **Clasificador de correos de ventas** | Clasifica de forma automática los correos de ventas | Python, redes neuronales |
-| **Sincronización Mercado Libre → Odoo 18** | Actualiza el inventario con cada pedido, sin duplicados y con alertas de error | n8n, OAuth2, Odoo |
-| **Sistema de cotizaciones** | Genera propuestas, guarda el historial y las envía por WhatsApp, para una empresa de capacitación | HTML, JavaScript |
+| **Imagen del destino** *(este repositorio)* | Compara la imagen que proyecta una organización de turismo con la que perciben sus visitantes en 28 mil textos | Python, NLP, scikit-learn, Streamlit |
+| **Clasificador de correos de ventas** | Clasifica de forma automática los correos que llegan a ventas | Python, redes neuronales |
+| **Predicción de riesgo de abandono escolar** | Estima el riesgo de abandono a partir del rendimiento académico | Python, perceptrón multicapa |
+| **Clasificación con Big Data** | Entrena y evalúa modelos de clasificación sobre 11 millones de registros | Apache Spark, Linux |
+| **Sistemas de recomendación** | Estudio de técnicas para recomendar productos a partir del historial de los usuarios | Apache Spark |
+| **Diagnóstico de ventas de una tienda en línea** | Distingue una caída estacional de una causada por la operación, con comparaciones pareadas por día | Análisis de datos |
+| **Análisis exploratorio de datos** | Explora y explica qué variables se relacionan con la calidad de un producto | Python, pandas |
+| **Datos no estructurados y desbalance de clases** | Compara técnicas para clasificar cuando una clase es mucho menos frecuente (SMOTE) | Python, scikit-learn |
+| **Prácticas de visión por computadora** | Procesamiento y análisis de imágenes | Python |
+| **Tablero comercial** | Convierte las exportaciones de un ERP en un modelo estrella con indicadores de ventas | Power BI, Excel |
+
+#### Desarrollo web y aplicaciones
+
+| Proyecto | Qué hace | Herramientas |
+|---|---|---|
+| **Sistema de cotizaciones y agenda** | Genera propuestas, guarda el historial y las envía por WhatsApp, para una empresa de capacitación | HTML, CSS, JavaScript |
+| **Manual interactivo de curso** | Manual digital de 14 capítulos para un curso de IA aplicada a ventas y atención al cliente | HTML, CSS, JavaScript |
+| **Organigrama interactivo** | Tarjetas editables, conexiones entre puestos y exportación a PDF | HTML, JavaScript |
+| **Directorio de vacantes de prácticas** | Reúne empresas, convenios y requisitos en un directorio con filtros | HTML, JavaScript |
+| **Presentaciones interactivas en 3D** | Presentaciones web para clases, con guion, reloj y modo celular | HTML, CSS, JavaScript |
+| **Demo de difusión de carreras de ingeniería** | Aplicación con animaciones, cuestionario y visualización de una red neuronal, para estudiantes de bachillerato | Python, Tkinter |
+| **Conversor de documentos para lectores de tinta electrónica** | Convierte PDF, EPUB, Word e imágenes al formato del lector | Python |
+
+#### Automatización e integraciones
+
+| Proyecto | Qué hace | Herramientas |
+|---|---|---|
+| **Sincronización de tienda en línea con inventario** | Actualiza el inventario del ERP con cada pedido de Mercado Libre, sin duplicados y con alertas de error | n8n, OAuth2, Odoo 18 |
+| **Registro automático de solicitudes de cotización** | Lee los PDF que llegan por correo con IA y registra la solicitud en el ERP | Python, Gemini, Odoo, Render |
+| **Pantalla informativa** | Muestra avisos, reuniones e indicadores en la televisión de una empresa | Yodeck |
 
 ### 🛠️ Herramientas
 
 | Área | |
 |---|---|
-| **Lenguajes** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white) |
+| **Lenguajes** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=cplusplus&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white) ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css&logoColor=white) |
 | **Datos y aprendizaje automático** | ![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white) ![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white) |
 | **Visualización y reportes** | ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) ![Excel](https://img.shields.io/badge/Excel-217346?style=for-the-badge) ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) ![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge) |
-| **Automatización** | ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white) ![Odoo](https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white) |
+| **Automatización e integraciones** | ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white) ![Odoo](https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white) ![Gemini](https://img.shields.io/badge/Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white) ![Render](https://img.shields.io/badge/Render-46E3B7?style=for-the-badge&logo=render&logoColor=black) |
 | **Entorno** | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![LaTeX](https://img.shields.io/badge/LaTeX-008080?style=for-the-badge&logo=latex&logoColor=white) ![Anaconda](https://img.shields.io/badge/Anaconda-44A833?style=for-the-badge&logo=anaconda&logoColor=white) |
 
 ### 🧠 Áreas de interés
 
-Ciencia de datos · Aprendizaje automático · Procesamiento de lenguaje natural · Visión por computadora · Visualización de datos · Automatización de procesos
+Ciencia de datos · Aprendizaje automático · Procesamiento de lenguaje natural · Visión por computadora · Visualización de datos · Desarrollo web · Automatización de procesos
 
 ### 📫 Contacto
 
 <div align="center">
 
-**Abierto a oportunidades** en ciencia de datos, análisis de datos, automatización de procesos e IA aplicada.<br>
-Para proyectos, prácticas o empleo, escríbeme:
+**Abierto a oportunidades** en ciencia de datos, análisis de datos, desarrollo web, automatización de procesos e IA aplicada.<br>
+Para proyectos, prácticas, empleo o el desarrollo de la página o aplicación de tu negocio, escríbeme:
 
 [![Correo](https://img.shields.io/badge/Correo-alejandrocastilloa314%40gmail.com-EA4335?logo=gmail&logoColor=white)](mailto:alejandrocastilloa314@gmail.com)
 [![Correo institucional](https://img.shields.io/badge/Correo_UG-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
