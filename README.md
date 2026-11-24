@@ -1,21 +1,47 @@
-# Imagen del destino: proyectada (DMO) vs. percibida
+<div align="center">
 
-Compara la imagen de un destino que proyecta su organización de marketing (DMO) con la que perciben los visitantes en otras fuentes digitales (reseñas, redes sociales, foros). El caso de estudio es la Ciudad de México: **Sectur CDMX** (DMO) frente a **TripAdvisor**, **Instagram** y **Reddit**.
+# Imagen del destino: proyectada vs. percibida
 
-Responde la pregunta del proyecto: **¿la imagen que proyecta la DMO coincide con la que perciben los visitantes? ¿En qué temas hay brechas y qué debería ajustar la DMO en su comunicación?**
+**Análisis de texto con inteligencia artificial para comparar lo que comunica una organización de turismo (DMO) con lo que publican sus visitantes**
 
-Proyecto final de Visualización de Datos · **Autor: [Alejandro Castillo Avalos](#autor-y-contacto)** · Ingeniería de Datos e Inteligencia Artificial, DICIS, Universidad de Guanajuato.
+Caso de estudio: Ciudad de México · Sectur CDMX frente a TripAdvisor, Instagram y Reddit · 28,476 textos
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
-[![Streamlit](https://img.shields.io/badge/Streamlit-tablero-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![pandas](https://img.shields.io/badge/pandas-datos-150458?logo=pandas&logoColor=white)](https://pandas.pydata.org/)
 [![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-tablero-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Plotly](https://img.shields.io/badge/Plotly-gr%C3%A1ficas-3F4F75?logo=plotly&logoColor=white)](https://plotly.com/python/)
-[![Sin APIs](https://img.shields.io/badge/funciona-sin_conexi%C3%B3n-2E7D32)](#verificación)
-[![Contacto](https://img.shields.io/badge/Contacto-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
+[![funciona](https://img.shields.io/badge/funciona-sin_conexi%C3%B3n-2E7D32)](#verificación)
+
+Desarrollado por **[Alejandro Castillo Avalos](#autor-y-contacto)** · Ingeniería de Datos e Inteligencia Artificial · Universidad de Guanajuato
+
+</div>
+
+---
+
+### La pregunta
+
+**¿La imagen que proyecta la DMO coincide con la que perciben los visitantes? ¿En qué temas hay brechas y qué debería ajustar la DMO en su comunicación?**
+
+### Resultados principales
+
+| | Resultado |
+|---|---|
+| **Respuesta** | Coinciden **sólo en parte**: la DMO proyecta lugares; los visitantes cuentan experiencias, comida, precios y quejas prácticas |
+| Coincidencia de temas (1 − Jensen-Shannon) | **0.81**: hablan de temas parecidos |
+| Parecido del contenido (coseno sobre LSA) | **0.55** (IC 95 %: 0.51–0.58): lo dicen con otras palabras |
+| Tono positivo | DMO **98 %** · visitantes **93 %** (χ², p < 0.001) |
+| Mayores brechas | La DMO destaca parques (+18 pp) y Centro Histórico (+13 pp); los visitantes, comida callejera y restaurantes |
+| Precio, valor y costo | Los visitantes lo tratan **2.4 veces más** que la DMO |
+| Modelo de sentimiento | F1 macro **0.82** · AUC **0.95** (validación cruzada de 5 pliegues) |
+
+### Qué hace
+
+Un script de Python que, desde la terminal y sin conexión a internet, limpia los textos, detecta comentarios atípicos, clasifica el tono, encuentra los temas, compara la DMO contra cada fuente, busca un concepto por similitud semántica y abre un **tablero interactivo en Streamlit** con los resultados y las **recomendaciones para la DMO**. Funciona con cualquier destino y con cualquier número y nombre de fuentes.
 
 ## Las dos versiones
 
-| | **Versión de terminal** (la que se presenta) | Versión web |
+| | **Versión de terminal** (principal) | Versión web |
 |---|---|---|
 | Cómo se usa | `python analizador.py` con los **7 parámetros obligatorios** | Se abre una página y se suben los archivos |
 | Qué hace | Corre los 8 pasos del análisis, imprime el resumen y las conclusiones, guarda los resultados y **abre solo el tablero de Streamlit** con esos resultados | Corre los mismos 8 pasos y muestra el mismo tablero |
@@ -26,10 +52,10 @@ Las dos usan exactamente el mismo código de análisis (`pipeline/analisis.py`) 
 
 ## Contenido
 
-1. [Cumplimiento del proyecto, punto por punto](#cumplimiento-del-proyecto-punto-por-punto)
+1. [Requisitos y cómo se cumplen](#requisitos-y-cómo-se-cumplen)
 2. [Requisitos: Python y librerías](#requisitos-python-y-librerías)
 3. [Instalación paso a paso](#instalación-paso-a-paso)
-4. [Versión de terminal (la que se presenta)](#versión-de-terminal-la-que-se-presenta)
+4. [Versión de terminal (principal)](#versión-de-terminal-principal)
 5. [Archivos de prueba](#archivos-de-prueba)
 6. [El tablero: las nueve pestañas](#el-tablero-las-nueve-pestañas)
 7. [Versión web y publicación en Streamlit Community Cloud](#versión-web-y-publicación-en-streamlit-community-cloud)
@@ -40,9 +66,9 @@ Las dos usan exactamente el mismo código de análisis (`pipeline/analisis.py`) 
 12. [Verificación](#verificación)
 13. [Autor y contacto](#autor-y-contacto)
 
-## Cumplimiento del proyecto, punto por punto
+## Requisitos y cómo se cumplen
 
-| Requisito del proyecto | Cómo se cumple | Dónde |
+| Requisito | Cómo se cumple | Dónde |
 |---|---|---|
 | Script de Python ejecutable desde la línea de comandos | `python analizador.py` con los 7 parámetros obligatorios; al terminar abre el tablero | `analizador.py`, `tablero.py` |
 | 1. Ruta del CSV unificado con columna de fuente | `--csv`: la base unificada, o el archivo de la DMO y el de los visitantes. Formatos: csv, tsv, txt, xlsx, xls, json, jsonl, parquet y `.gz` | `pipeline/lectura.py` |
@@ -53,20 +79,20 @@ Las dos usan exactamente el mismo código de análisis (`pipeline/analisis.py`) 
 | 6. Título del reporte | `--titulo`: en el reporte, el tablero y el nombre de la carpeta de salida | |
 | 7. Paleta accesible | `--paleta`: `okabe_ito`, `viridis`, `cividis`, `plasma`, `inferno`, `magma`; el tablero se abre con esa paleta | `pipeline/visualizaciones.py` |
 | Procesamiento 1. Limpieza y preprocesamiento | Quita URLs, menciones, emojis, números y signos; minúsculas; tokeniza, quita palabras vacías y lematiza según el idioma. La etiqueta de fuente se conserva en cada registro | `pipeline/preprocesamiento.py` |
-| 2. Atípicos y n-gramas | Isolation Forest (visto en clase). Unigramas, bigramas y trigramas de los atípicos (de toda la base y por fuente). Sólo los normales siguen | `pipeline/outliers.py` |
+| 2. Atípicos y n-gramas | Isolation Forest. Unigramas, bigramas y trigramas de los atípicos (de toda la base y por fuente). Sólo los normales siguen | `pipeline/outliers.py` |
 | 3. Sentimiento binario | Positivo/negativo. En español, regresión logística entrenada con las estrellas de TripAdvisor; en otros idiomas, VADER. Dos grupos, cada uno con su fuente | `pipeline/sentimiento.py` |
 | 4. Tópicos por sentimiento | NMF para positivos y para negativos; el número de temas se elige solo. **Condición especial:** con menos de 30 comentarios (`--umbral_topicos`) se usan frecuencias de palabras y nubes de palabras | `pipeline/topicos.py`, `pipeline/nubes.py` |
 | 5. Comparación DMO vs. percibida | Tópicos (DMO vs. agregado y vs. cada fuente, con brechas e intervalos), sentimiento (con χ²), similitud semántica global (**índice de alineación**, coseno LSA con intervalo) y tabla por fuente | `pipeline/comparacion.py` |
 | 6. Resultados clave | Palabras clave de cada tópico positivo y negativo indicando la fuente; comentario representativo (el más cercano al centroide); resumen de brechas. Se imprimen en la terminal, van en el reporte HTML y en el tablero | `pipeline/reporte.py` |
 | 7. Visualizaciones interactivas | Dispersión de comentarios (t-SNE) con **color + forma**, por tópico (positivos y negativos) y por fuente, con el comentario al pasar el cursor; gráficas que contrastan temas y tono de la DMO y de los visitantes | Tablero y reporte |
 | 8. Concepto «precio, valor, costo» | Similitud semántica de cada comentario con el concepto; dispersión interactiva; comparación DMO vs. percibida (frecuencia, tono y contexto); los 5 más cercanos con su fuente; como complemento, mención literal con BM25 | `pipeline/concepto.py` |
-| GitHub, `requirements.txt` y `README.md` con ejemplos con todos los parámetros | Este archivo; ver [Uso desde la terminal](#versión-de-terminal-la-que-se-presenta) | |
+| GitHub, `requirements.txt` y `README.md` con ejemplos con todos los parámetros | Este archivo; ver [Uso desde la terminal](#versión-de-terminal-principal) | |
 | CSV de ejemplo anonimizado con la columna de fuente | `datos/ejemplo.csv` (columna `plataforma`) y `datos/ejemplo_visitantes.csv` | [Archivos de prueba](#archivos-de-prueba) |
 | Sin APIs externas, offline | Se comprobó corriendo con la red bloqueada | `verificar_requisitos.py` |
 | Agnóstico al número y nombre de las fuentes | Se comprobó con 2 y 4 fuentes, con otros nombres de columnas y fuentes, y con un archivo por fuente | `verificar_requisitos.py` |
-| Demostración en vivo con datos no vistos | Se corre con el archivo que dé el profesor: `--csv <archivo_de_la_DMO> <archivo_del_profesor>` | [Comandos](#comandos-listos-para-copiar) |
+| Funciona con datos nuevos | Se corre con cualquier archivo nuevo: `--csv <archivo_de_la_DMO> <archivo_nuevo>` | [Comandos](#comandos-listos-para-copiar) |
 
-Además, el tablero responde la pregunta del proyecto en su primera pestaña («Conclusiones»): una respuesta corta, indicadores y decisiones para la DMO con su evidencia.
+Además, el tablero responde la pregunta central en su primera pestaña («Conclusiones»): una respuesta corta, indicadores y decisiones para la DMO con su evidencia.
 
 ## Requisitos: Python y librerías
 
@@ -186,7 +212,7 @@ python analizador.py --csv datos/ejemplo.csv --columna_texto comentario --column
 
 En unos segundos imprime el avance, el resumen y las conclusiones, y abre el tablero en el navegador. Para cerrarlo, presiona `Ctrl+C` en la terminal.
 
-## Versión de terminal (la que se presenta)
+## Versión de terminal (principal)
 
 ### Los 7 parámetros obligatorios
 
@@ -220,7 +246,7 @@ python analizador.py \
 1. Dice qué archivos leyó y qué fuentes va a comparar, por ejemplo: `Fuentes a comparar: tripadvisor (22,128), reddit (5,450), sectur [DMO] (487), instagram (424)`.
 2. Muestra el avance de cada paso con el tiempo transcurrido.
 3. Guarda los resultados en `salidas/<titulo>_<idioma>/`: `reporte.html`, `resultados.json` y `corpus_procesado.parquet`.
-4. Imprime cuántos temas encontró, el resumen de brechas, la comparación de la DMO con cada fuente y las conclusiones para la DMO (respuesta a la pregunta del proyecto y decisiones).
+4. Imprime cuántos temas encontró, el resumen de brechas, la comparación de la DMO con cada fuente y las conclusiones para la DMO (respuesta a la pregunta central y decisiones).
 5. **Abre el tablero de Streamlit** (`tablero.py`) en el navegador, en http://localhost:8501, con los resultados de esa corrida y la paleta elegida. Si el puerto está ocupado usa el siguiente (8502…). Si el navegador no se abre solo, copia la dirección que aparece en la terminal.
 6. El tablero sigue abierto mientras la terminal esté abierta. Para cerrarlo, presiona `Ctrl+C` en la terminal.
 
@@ -228,7 +254,7 @@ python analizador.py \
 
 **Un archivo: la base unificada.** Tiene una fila por comentario, una columna de texto y una columna de fuente. Los registros cuya fuente es `--etiqueta_dmo` son la imagen proyectada; el resto, la percibida. Así viene `datos/cdmx_unificado.csv.gz` (columnas `texto` y `fuente`, con `sectur`, `tripadvisor`, `instagram` y `reddit`).
 
-**Dos archivos: el de la DMO y el de los visitantes.** Se ponen uno tras otro en `--csv`. El archivo de los visitantes puede ser la base unificada, una sola plataforma (TripAdvisor, Instagram o Reddit) o el archivo que proponga el profesor. También se aceptan más de dos archivos. Así se reparten las fuentes:
+**Dos archivos: el de la DMO y el de los visitantes.** Se ponen uno tras otro en `--csv`. El archivo de los visitantes puede ser la base unificada, una sola plataforma (TripAdvisor, Instagram o Reddit) o cualquier archivo nuevo. También se aceptan más de dos archivos. Así se reparten las fuentes:
 
 - **Si un archivo trae la columna de fuente** (como la base unificada), cada fila conserva su etiqueta.
 - **Si no la trae**, todo el archivo es una sola fuente con el nombre del archivo. Se reconocen las fuentes del caso: `sectur.csv` → `sectur`, `TripAdvisor.csv.gz` → `tripadvisor`, `instaUGC.csv` → `instagram`, `redditcdmx.csv` → `reddit`. Cualquier otro archivo usa su nombre: `google_reviews.xlsx` → `google_reviews`.
@@ -264,19 +290,19 @@ python analizador.py --csv datos/originales/sectur.csv datos/originales/redditcd
 python analizador.py --csv datos/originales/sectur.csv datos/originales/redditcdmx.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma en --titulo "Sectur vs Reddit" --paleta okabe_ito --excluir "mexico,city,cdmx,mexican"
 ```
 
-**Sólo la base unificada (un archivo, como dice el proyecto):**
+**Sólo la base unificada (un archivo, el formato estándar):**
 
 ```bash
 python analizador.py --csv datos/cdmx_unificado.csv.gz --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Imagen de la Ciudad de México" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
 ```
 
-**Sectur frente al archivo del profesor.** Copia el archivo a la carpeta `datos/` y cambia `ARCHIVO_DEL_PROFESOR.csv` por su nombre:
+**Sectur frente a un archivo nuevo.** Copia el archivo a la carpeta `datos/` y cambia `ARCHIVO_NUEVO.csv` por su nombre:
 
 ```bash
-python analizador.py --csv datos/originales/sectur.csv datos/ARCHIVO_DEL_PROFESOR.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Sectur vs archivo del profesor" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
+python analizador.py --csv datos/originales/sectur.csv datos/ARCHIVO_NUEVO.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Sectur vs archivo nuevo" --paleta okabe_ito --excluir "mexico,ciudad,cdmx,df,city"
 ```
 
-- Si el archivo del profesor **ya trae su propia DMO y una columna de fuente**, es una base unificada: pásalo solo, con sus nombres de columnas y su etiqueta de DMO, por ejemplo: `--csv datos/ARCHIVO.csv --columna_texto comentario --columna_fuente plataforma --etiqueta_dmo dmo`.
+- Si el archivo nuevo **ya trae su propia DMO y una columna de fuente**, es una base unificada: pásalo solo, con sus nombres de columnas y su etiqueta de DMO, por ejemplo: `--csv datos/ARCHIVO.csv --columna_texto comentario --columna_fuente plataforma --etiqueta_dmo dmo`.
 - Si una columna no existe, la terminal dice cuáles hay. Corrige el nombre y vuelve a correr.
 - Si los comentarios están en otro idioma, cambia `--idioma` (por ejemplo, `en`).
 
@@ -331,7 +357,7 @@ En `salidas/<titulo>_<idioma>/`:
 
 Dos archivos anonimizados para probar el script en segundos. Las menciones a cuentas aparecen como `@usuario`, y se quitaron teléfonos, correos y enlaces:
 
-- **`datos/ejemplo.csv`**: el formato de entrada que pide el proyecto, una base unificada. Trae 360 comentarios: 120 de la DMO (Sectur), 120 de TripAdvisor y 120 de Instagram. Usa a propósito otros nombres de columnas: el texto está en `comentario` y la fuente en `plataforma`, con los valores `sectur`, `tripadvisor` e `instagram`.
+- **`datos/ejemplo.csv`**: el formato de entrada estándar, una base unificada. Trae 360 comentarios: 120 de la DMO (Sectur), 120 de TripAdvisor y 120 de Instagram. Usa a propósito otros nombres de columnas: el texto está en `comentario` y la fuente en `plataforma`, con los valores `sectur`, `tripadvisor` e `instagram`.
 
   ```
   plataforma,comentario
@@ -344,7 +370,7 @@ Dos archivos anonimizados para probar el script en segundos. Las menciones a cue
   python analizador.py --csv datos/ejemplo.csv --columna_texto comentario --columna_fuente plataforma --etiqueta_dmo sectur --idioma es --titulo "Prueba" --paleta viridis
   ```
 
-- **`datos/ejemplo_visitantes.csv`**: un archivo de visitantes de una sola plataforma, sin columna de fuente. Es como el que podría dar el profesor: 300 reseñas con columnas `comentario`, `calificacion` y `fecha`. Se compara con Sectur:
+- **`datos/ejemplo_visitantes.csv`**: un archivo de visitantes de una sola plataforma, sin columna de fuente. Sirve para probar un archivo nuevo: 300 reseñas con columnas `comentario`, `calificacion` y `fecha`. Se compara con Sectur:
 
   ```bash
   python analizador.py --csv datos/originales/sectur.csv datos/ejemplo_visitantes.csv --columna_texto texto --columna_fuente fuente --etiqueta_dmo sectur --idioma es --titulo "Prueba con dos archivos" --paleta cividis --excluir "mexico,ciudad,cdmx,df,city"
@@ -352,13 +378,13 @@ Dos archivos anonimizados para probar el script en segundos. Las menciones a cue
 
   Como no tiene la columna `texto`, la terminal avisa que usa `comentario`. Como tiene pocas reseñas negativas, los negativos se analizan con frecuencias de palabras en lugar de tópicos: es la condición especial del paso 4.
 
-Los datos completos del caso están en `datos/originales/` (las 4 bases tal como se entregaron) y en `datos/cdmx_unificado.csv.gz` (las 4 unidas).
+Los datos completos del caso están en `datos/originales/` (las 4 bases en su formato original) y en `datos/cdmx_unificado.csv.gz` (las 4 unidas).
 
 ## El tablero: las nueve pestañas
 
 Es el mismo en la versión de terminal (`tablero.py`) y en la web (`app.py`). La paleta se cambia en la barra lateral; en la versión de terminal empieza con la que se pidió en `--paleta`. Cada fuente conserva siempre el mismo color y la misma forma; la DMO es siempre el cuadrado. El reporte HTML se descarga desde la barra lateral.
 
-- **Conclusiones**: responde la pregunta del proyecto con una respuesta corta, indicadores y **decisiones para la DMO** ordenadas por prioridad, cada una con su evidencia. Los tipos de decisión son: replantear, incorporar, atender, informar, ajustar enfoque o tono, canal, vigilar y mantener. Se generan solas, con las mismas reglas, para cualquier conjunto de archivos (`pipeline/conclusiones.py`). Los umbrales se muestran en la pestaña.
+- **Conclusiones**: responde la pregunta central con una respuesta corta, indicadores y **decisiones para la DMO** ordenadas por prioridad, cada una con su evidencia. Los tipos de decisión son: replantear, incorporar, atender, informar, ajustar enfoque o tono, canal, vigilar y mantener. Se generan solas, con las mismas reglas, para cualquier conjunto de archivos (`pipeline/conclusiones.py`). Los umbrales se muestran en la pestaña.
 - **Resumen**: muestra:
   - comentarios por fuente;
   - tono, parecido del contenido y coincidencia de agenda;
@@ -459,7 +485,7 @@ No hace falta saber git: todo se puede hacer desde la página del repositorio.
      - Cuantitativa: temas con IC, tono con χ², parecido con IC y agenda.
      - Cualitativa: palabras propias de cada lado por log-odds, palabras con que cada lado aborda cada tema y ejemplos de cada lado elegidos con **BM25**, usando las palabras del tema como consulta.
 6. **Reporte.** Incluye:
-   - las conclusiones para la DMO (respuesta a la pregunta del proyecto y decisiones con evidencia);
+   - las conclusiones para la DMO (respuesta a la pregunta central y decisiones con evidencia);
    - las palabras clave por tema y fuente;
    - el comentario representativo (el más cercano al centro del tema);
    - un resumen de brechas.
@@ -526,7 +552,7 @@ pipeline/                  el análisis, un módulo por paso:
 datos/
   ejemplo.csv                ARCHIVO DE PRUEBA: base unificada chica y anonimizada (columna de fuente «plataforma»)
   ejemplo_visitantes.csv     ARCHIVO DE PRUEBA: archivo de visitantes de una sola plataforma, sin columna de fuente
-  originales/                las 4 bases tal como se entregaron (sectur.csv es la DMO)
+  originales/                las 4 bases en su formato original (sectur.csv es la DMO)
   cdmx_unificado.csv.gz      las 4 bases unidas en un archivo
 modelos/                     modelo de tono en español y sus métricas
 salidas/                     resultados del ejemplo CDMX (español e inglés); aquí se guardan también las corridas nuevas
@@ -568,7 +594,7 @@ python entrenar_sentimiento.py --csv datos/cdmx_unificado.csv.gz --columna_texto
 ## Verificación
 
 `python verificar_requisitos.py` corre el script con datos que no ha visto: otras columnas, otras fuentes y archivos sueltos en xlsx, json, txt y tsv. Revisa:
-- cada requisito del proyecto;
+- cada requisito;
 - la entrada con dos archivos, incluida la DMO más la base unificada sin duplicarla;
 - que la terminal abra el tablero con los resultados;
 - los dos tableros, BM25, la comparación con cada fuente y las conclusiones.
@@ -577,29 +603,66 @@ Los resultados y las pruebas de robustez están en `VERIFICACION.md`.
 
 ## Autor y contacto
 
-**Alejandro Castillo Avalos**<br>
-Estudiante de Ingeniería de Datos e Inteligencia Artificial · DICIS, Universidad de Guanajuato · Salamanca, Guanajuato, México
+<div align="center">
+
+### Alejandro Castillo Avalos
+
+**Ingeniería de Datos e Inteligencia Artificial** · Universidad de Guanajuato<br>
+Salamanca, Guanajuato, México
 
 [![Correo](https://img.shields.io/badge/Correo-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
 [![GitHub](https://img.shields.io/badge/GitHub-Castillo322-181717?logo=github&logoColor=white)](https://github.com/Castillo322)
 
-Uno la ciencia de datos con la gestión de empresas: convierto datos de operación, ventas y opiniones de clientes en indicadores, tableros y automatizaciones que ayudan a decidir.
+*Uno la ciencia de datos con la gestión de empresas: convierto datos de operación, ventas y opiniones de clientes en indicadores, tableros y automatizaciones que ayudan a decidir.*
 
-**Lo que hago**
-- **Análisis de datos y aprendizaje automático** en Python: pandas, scikit-learn, procesamiento de lenguaje natural, redes neuronales y visión por computadora; Apache Spark para grandes volúmenes.
-- **Visualización y tableros**: Streamlit, Plotly y Power BI, con paletas accesibles.
-- **Automatización e integraciones**: n8n, Odoo, Mercado Libre y extracción de datos de documentos con IA.
-- **Mejora continua**: KPIs, DMAIC, medición de tiempos y diseño de puestos.
+</div>
 
-**Experiencia**
-- **Prácticas profesionales en IPower Electronics** (Salamanca, Gto., 2026): sistematización de procesos con DMAIC, KPIs y perfiles de puesto por área, y automatización del registro de solicitudes de cotización (correo → Odoo con IA).
-- **Integración de inventario Mercado Libre → Odoo 18** con n8n: control de duplicados, OAuth2, actualización de existencias y alertas de error.
-- **Docente de Inteligencia Artificial** en bachillerato (Modelo Dual).
-- **Instructor de cursos** de medición de tiempos y DMAIC.
+### 🎓 Formación
 
-**Formación y certificaciones**
-- Ingeniería de Datos e Inteligencia Artificial, DICIS, Universidad de Guanajuato.
-- Licenciatura en Gestión Empresarial, Universidad de Guanajuato.
-- Lean Six Sigma Yellow Belt, Lean Six Sigma Institute (LSSI).
+| Programa | Institución |
+|---|---|
+| **Ingeniería de Datos e Inteligencia Artificial** *(en curso)* | División de Ingenierías Campus Irapuato-Salamanca (DICIS), Universidad de Guanajuato |
+| **Licenciatura en Gestión Empresarial** | Universidad de Guanajuato |
+| **Lean Six Sigma Yellow Belt** *(certificación)* | Lean Six Sigma Institute (LSSI) |
 
-**Abierto a oportunidades** en ciencia de datos, analítica de negocio, automatización de procesos e IA aplicada. Para proyectos, prácticas o empleo, escríbeme a [a.castilloavalos@ugto.mx](mailto:a.castilloavalos@ugto.mx).
+### 💼 Experiencia
+
+| Rol | Dónde | Qué hice |
+|---|---|---|
+| **Prácticas profesionales** | IPower Electronics · Salamanca, Gto. · 2026 | Sistematicé procesos con DMAIC; definí KPIs y perfiles de puesto por área; automaticé el registro de solicitudes de cotización (correo → Odoo con IA) |
+| **Docente de Inteligencia Artificial** | Bachillerato · Modelo Dual | Clases de IA aplicada y uso de herramientas de IA generativa |
+| **Instructor** | Cursos de capacitación | Medición de tiempos y metodología DMAIC |
+
+### 📂 Proyectos
+
+| Proyecto | Qué resuelve | Herramientas |
+|---|---|---|
+| **Imagen del destino** *(este repositorio)* | Compara la imagen que proyecta una DMO con la que perciben sus visitantes en 28 mil textos | Python, NLP, scikit-learn, Streamlit |
+| **Clasificador de correos de ventas** | Clasifica de forma automática los correos de ventas | Python, redes neuronales |
+| **Sincronización Mercado Libre → Odoo 18** | Actualiza el inventario con cada pedido, sin duplicados y con alertas de error | n8n, OAuth2, Odoo |
+| **Sistema de cotizaciones** | Genera propuestas, guarda el historial y las envía por WhatsApp, para una empresa de capacitación | HTML, JavaScript |
+
+### 🛠️ Herramientas
+
+| Área | |
+|---|---|
+| **Datos y aprendizaje automático** | ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white) ![pandas](https://img.shields.io/badge/pandas-150458?style=for-the-badge&logo=pandas&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white) ![Apache Spark](https://img.shields.io/badge/Apache_Spark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white) |
+| **Visualización** | ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) ![Plotly](https://img.shields.io/badge/Plotly-3F4F75?style=for-the-badge&logo=plotly&logoColor=white) ![Power BI](https://img.shields.io/badge/Power_BI-F2C811?style=for-the-badge&logo=powerbi&logoColor=black) ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557C?style=for-the-badge) |
+| **Automatización** | ![n8n](https://img.shields.io/badge/n8n-EA4B71?style=for-the-badge&logo=n8n&logoColor=white) ![Odoo](https://img.shields.io/badge/Odoo-714B67?style=for-the-badge&logo=odoo&logoColor=white) |
+| **Entorno** | ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![LaTeX](https://img.shields.io/badge/LaTeX-008080?style=for-the-badge&logo=latex&logoColor=white) ![Anaconda](https://img.shields.io/badge/Anaconda-44A833?style=for-the-badge&logo=anaconda&logoColor=white) |
+
+### 🧠 Áreas de interés
+
+Ciencia de datos · Aprendizaje automático · Procesamiento de lenguaje natural · Visión por computadora · Analítica de negocio y KPIs · Mejora continua (DMAIC)
+
+### 📫 Contacto
+
+<div align="center">
+
+**Abierto a oportunidades** en ciencia de datos, analítica de negocio, automatización de procesos e IA aplicada.<br>
+Para proyectos, prácticas o empleo, escríbeme:
+
+[![Correo](https://img.shields.io/badge/Correo-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
+[![GitHub](https://img.shields.io/badge/GitHub-Castillo322-181717?logo=github&logoColor=white)](https://github.com/Castillo322)
+
+</div>
