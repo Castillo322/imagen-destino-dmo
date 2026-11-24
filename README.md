@@ -626,7 +626,7 @@ Salamanca, Guanajuato, México
 | **Desarrollo web y de aplicaciones** | Páginas web y sistemas a la medida para mipymes y pymes: cotizaciones, agenda, catálogos, manuales y herramientas internas |
 | **Automatización e integraciones** | Conexión de tiendas en línea, correo y sistemas de gestión (ERP); flujos automáticos con apoyo de IA |
 | **Tableros e indicadores** | Tableros interactivos y reportes de indicadores en Power BI, Excel y Streamlit |
-| **Docencia y capacitación** | Clases de inteligencia artificial y cursos de análisis de datos, programación e IA para empresas, en especial del sector automotriz |
+| **Docencia y capacitación** | Imparto la materia de Inteligencia Artificial y doy cursos de análisis de datos, programación e IA para empresas, en especial del sector automotriz |
 
 ### 🎓 Formación
 
@@ -667,12 +667,8 @@ Salamanca, Guanajuato, México
 - Herramientas internas: organigrama interactivo y pantalla informativa con avisos e indicadores para el personal.
 
 #### Docente de Inteligencia Artificial
-*Clases de inteligencia artificial e IA generativa*
 
-- Doy clases de fundamentos de la inteligencia artificial y de IA generativa.
-- Enseño a usar modelos de lenguaje (ChatGPT, Gemini, Claude y Perplexity) y a redactar instrucciones (*prompts*) para tareas reales.
-- Diseño clases interactivas en 3D, demostraciones y exámenes en línea, y preparo material para usarse sin internet en el aula.
-- Evaluación y seguimiento del grupo: asistencias, calificaciones y reportes.
+- Imparto la materia de Inteligencia Artificial.
 - Difusión de las carreras de ingeniería de la Universidad de Guanajuato (DICIS), con una presentación y una aplicación interactiva en Python.
 
 #### Instructor de capacitación
