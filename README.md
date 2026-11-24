@@ -610,7 +610,8 @@ Los resultados y las pruebas de robustez están en `VERIFICACION.md`.
 **Ingeniería de Datos e Inteligencia Artificial** · Universidad de Guanajuato<br>
 Salamanca, Guanajuato, México
 
-[![Correo](https://img.shields.io/badge/Correo-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
+[![Correo](https://img.shields.io/badge/Correo-alejandrocastilloa314%40gmail.com-EA4335?logo=gmail&logoColor=white)](mailto:alejandrocastilloa314@gmail.com)
+[![Correo institucional](https://img.shields.io/badge/Correo_UG-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
 [![GitHub](https://img.shields.io/badge/GitHub-Castillo322-181717?logo=github&logoColor=white)](https://github.com/Castillo322)
 
 *Convierto datos —textos, opiniones, ventas y operación— en análisis, tableros y automatizaciones que ayudan a tomar decisiones.*
@@ -672,7 +673,8 @@ Ciencia de datos · Aprendizaje automático · Procesamiento de lenguaje natural
 **Abierto a oportunidades** en ciencia de datos, análisis de datos, automatización de procesos e IA aplicada.<br>
 Para proyectos, prácticas o empleo, escríbeme:
 
-[![Correo](https://img.shields.io/badge/Correo-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
+[![Correo](https://img.shields.io/badge/Correo-alejandrocastilloa314%40gmail.com-EA4335?logo=gmail&logoColor=white)](mailto:alejandrocastilloa314@gmail.com)
+[![Correo institucional](https://img.shields.io/badge/Correo_UG-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
 [![GitHub](https://img.shields.io/badge/GitHub-Castillo322-181717?logo=github&logoColor=white)](https://github.com/Castillo322)
 
 </div>
