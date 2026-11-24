@@ -649,20 +649,45 @@ Salamanca, Guanajuato, México
 
 ### 💼 Experiencia
 
-| Rol | Dónde | Qué hago |
-|---|---|---|
-| **Desarrollo de aplicaciones y páginas web** | Micro, pequeñas y medianas empresas | Sitios web y sistemas a la medida, tableros e integraciones de tiendas en línea con sistemas de inventario |
-| **Prácticas profesionales** | Sector privado | Análisis de datos e indicadores de desempeño; automatización de procesos administrativos |
-| **Docente de Inteligencia Artificial** | Bachillerato | Clases de IA aplicada y uso de herramientas de IA generativa |
-| **Instructor de cursos** | Capacitación | Cursos de análisis de datos, programación e inteligencia artificial |
+#### Desarrollo de aplicaciones y páginas web
+*Independiente · Micro, pequeñas y medianas empresas*
+
+- Desarrollo páginas web y aplicaciones a la medida que funcionan desde el navegador, sin instalar nada.
+- Sistemas para la operación diaria: cotizaciones con historial y envío por WhatsApp, agenda, organigramas, directorios con filtros y manuales digitales.
+- Integro tiendas en línea con el sistema de inventario (Mercado Libre → Odoo) mediante flujos automáticos en n8n.
+- Automatizo tareas con IA: lectura de documentos PDF que llegan por correo y registro automático en el ERP.
+- Armo tableros de indicadores en Power BI a partir de los datos del negocio.
+
+#### Prácticas profesionales
+*Sector privado*
+
+- Levantamiento y análisis de datos de ventas y operación para proponer indicadores de desempeño (KPIs) por área.
+- Levantamiento y documentación de procesos por área.
+- Automatización del registro de solicitudes de cotización: del correo al ERP con apoyo de IA.
+- Herramientas internas: organigrama interactivo y pantalla informativa con avisos e indicadores para el personal.
+
+#### Docente de Inteligencia Artificial
+*Bachillerato*
+
+- Imparto la materia de Inteligencia Artificial: fundamentos e IA generativa.
+- Enseño a usar modelos de lenguaje (ChatGPT, Gemini, Claude y Perplexity) y a redactar instrucciones (*prompts*) para tareas reales.
+- Diseño clases interactivas en 3D, demostraciones y exámenes en línea, y preparo material para usarse sin internet en el aula.
+- Evaluación y seguimiento del grupo: asistencias, calificaciones y reportes.
+
+#### Instructor de cursos y difusión
+*Capacitación · Universidad de Guanajuato*
+
+- Cursos de análisis de datos, programación e inteligencia artificial.
+- Material didáctico digital: manual interactivo para un curso de IA aplicada a ventas y atención al cliente.
+- Difusión de las carreras de ingeniería de la DICIS entre estudiantes de bachillerato, con una presentación y una aplicación interactiva en Python.
 
 ### 📂 Proyectos
 
 #### Datos e inteligencia artificial
 
-| Proyecto | Qué hace | Herramientas |
+| Proyecto | Qué hace | Tecnología |
 |---|---|---|
-| **Imagen del destino** *(este repositorio)* | Compara la imagen que proyecta una organización de turismo con la que perciben sus visitantes en 28 mil textos | Python, NLP, scikit-learn, Streamlit |
+| **Imagen del destino** *(este repositorio)* | Compara la imagen que proyecta una organización de turismo con la que perciben sus visitantes en 28 mil textos: sentimiento, temas, similitud semántica y tablero interactivo | Python, NLP, scikit-learn, Streamlit |
 | **Clasificador de correos de ventas** | Clasifica de forma automática los correos que llegan a ventas | Python, redes neuronales |
 | **Predicción de riesgo de abandono escolar** | Estima el riesgo de abandono a partir del rendimiento académico | Python, perceptrón multicapa |
 | **Clasificación con Big Data** | Entrena y evalúa modelos de clasificación sobre 11 millones de registros | Apache Spark, Linux |
@@ -671,26 +696,31 @@ Salamanca, Guanajuato, México
 | **Análisis exploratorio de datos** | Explora y explica qué variables se relacionan con la calidad de un producto | Python, pandas |
 | **Datos no estructurados y desbalance de clases** | Compara técnicas para clasificar cuando una clase es mucho menos frecuente (SMOTE) | Python, scikit-learn |
 | **Prácticas de visión por computadora** | Procesamiento y análisis de imágenes | Python |
-| **Tablero comercial** | Convierte las exportaciones de un ERP en un modelo estrella con indicadores de ventas | Power BI, Excel |
+| **Tablero comercial** | Limpia las exportaciones de un ERP, arma un modelo estrella (hechos y dimensiones) y las medidas para un tablero de ventas | Python, Power BI, DAX |
 
 #### Desarrollo web y aplicaciones
 
-| Proyecto | Qué hace | Herramientas |
+Las aplicaciones web son de una sola página y corren en el navegador sin instalar nada.
+
+| Proyecto | Qué hace | Tecnología |
 |---|---|---|
-| **Sistema de cotizaciones y agenda** | Genera propuestas, guarda el historial y las envía por WhatsApp, para una empresa de capacitación | HTML, CSS, JavaScript |
-| **Manual interactivo de curso** | Manual digital de 14 capítulos para un curso de IA aplicada a ventas y atención al cliente | HTML, CSS, JavaScript |
-| **Organigrama interactivo** | Tarjetas editables, conexiones entre puestos y exportación a PDF | HTML, JavaScript |
-| **Directorio de vacantes de prácticas** | Reúne empresas, convenios y requisitos en un directorio con filtros | HTML, JavaScript |
-| **Presentaciones interactivas en 3D** | Presentaciones web para clases, con guion, reloj y modo celular | HTML, CSS, JavaScript |
-| **Demo de difusión de carreras de ingeniería** | Aplicación con animaciones, cuestionario y visualización de una red neuronal, para estudiantes de bachillerato | Python, Tkinter |
-| **Conversor de documentos para lectores de tinta electrónica** | Convierte PDF, EPUB, Word e imágenes al formato del lector | Python |
+| **Sistema de cotizaciones y agenda** | Asistente por pasos para armar propuestas, agenda de cursos, historial guardado en el navegador y envío por WhatsApp con el mensaje ya redactado, para una empresa de capacitación | JavaScript (SPA), almacenamiento local (localStorage), enlaces de WhatsApp (wa.me) |
+| **Presentaciones inmersivas con cámara 3D** | La cámara viaja por un túnel en 3D de una diapositiva a otra; interfaz tipo HUD con reloj de clase, mapa, guion del instructor, atajos de teclado y modo celular | CSS 3D (perspectiva y profundidad), JavaScript, pruebas automáticas con Playwright |
+| **Clases interactivas en 3D con examen** | Fondo animado de un hipercubo 4D, tarjetas que se inclinan con el puntero, navegación con teclado o deslizando en el celular y examen de 20 preguntas con barra de progreso y clave del docente | Canvas, CSS 3D, SVG, JavaScript, localStorage |
+| **Directorio de vacantes de prácticas** | Investigación de empresas, convenios y requisitos; directorio con filtros por carrera y vía de acceso, buscador, ficha por empresa y balance por carrera calculado con los datos | JavaScript, CSS 3D, Canvas |
+| **Manual interactivo de curso** | Manual digital de 14 capítulos con navegación lateral que explica 6 herramientas de IA, para un curso de IA aplicada a ventas y atención al cliente | HTML, CSS, JavaScript |
+| **Organigrama interactivo** | Editor visual con tarjetas editables, conexiones trazadas entre puestos y exportación a PDF | JavaScript, exportación a PDF |
+| **Demo de difusión de carreras de ingeniería** | Aplicación de escritorio con animación tipo "lluvia de código", pantallas por carrera, cuestionario y visualización de una red neuronal | Python, Tkinter |
+| **Conversor de documentos para lectores de tinta electrónica** | Convierte PDF, EPUB, Word e imágenes en páginas de 1 bit (umbral o tramado Floyd-Steinberg) y las empaqueta en el formato binario del lector | Python, Pillow, Playwright |
+
+Accesibilidad en las presentaciones: respetan la preferencia de movimiento reducido y se acomodan en una sola columna en pantallas pequeñas.
 
 #### Automatización e integraciones
 
-| Proyecto | Qué hace | Herramientas |
+| Proyecto | Qué hace | Tecnología |
 |---|---|---|
 | **Sincronización de tienda en línea con inventario** | Actualiza el inventario del ERP con cada pedido de Mercado Libre, sin duplicados y con alertas de error | n8n, OAuth2, Odoo 18 |
-| **Registro automático de solicitudes de cotización** | Lee los PDF que llegan por correo con IA y registra la solicitud en el ERP | Python, Gemini, Odoo, Render |
+| **Registro automático de solicitudes de cotización** | Lee con IA los PDF que llegan por correo y registra la solicitud en el ERP | Python, Gemini, Odoo, Render |
 | **Pantalla informativa** | Muestra avisos, reuniones e indicadores en la televisión de una empresa | Yodeck |
 
 ### 🛠️ Herramientas
