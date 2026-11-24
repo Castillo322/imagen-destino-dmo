@@ -4,7 +4,14 @@ Compara la imagen de un destino que proyecta su organización de marketing (DMO)
 
 Responde la pregunta del proyecto: **¿la imagen que proyecta la DMO coincide con la que perciben los visitantes? ¿En qué temas hay brechas y qué debería ajustar la DMO en su comunicación?**
 
-Proyecto final de Visualización de Datos. Alejandro Castillo Avalos, Ingeniería de Datos e Inteligencia Artificial, DICIS, Universidad de Guanajuato.
+Proyecto final de Visualización de Datos · **Autor: [Alejandro Castillo Avalos](#autor-y-contacto)** · Ingeniería de Datos e Inteligencia Artificial, DICIS, Universidad de Guanajuato.
+
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-tablero-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-ML-F7931E?logo=scikitlearn&logoColor=white)](https://scikit-learn.org/)
+[![Plotly](https://img.shields.io/badge/Plotly-gr%C3%A1ficas-3F4F75?logo=plotly&logoColor=white)](https://plotly.com/python/)
+[![Sin APIs](https://img.shields.io/badge/funciona-sin_conexi%C3%B3n-2E7D32)](#verificación)
+[![Contacto](https://img.shields.io/badge/Contacto-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
 
 ## Las dos versiones
 
@@ -31,6 +38,7 @@ Las dos usan exactamente el mismo código de análisis (`pipeline/analisis.py`) 
 10. [Estructura del repositorio](#estructura-del-repositorio)
 11. [Problemas comunes](#problemas-comunes)
 12. [Verificación](#verificación)
+13. [Autor y contacto](#autor-y-contacto)
 
 ## Cumplimiento del proyecto, punto por punto
 
@@ -566,3 +574,32 @@ python entrenar_sentimiento.py --csv datos/cdmx_unificado.csv.gz --columna_texto
 - los dos tableros, BM25, la comparación con cada fuente y las conclusiones.
 
 Los resultados y las pruebas de robustez están en `VERIFICACION.md`.
+
+## Autor y contacto
+
+**Alejandro Castillo Avalos**<br>
+Estudiante de Ingeniería de Datos e Inteligencia Artificial · DICIS, Universidad de Guanajuato · Salamanca, Guanajuato, México
+
+[![Correo](https://img.shields.io/badge/Correo-a.castilloavalos%40ugto.mx-0072B2)](mailto:a.castilloavalos@ugto.mx)
+[![GitHub](https://img.shields.io/badge/GitHub-Castillo322-181717?logo=github&logoColor=white)](https://github.com/Castillo322)
+
+Uno la ciencia de datos con la gestión de empresas: convierto datos de operación, ventas y opiniones de clientes en indicadores, tableros y automatizaciones que ayudan a decidir.
+
+**Lo que hago**
+- **Análisis de datos y aprendizaje automático** en Python: pandas, scikit-learn, procesamiento de lenguaje natural, redes neuronales y visión por computadora; Apache Spark para grandes volúmenes.
+- **Visualización y tableros**: Streamlit, Plotly y Power BI, con paletas accesibles.
+- **Automatización e integraciones**: n8n, Odoo, Mercado Libre y extracción de datos de documentos con IA.
+- **Mejora continua**: KPIs, DMAIC, medición de tiempos y diseño de puestos.
+
+**Experiencia**
+- **Prácticas profesionales en IPower Electronics** (Salamanca, Gto., 2026): sistematización de procesos con DMAIC, KPIs y perfiles de puesto por área, y automatización del registro de solicitudes de cotización (correo → Odoo con IA).
+- **Integración de inventario Mercado Libre → Odoo 18** con n8n: control de duplicados, OAuth2, actualización de existencias y alertas de error.
+- **Docente de Inteligencia Artificial** en bachillerato (Modelo Dual).
+- **Instructor de cursos** de medición de tiempos y DMAIC.
+
+**Formación y certificaciones**
+- Ingeniería de Datos e Inteligencia Artificial, DICIS, Universidad de Guanajuato.
+- Licenciatura en Gestión Empresarial, Universidad de Guanajuato.
+- Lean Six Sigma Yellow Belt, Lean Six Sigma Institute (LSSI).
+
+**Abierto a oportunidades** en ciencia de datos, analítica de negocio, automatización de procesos e IA aplicada. Para proyectos, prácticas o empleo, escríbeme a [a.castilloavalos@ugto.mx](mailto:a.castilloavalos@ugto.mx).
